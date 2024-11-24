@@ -1,11 +1,9 @@
-function App() {
+export default function App() {
   return (
     <>
-      <div className="bg-red-400">
-        <i className="fa-brands fa-facebook fa"></i>
+      <div className="bg-blue-800 text-center px-12">
+        <i className="fa-brands fa-facebook fa"></i>dsd
       </div>
     </>
   );
 }
-
-export default App;
