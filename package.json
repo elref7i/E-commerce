@@ -12,6 +12,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.1",
     "axios": "^1.7.7",
+    "formik": "^2.4.6",
     "hooks": "^0.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
