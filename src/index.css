@@ -5,6 +5,12 @@
   .nav-link {
     @apply relative before:absolute before:w-0 hover:before:w-full before:h-[2px] before:bg-primary-200 before:-bottom-1 before:left-0 before:transition-[width] before:duration-300;
   }
+  .form-controll {
+    @apply w-full focus:border-primary-300  focus:caret-primary-500  px-2 py-2 border-2 rounded-md border-solid border-gray-300 focus:outline-none transition-colors duration-300;
+  }
+  .btn {
+    @apply col-span-2 w-3/4 justify-self-end rounded-md text-white text-nowrap  transition-colors duration-300;
+  }
 }
 body {
   font-family: 'Encode Sans Expanded', sans-serif;
