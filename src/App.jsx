@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: '/home', element: <Home /> },
-      { path: '/signup', element: <Signup /> },
+      { path: '/register', element: <Signup /> },
       { path: '/login', element: <Login /> },
     ],
   },
