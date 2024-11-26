@@ -73,7 +73,10 @@ export default function Navbar() {
           <div className="cart relative cursor-pointer ">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-              <i className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"></i>
+              <i
+                className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
+                title="Wait"
+              ></i>
             </div>
           </div>
           <ul className="Links flex gap-3 items-center">
