@@ -7,7 +7,7 @@ import getAppleStore from '../../assets/images/get-apple-store.png';
 export default function Footer() {
   return (
     <>
-      <footer className="py-8 shadow-md">
+      <footer className="py-8 shadow-lg bg-gray-50 ">
         <div className="container">
           <header className="mb-6 space-y-2">
             <h3 className="text-xl">Get the FreshCart app</h3>
@@ -16,16 +16,16 @@ export default function Footer() {
               app.
             </p>
           </header>
-          <form className="contact-email  grid grid-cols-12 gap-2 relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
-            <div className="email-input col-span-10">
+          <form className="contact-email flex gap-4  items-center relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
+            <div className="email-input flex-1">
               <input
                 type="email"
-                className="form-controll"
+                className="form-control w-full border-2 rounded-md"
                 placeholder="Email.."
               />
             </div>
             <button
-              className="btn  bg-primary-500 hover:bg-primary-600"
+              className="btn  px-4 py-2 bg-primary-500 hover:bg-primary-600"
               type="submit"
             >
               Share App Link
