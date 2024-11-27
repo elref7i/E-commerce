@@ -79,7 +79,10 @@ export default function Signup() {
   return (
     <>
       <h1 className="font-medium mb-5 text-2xl text-center">Regguster Now:</h1>
-      <form className="space-y-5 w-1/2 mx-auto" onSubmit={formik.handleSubmit}>
+      <form
+        className="space-y-5 w-full md:w-3/4 lg:w-1/2 mx-auto"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="name space-y-1">
           <input
             type="text"

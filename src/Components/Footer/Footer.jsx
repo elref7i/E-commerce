@@ -7,7 +7,7 @@ import getAppleStore from '../../assets/images/get-apple-store.png';
 export default function Footer() {
   return (
     <>
-      <footer className="py-8 shadow-lg bg-gray-50 ">
+      <footer className="py-8 shadow-md shadow-current bg-gray-100">
         <div className="container">
           <header className="mb-6 space-y-2">
             <h3 className="text-xl">Get the FreshCart app</h3>
@@ -16,7 +16,7 @@ export default function Footer() {
               app.
             </p>
           </header>
-          <form className="contact-email flex gap-4  items-center relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
+          <form className="contact-email flex gap-4 flex-wra justify-center  items-center relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
             <div className="email-input flex-1">
               <input
                 type="email"
@@ -31,8 +31,8 @@ export default function Footer() {
               Share App Link
             </button>
           </form>
-          <div className="py-12 flex gap-3 items-center justify-between">
-            <div className="payment flex gap-3 items-center">
+          <div className="py-12 flex flex-col lg:flex-row gap-5  items-center justify-between">
+            <div className="payment flex-wrap justify-center flex gap-3 items-center">
               <h4>Payment Pathers</h4>
               <ul className="payment-way flex gap-3 items-center">
                 <li className="w-8">
@@ -57,7 +57,7 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="download-way flex gap-3 items-center">
+            <div className="download-way flex gap-3 flex-wrap justify-center items-center">
               <h4>Get devliveries with FreshCart</h4>
               <ul className="payment-way flex gap-3 items-center  ">
                 <li className="w-24">

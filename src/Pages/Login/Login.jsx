@@ -4,6 +4,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import imageLogin from '../../assets/images/What is E-Commerce Editing.jpg';
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
@@ -58,71 +59,81 @@ export default function Login() {
   });
   return (
     <>
-      <h1 className="font-medium mb-5 text-2xl text-center">Login:</h1>
-      <form className="space-y-5 w-1/2 mx-auto" onSubmit={formik.handleSubmit}>
-        <div className="email space-y-1">
-          <input
-            type="email"
-            className="form-control border-b-2 w-full"
-            placeholder="Email"
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.email}
-            </p>
-          ) : (
-            ''
-          )}
-          {incorrectData ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {incorrectData}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="password space-y-1">
-          <input
-            type="password"
-            className="form-control border-b-2 w-full"
-            placeholder="Password"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.password}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
-        >
-          Login
-        </button>
-        <div className="flex gap-1 items-center justify-center">
-          <span className="text-slate-400">Don&apos;t havean account?</span>
-          <Link
-            to="/register"
-            className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:w-fit mx-auto grid-cols-12 p-5 ">
+        <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">
+          <h1 className="font-medium mb-5 text-2xl text-center ">Login:</h1>
+          <form
+            className="space-y-10  w-full mx-auto"
+            onSubmit={formik.handleSubmit}
           >
-            Sign up
-          </Link>
+            <div className="email space-y-1">
+              <input
+                type="email"
+                className="form-control border-b-2 w-full"
+                placeholder="Email"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.email}
+                </p>
+              ) : (
+                ''
+              )}
+              {incorrectData ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {incorrectData}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="password space-y-1">
+              <input
+                type="password"
+                className="form-control border-b-2 w-full"
+                placeholder="Password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.password}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
+            >
+              Login
+            </button>
+            <div className="flex gap-1 items-center justify-center">
+              <span className="text-slate-400">Don&apos;t havean account?</span>
+              <Link
+                to="/register"
+                className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+              >
+                Sign up
+              </Link>
+            </div>
+          </form>
         </div>
-      </form>
+        <div className="image-login col-span-6 rounded-md rounded-tr-[50px] hidden md:block overflow-hidden shadow-lg">
+          <img src={imageLogin} className="h-[500px] object-contain" alt="" />
+        </div>
+      </section>
     </>
   );
 }

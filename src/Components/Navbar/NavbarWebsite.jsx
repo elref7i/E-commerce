@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
 import { useEffect, useState } from 'react';
 export default function NavbarWebsite() {
-  const [isOpanMenue, setIsOpanMenue] = useState(false);
+  const [isOpanMenue, setIsOpanMenue] = useState(true);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -14,7 +14,6 @@ export default function NavbarWebsite() {
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
-    // Cleanup function to remove the event listener on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -27,9 +26,9 @@ export default function NavbarWebsite() {
     console.log(isOpanMenue);
   }
   return (
-    <nav className="shadow-md py-3">
-      <div className="container grid grid-cols-12 gap-5 py-2  justify-between">
-        <Link to="/" className="col-span-6 lg:col-span-2">
+    <nav className="shadow-sm shadow-current py-5 bg-gray-100">
+      <div className="container grid grid-cols-12 gap-x-3 items-center ">
+        <Link to="/" className="col-span-11  sm:col-span-6 lg:col-span-2 ">
           <img
             src={freshcCartLogo}
             className="mr-3 h-6 sm:h-9"
@@ -102,7 +101,7 @@ export default function NavbarWebsite() {
             </NavLink>
           </li>
         </ul>
-        <div className="flex gap-5 items-center col-span-6 lg:col-span-4  justify-self-end ">
+        <div className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end ">
           <div className="cart relative cursor-pointer ">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
@@ -125,15 +124,15 @@ export default function NavbarWebsite() {
               <i className="fa-solid fa-arrow-right"></i>
             </span>
           </NavLink>
-          <Link to="/home" className="">
+          <Link to="/" className="">
             <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
           </Link>
-          <div className="icon-menue">
-            <i
-              className="fa-solid fa-bars text-2xl hover:text-primary-500 cursor-pointer lg:hidden"
-              onClick={toggle}
-            ></i>
-          </div>
+        </div>
+        <div className="icon-menue col-span-1  order-1 sm:order-none">
+          <i
+            className="fa-solid fa-bars text-2xl hover:text-primary-500 cursor-pointer lg:hidden"
+            onClick={toggle}
+          ></i>
         </div>
       </div>
     </nav>
