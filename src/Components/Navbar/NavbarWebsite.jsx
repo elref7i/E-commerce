@@ -1,20 +1,109 @@
 // import { Link, NavLink } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
-import { Navbar, NavbarCollapse, NavbarToggle } from 'flowbite-react';
+import { useEffect, useState } from 'react';
 export default function NavbarWebsite() {
+  const [isOpanMenue, setIsOpanMenue] = useState(false);
+  const handleResize = () => {
+    if (window.innerWidth >= 1024) {
+      setIsOpanMenue(true);
+    } else {
+      setIsOpanMenue(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove the event listener on unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, [isOpanMenue]);
+  function toggle() {
+    setIsOpanMenue(!isOpanMenue);
+    console.log(isOpanMenue);
+  }
   return (
     <nav className="shadow-md py-3">
-      <Navbar rounded className="">
-        <Link to="/">
+      <div className="container grid grid-cols-12 gap-5 py-2  justify-between">
+        <Link to="/" className="col-span-6 lg:col-span-2">
           <img
             src={freshcCartLogo}
             className="mr-3 h-6 sm:h-9"
             alt="Flowbite React Logo"
           />
         </Link>
-        <div className="flex  gap-5 items-center md:order-2 ">
-          {/* <div className="cart relative cursor-pointer  ">
+        <ul
+          className={`${
+            isOpanMenue ? 'flex' : 'hidden'
+          }  order-10 col-span-12 lg:order-none flex-col lg:flex-row flex justify-self-center self-center items-center gap-5 text-center  lg:col-span-6`}
+        >
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) => {
+                return `nav-link ${
+                  isActive ? 'before:!w-full font-semibold' : ''
+                }`;
+              }}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) => {
+                return `nav-link  ${
+                  isActive ? 'before:!w-full font-semibold' : ''
+                }`;
+              }}
+            >
+              Cart
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/prouducts"
+              className={({ isActive }) => {
+                return `nav-link  ${
+                  isActive ? 'before:!w-full font-semibold' : ''
+                }`;
+              }}
+            >
+              Prouducts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/categories"
+              className={({ isActive }) => {
+                return `nav-link  ${
+                  isActive ? 'before:!w-full font-semibold' : ''
+                }`;
+              }}
+            >
+              Categories
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/brands"
+              className={({ isActive }) => {
+                return `nav-link  ${
+                  isActive ? 'before:!w-full font-semibold' : ''
+                }`;
+              }}
+            >
+              Brands
+            </NavLink>
+          </li>
+        </ul>
+        <div className="flex gap-5 items-center col-span-6 lg:col-span-4  justify-self-end ">
+          <div className="cart relative cursor-pointer ">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
               <i
@@ -22,7 +111,7 @@ export default function NavbarWebsite() {
                 title="Wait"
               ></i>
             </div>
-          </div> */}
+          </div>
           <NavLink
             to="/login"
             className={({ isActive }) => {
@@ -36,66 +125,17 @@ export default function NavbarWebsite() {
               <i className="fa-solid fa-arrow-right"></i>
             </span>
           </NavLink>
-          {/* <Link to="/home" className="">
-              <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
-            </Link> */}
-          <NavbarToggle className="block lg:hidden" />
-        </div>
-        <NavbarCollapse>
-          <div className=" flex items-center py-3 md:py-0  flex-col md:flex-row gap-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) => {
-                return `nav-link ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/cart"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Cart
-            </NavLink>
-            <NavLink
-              to="/prouducts"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Prouducts
-            </NavLink>
-            <NavLink
-              to="/categories"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Categories
-            </NavLink>
-            <NavLink
-              to="/brands"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Brands
-            </NavLink>
+          <Link to="/home" className="">
+            <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
+          </Link>
+          <div className="icon-menue">
+            <i
+              className="fa-solid fa-bars text-2xl hover:text-primary-500 cursor-pointer lg:hidden"
+              onClick={toggle}
+            ></i>
           </div>
-        </NavbarCollapse>
-      </Navbar>
+        </div>
+      </div>
     </nav>
   );
 }
