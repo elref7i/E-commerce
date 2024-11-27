@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 export default function Login() {
@@ -37,7 +37,7 @@ export default function Login() {
         toast.success('True');
         setIncorrectData(null);
         setTimeout(() => {
-          navigator('/home');
+          navigator('/');
         }, 2000);
       }
     } catch (error) {
@@ -58,7 +58,7 @@ export default function Login() {
   });
   return (
     <>
-      <h1 className="font-medium mb-5 text-2xl text-center">Login Now:</h1>
+      <h1 className="font-medium mb-5 text-2xl text-center">Login:</h1>
       <form className="space-y-5 w-1/2 mx-auto" onSubmit={formik.handleSubmit}>
         <div className="email space-y-1">
           <input
@@ -106,12 +106,22 @@ export default function Login() {
             ''
           )}
         </div>
+
         <button
           type="submit"
-          className="btn px-4 py-2 bg-primary-500 hover:bg-primary-600"
+          className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
         >
           Login
         </button>
+        <div className="flex gap-1 items-center justify-center">
+          <span className="text-slate-400">Don&apos;t havean account?</span>
+          <Link
+            to="/register"
+            className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+          >
+            Sign up
+          </Link>
+        </div>
       </form>
     </>
   );

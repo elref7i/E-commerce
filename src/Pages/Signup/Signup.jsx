@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 export default function Signup() {
@@ -148,7 +148,7 @@ export default function Signup() {
         <div className="re-password space-y-1">
           <input
             type="password"
-            className="form-control border-b-2 w-full"
+            className="form-control  w-full"
             placeholder="rePassword"
             name="rePassword"
             value={formik.values.rePassword}
@@ -185,10 +185,19 @@ export default function Signup() {
         </div>
         <button
           type="submit"
-          className="btn px-4 py-2 bg-primary-500 hover:bg-primary-600"
+          className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
         >
-          Register
+          Sign Up
         </button>
+        <div className="flex gap-1 items-center justify-center">
+          <span className="text-slate-400">Don&apos;t havean account?</span>
+          <Link
+            to="/login"
+            className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+          >
+            Login
+          </Link>
+        </div>
       </form>
     </>
   );
