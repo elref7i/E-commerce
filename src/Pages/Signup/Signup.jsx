@@ -38,7 +38,7 @@ export default function Signup() {
       .required('Please provide your phone number.')
       .matches(phoneRegx, 'The phone number you entered is not valid'),
   });
-  async function getData(values) {
+  async function sendDataToRegister(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
     const loadingClose = toast.loading('Watting ... ', {
       position: 'top-center',
@@ -53,6 +53,7 @@ export default function Signup() {
       console.log(data);
       if (data.message === 'success') {
         toast.success(data.message);
+        setCheckEmailExist(null);
         setTimeout(() => {
           navigate('/login');
         }, 2000);
@@ -73,7 +74,7 @@ export default function Signup() {
       phone: '',
     },
     validationSchema,
-    onSubmit: getData,
+    onSubmit: sendDataToRegister,
   });
   return (
     <>
