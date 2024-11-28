@@ -4,7 +4,8 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import imageLogin from '../../assets/images/What is E-Commerce Editing.jpg';
+import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
+import favicon from '../../assets/images/favicon.png';
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
@@ -61,9 +62,22 @@ export default function Login() {
     <>
       <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:w-fit mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">
-          <h1 className="font-medium mb-5 text-2xl text-center ">Login:</h1>
+          <header className="text-center mb-6 space-y-2">
+            <div className="size-24 mx-auto">
+              <img src={favicon} className="mb-5" alt="" />
+            </div>
+            <h1 className="font-bold  text-3xl ">
+              Welcome Back:
+              <span>
+                <i className="fa-solid fa-hand-sparkles ml-2 text-primary-800 hover:text-primary-600"></i>
+              </span>
+            </h1>
+            <p className="font-medium pb-6 text-sm text-slate-400 ">
+              Please enter your details
+            </p>
+          </header>
           <form
-            className="space-y-10  w-full mx-auto"
+            className="space-y-10  w-full mx-auto "
             onSubmit={formik.handleSubmit}
           >
             <div className="email space-y-1">
@@ -113,25 +127,33 @@ export default function Login() {
               )}
             </div>
 
-            <button
-              type="submit"
-              className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
-            >
-              Login
-            </button>
-            <div className="flex gap-1 items-center justify-center">
-              <span className="text-slate-400">Don&apos;t havean account?</span>
-              <Link
-                to="/register"
-                className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+            <footer>
+              <button
+                type="submit"
+                className="btn w-3/4 mx-auto block mb-2 px-4 py-2 bg-primary-500 hover:bg-primary-600"
               >
-                Sign up
-              </Link>
-            </div>
+                Login
+              </button>
+              <div className="flex gap-1 items-center justify-center">
+                <span className="text-slate-400">
+                  Don&apos;t havean account?
+                </span>
+                <Link
+                  to="/register"
+                  className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+                >
+                  Sign up
+                </Link>
+              </div>
+            </footer>
           </form>
         </div>
-        <div className="image-login col-span-6 rounded-md rounded-tr-[50px] hidden md:block overflow-hidden shadow-lg">
-          <img src={imageLogin} className="h-[500px] object-contain" alt="" />
+        <div className="image-login col-span-6 rounded-md bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:block overflow-hidden  shadow-current ">
+          <img
+            src={imageLogin}
+            className="block h-[400px]  object-contain"
+            alt=""
+          />
         </div>
       </section>
     </>

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
+import favicon from '../../assets/images/favicon.png';
 
 export default function Signup() {
   const [checkEmailExist, setCheckEmailExist] = useState(null);
@@ -78,130 +80,154 @@ export default function Signup() {
   });
   return (
     <>
-      <h1 className="font-medium mb-5 text-2xl text-center">Regguster Now:</h1>
-      <form
-        className="space-y-5 w-full md:w-3/4 lg:w-1/2 mx-auto"
-        onSubmit={formik.handleSubmit}
-      >
-        <div className="name space-y-1">
-          <input
-            type="text"
-            className="form-control border-b-2 w-full"
-            placeholder="Name"
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.name && formik.errors.name ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.name}
+      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:w-fit mx-auto grid-cols-12 p-5 ">
+        <div className="col-span-12 md:col-span-6 p-2 flex flex-col justify-center rounded-md">
+          <header className="text-center mb-12 space-y-2">
+            <div className="size-24  mx-auto ">
+              <img src={favicon} alt="" />
+            </div>
+            <h1 className="font-bold text-3xl">Get Started:</h1>
+
+            <p className="font-medium pb-6 text-sm text-slate-400">
+              Welcome to FreshCart - let&apos;s create your account
             </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="email space-y-1">
-          <input
-            type="email"
-            className="form-control border-b-2 w-full"
-            placeholder="Email"
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.email}
-            </p>
-          ) : (
-            ''
-          )}
-          {checkEmailExist ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {checkEmailExist}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="password space-y-1">
-          <input
-            type="password"
-            className="form-control border-b-2 w-full"
-            placeholder="Password"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.password}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="re-password space-y-1">
-          <input
-            type="password"
-            className="form-control  w-full"
-            placeholder="rePassword"
-            name="rePassword"
-            value={formik.values.rePassword}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.rePassword && formik.errors.rePassword ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.rePassword}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="phone space-y-1">
-          <input
-            type="tel"
-            className="form-control border-b-2 w-full"
-            placeholder="Phone"
-            name="phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.phone && formik.errors.phone ? (
-            <p className="not-valid-value text-red-600 font-medium">
-              <span className="mr-1 font-bold animate-pulse">*</span>
-              {formik.errors.phone}
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <button
-          type="submit"
-          className="btn w-3/4 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
-        >
-          Sign Up
-        </button>
-        <div className="flex gap-1 items-center justify-center">
-          <span className="text-slate-400">Don&apos;t havean account?</span>
-          <Link
-            to="/login"
-            className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+          </header>
+          <form
+            className="space-y-10  w-full mx-auto"
+            onSubmit={formik.handleSubmit}
           >
-            Login
-          </Link>
+            <div className="name space-y-1">
+              <input
+                type="text"
+                className="form-control border-b-2 w-full"
+                placeholder="Name"
+                name="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.name}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="email space-y-1">
+              <input
+                type="email"
+                className="form-control border-b-2 w-full"
+                placeholder="Email"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.email}
+                </p>
+              ) : (
+                ''
+              )}
+              {checkEmailExist ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {checkEmailExist}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="password space-y-1">
+              <input
+                type="password"
+                className="form-control border-b-2 w-full"
+                placeholder="Password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.password}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="re-password space-y-1">
+              <input
+                type="password"
+                className="form-control  w-full"
+                placeholder="rePassword"
+                name="rePassword"
+                value={formik.values.rePassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.rePassword && formik.errors.rePassword ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.rePassword}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="phone space-y-1">
+              <input
+                type="tel"
+                className="form-control border-b-2 w-full"
+                placeholder="Phone"
+                name="phone"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.phone && formik.errors.phone ? (
+                <p className="not-valid-value text-red-600 font-medium">
+                  <span className="mr-1 font-bold animate-pulse">*</span>
+                  {formik.errors.phone}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <footer>
+              <button
+                type="submit"
+                className="btn w-3/4 mx-auto block mb-2 px-4 py-2 bg-primary-500 hover:bg-primary-600"
+              >
+                Sign Up
+              </button>
+              <div className="flex gap-1 items-center justify-center">
+                <span className="text-slate-400">
+                  Don&apos;t havean account?
+                </span>
+                <Link
+                  to="/login"
+                  className="text-lg text-primary-300 hover:text-primary-600 duration-300  transition-colors"
+                >
+                  Login
+                </Link>
+              </div>
+            </footer>
+          </form>
         </div>
-      </form>
+        <div className="image-login col-span-6  rounded-md bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:flex items-center justify-center overflow-hidden  shadow-current ">
+          <img
+            src={imageLogin}
+            className="block h-[400px]  object-contain"
+            alt=""
+          />
+        </div>
+      </section>
     </>
   );
 }

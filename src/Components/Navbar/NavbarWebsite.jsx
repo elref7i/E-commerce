@@ -17,10 +17,8 @@ export default function NavbarWebsite() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
   }, [isOpanMenue]);
+
   function toggle() {
     setIsOpanMenue(!isOpanMenue);
     console.log(isOpanMenue);
