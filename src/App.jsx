@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import { Toaster } from 'react-hot-toast';
+import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: '/register', element: <Signup /> },
       { path: '/login', element: <Login /> },
+      { path: '/foregetPassword', element: <ForgetPassword /> },
     ],
   },
 ]);

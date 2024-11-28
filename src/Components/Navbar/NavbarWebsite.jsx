@@ -3,21 +3,23 @@ import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
 import { useEffect, useState } from 'react';
 export default function NavbarWebsite() {
-  const [isOpanMenue, setIsOpanMenue] = useState(true);
+  const [isOpanMenue, setIsOpanMenue] = useState(false);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
+      console.log(window.innerWidth);
       setIsOpanMenue(true);
     } else {
       setIsOpanMenue(false);
+      console.log(window.innerWidth);
     }
   };
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isOpanMenue]);
+  }, []);
 
   function toggle() {
     setIsOpanMenue(!isOpanMenue);

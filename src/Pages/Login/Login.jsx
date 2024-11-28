@@ -110,7 +110,7 @@ export default function Login() {
             <div className="password space-y-1">
               <input
                 type="password"
-                className="form-control border-b-2 w-full"
+                className="form-control mb-2 border-b-2 w-full"
                 placeholder="Password"
                 name="password"
                 value={formik.values.password}
@@ -125,6 +125,12 @@ export default function Login() {
               ) : (
                 ''
               )}
+              <Link
+                to="/foregetPassword"
+                className="block text-end text-sm italic text-red-500 hover:text-red-700 duration-300 transition-colors "
+              >
+                Forget Password?
+              </Link>
             </div>
 
             <footer>
