@@ -80,9 +80,9 @@ export default function Signup() {
   });
   return (
     <>
-      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:w-fit mx-auto grid-cols-12 p-5 ">
+      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:max-w-[900px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-2 flex flex-col justify-center rounded-md">
-          <header className="text-center mb-12 space-y-2">
+          <header className="text-center mb-2 space-y-2">
             <div className="size-24  mx-auto ">
               <img src={favicon} alt="" />
             </div>
@@ -93,7 +93,7 @@ export default function Signup() {
             </p>
           </header>
           <form
-            className="space-y-10  w-full mx-auto"
+            className="space-y-5  w-full mx-auto"
             onSubmit={formik.handleSubmit}
           >
             <div className="name space-y-1">

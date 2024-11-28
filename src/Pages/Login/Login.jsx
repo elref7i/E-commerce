@@ -60,7 +60,7 @@ export default function Login() {
   });
   return (
     <>
-      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:w-fit mx-auto grid-cols-12 p-5 ">
+      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]   md:max-w-[800px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">
             <div className="size-24 mx-auto">
@@ -118,7 +118,7 @@ export default function Login() {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.password && formik.errors.password ? (
-                <p className="not-valid-value text-red-600 font-medium">
+                <p className="not-valid-value text-red-600 text-wrap font-medium">
                   <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.password}
                 </p>
