@@ -6,6 +6,7 @@ import Login from './Pages/Login/Login';
 import { Toaster } from 'react-hot-toast';
 import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
 import VerifyResetCode from './Pages/VerifyResetCode/VerifyResetCode';
+import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/foregetPassword', element: <ForgetPassword /> },
       { path: '/verifyResetCode', element: <VerifyResetCode /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ]);

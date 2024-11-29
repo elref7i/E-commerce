@@ -37,9 +37,6 @@ export default function NavbarWebsite() {
           className={`${
             isOpanMenue ? 'flex' : 'hidden'
           }  order-10 col-span-12 lg:order-none flex-col lg:flex-row flex justify-self-center self-center items-center gap-5 text-center  lg:col-span-6`}
-          onClick={() => {
-            setIsOpanMenue(false);
-          }}
         >
           <li>
             <NavLink
@@ -102,12 +99,7 @@ export default function NavbarWebsite() {
             </NavLink>
           </li>
         </ul>
-        <div
-          className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end "
-          onClick={() => {
-            setIsOpanMenue(false);
-          }}
-        >
+        <div className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end ">
           <div className="cart relative cursor-pointer ">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">

@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <>
       <NavbarWebsite />
-      <div className="container   py-20">
+      <div className="container min-h-[60vh]  py-20">
         <Outlet></Outlet>
       </div>
       <Footer />
