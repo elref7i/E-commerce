@@ -6,11 +6,9 @@ export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
-      console.log(window.innerWidth);
       setIsOpanMenue(true);
     } else {
       setIsOpanMenue(false);
-      console.log(window.innerWidth);
     }
   };
   useEffect(() => {
@@ -39,6 +37,9 @@ export default function NavbarWebsite() {
           className={`${
             isOpanMenue ? 'flex' : 'hidden'
           }  order-10 col-span-12 lg:order-none flex-col lg:flex-row flex justify-self-center self-center items-center gap-5 text-center  lg:col-span-6`}
+          onClick={() => {
+            setIsOpanMenue(false);
+          }}
         >
           <li>
             <NavLink
@@ -101,7 +102,12 @@ export default function NavbarWebsite() {
             </NavLink>
           </li>
         </ul>
-        <div className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end ">
+        <div
+          className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end "
+          onClick={() => {
+            setIsOpanMenue(false);
+          }}
+        >
           <div className="cart relative cursor-pointer ">
             <i className="fa-solid fa-cart-shopping text-2xl"></i>
             <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
@@ -111,19 +117,15 @@ export default function NavbarWebsite() {
               ></i>
             </div>
           </div>
-          <NavLink
+          <Link
             to="/login"
-            className={({ isActive }) => {
-              return `btn bg-primary-500 hover:bg-primary-600 px-3 py-2 font-semibold  ${
-                isActive ? '' : ''
-              }`;
-            }}
+            className="btn bg-primary-500 hover:bg-primary-600 px-3 py-2 font-semibold "
           >
             Login Now
             <span className="ml-2">
               <i className="fa-solid fa-arrow-right"></i>
             </span>
-          </NavLink>
+          </Link>
           <Link to="/" className="">
             <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
           </Link>

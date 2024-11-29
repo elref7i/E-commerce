@@ -6,13 +6,13 @@ import favicon from '../../assets/images/favicon.png';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function ForgetPassword() {
+export default function VerifyResetCode() {
   const [errorResponse, setErrorResponse] = useState(null);
   const navigator = useNavigate();
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required('Please provide your email address.')
-      .email('The email you entered is not valid. Please check again.'),
+    resetCode: Yup.string()
+      .required('Please provide your resetCode.')
+      .matches(/^\d{6}$/, 'Reset code must be exactly 6 digits.'),
   });
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
@@ -21,16 +21,18 @@ export default function ForgetPassword() {
     });
     try {
       const options = {
-        url: 'https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',
+        url: 'https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',
         method: 'POST',
         data: values,
       };
       let { data } = await axios.request(options);
       toast.success(data.message);
       setTimeout(() => {
-        navigator('/verifyResetCode');
+        navigator('/login');
       }, 2000);
+      console.log(data);
     } catch (error) {
+      console.log(error);
       toast.error(error.response.data.message);
       setErrorResponse(error.response.data.message);
     } finally {
@@ -39,7 +41,7 @@ export default function ForgetPassword() {
   }
   const formik = useFormik({
     initialValues: {
-      email: '',
+      resetCode: '',
     },
     validationSchema,
     onSubmit: sendGmailForeget,
@@ -52,34 +54,29 @@ export default function ForgetPassword() {
             <div className="size-24 mx-auto">
               <img src={favicon} className="mb-5" alt="" />
             </div>
-            <h1 className="font-bold  text-3xl ">
-              Forget Password?:
-              {/* <span>
-                <i className="fa-solid fa-hand-sparkles ml-2 text-primary-800 hover:text-primary-600"></i>
-              </span> */}
-            </h1>
+            <h1 className="font-bold  text-3xl ">Check your Gmail</h1>
             <p className="font-medium pb-6 text-sm text-slate-400 ">
-              Enter your email address
+              We&apos;ve sent the code to your email
             </p>
           </header>
           <form
             className="space-y-10  w-full mx-auto "
             onSubmit={formik.handleSubmit}
           >
-            <div className="email space-y-1 ">
+            <div className="reset-code space-y-1 ">
               <input
-                type="email"
+                type="text"
                 className="form-control border-b-2 w-full"
-                placeholder="Email"
-                name="email"
-                value={formik.values.email}
+                placeholder="Enter Code"
+                name="resetCode"
+                value={formik.values.resetCode}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.email && formik.errors.email ? (
+              {formik.touched.resetCode && formik.errors.resetCode ? (
                 <p className="not-valid-value text-wrap break-words  text-red-600 font-medium">
                   <span className="mr-1 font-bold animate-pulse">*</span>
-                  {formik.errors.email}
+                  {formik.errors.resetCode}
                 </p>
               ) : (
                 ''
@@ -93,12 +90,18 @@ export default function ForgetPassword() {
                 ''
               )}
             </div>
-            <footer>
+            <footer className="flex flex-wrap gap-6 text-nowrap ">
               <button
                 type="submit"
-                className="btn w-3/4 mx-auto block mb-2 px-4 py-2 bg-primary-500 hover:bg-primary-600"
+                className="btn flex-1  mx-auto px-4 py-2 bg-primary-500 hover:bg-primary-600"
               >
-                Send
+                Verity
+              </button>
+              <button
+                type="submit"
+                className="outline-btn flex-1 px-4 py-2 hover:text-white hover:bg-primary-400 hover:border-primary-400"
+              >
+                Send Again
               </button>
             </footer>
           </form>

@@ -11,6 +11,9 @@
   .btn {
     @apply rounded-md text-white text-nowrap  transition-colors duration-300;
   }
+  .outline-btn {
+    @apply rounded-md  text-nowrap  transition-colors duration-300 border-solid border-slate-500 border-2 text-black;
+  }
 }
 body {
   font-family: 'Encode Sans Expanded', sans-serif;
