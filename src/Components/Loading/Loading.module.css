@@ -1,78 +1,76 @@
-:global(.preloader) * {
+* {
   border: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-:global(.preloader) :root {
+
+.loading {
   --hue: 223;
-  --bg: hsl(var(--hue), 10%, 90%);
+  --bg: transparent;
   --fg: hsl(var(--hue), 10%, 10%);
-  --primary: hsl(var(--hue), 90%, 55%);
+  --primary: #0aad0a;
   --trans-dur: 0.3s;
   font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
-}
-:global(.preloader) body {
-  background-color: var(--bg);
   color: var(--fg);
   font: 1em/1.5 'DM Sans', sans-serif;
-  height: 100vh;
+  height: 50vh;
   display: grid;
   place-items: center;
   transition: background-color var(--trans-dur), color var(--trans-dur);
 }
-:global(.preloader) {
+.loading :global(.preloader) {
   text-align: center;
   max-width: 20em;
   width: 100%;
 }
-:global(.preloader) .preloader__text {
+.loading :global(.preloader__text) {
   position: relative;
   height: 1.5em;
 }
-:global(.preloader) .preloader__msg {
+.loading :global(.preloader__msg) {
   animation: msg 0.3s 13.7s linear forwards;
   position: absolute;
   width: 100%;
 }
-:global(.preloader) .preloader__msg--last {
+.loading :global(.preloader__msg--last) {
   animation-direction: reverse;
   animation-delay: 14s;
   visibility: hidden;
 }
-:global(.preloader) .cart {
+.loading :global(.cart) {
   display: block;
   margin: 0 auto 1.5em auto;
-  width: 8em;
-  height: 8em;
+  width: 20em;
+  height: 20em;
 }
-:global(.preloader) .cart__lines,
-:global(.preloader) .cart__top,
-:global(.preloader) .cart__wheel1,
-:global(.preloader) .cart__wheel2,
-:global(.preloader) .cart__wheel-stroke {
+.loading :global(.cart__lines),
+.loading :global(.cart__top),
+.loading :global(.cart__wheel1),
+.loading :global(.cart__wheel2),
+.loading :global(.cart__wheel-stroke) {
   animation: cartLines 2s ease-in-out infinite;
 }
-:global(.preloader) .cart__lines {
+.loading :global(.cart__lines) {
   stroke: var(--primary);
 }
-:global(.preloader) .cart__top {
+.loading :global(.cart__top) {
   animation-name: cartTop;
 }
-:global(.preloader) .cart__wheel1 {
+.loading :global(.cart__wheel1) {
   animation-name: cartWheel1;
   transform: rotate(-0.25turn);
   transform-origin: 43px 111px;
 }
-:global(.preloader) .cart__wheel2 {
+.loading :global(.cart__wheel2) {
   animation-name: cartWheel2;
   transform: rotate(0.25turn);
   transform-origin: 102px 111px;
 }
-:global(.preloader) .cart__wheel-stroke {
+.loading :global(.cart__wheel-stroke) {
   animation-name: cartWheelStroke;
 }
-:global(.preloader) .cart__track {
+.loading :global(.cart__track) {
   stroke: hsla(var(--hue), 10%, 10%, 0.1);
   transition: stroke var(--trans-dur);
 }
@@ -83,7 +81,7 @@
     --bg: hsl(var(--hue), 10%, 10%);
     --fg: hsl(var(--hue), 10%, 90%);
   }
-  :global(.preloader) .cart__track {
+  .loading :global(.cart__track) {
     stroke: hsla(var(--hue), 10%, 90%, 0.1);
   }
 }
