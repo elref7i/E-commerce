@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
 
 export default function Home() {
-  const [responseData, setResponseData] = useState(null);
+  const [products, setProducts] = useState(null);
   async function getData() {
     try {
       const options = {
@@ -12,9 +12,8 @@ export default function Home() {
         method: 'GET',
       };
       let { data } = await axios.request(options);
-      console.log(data.data);
 
-      setResponseData(data.data);
+      setProducts(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -24,10 +23,10 @@ export default function Home() {
   }, []);
   return (
     <>
-      {responseData ? (
+      {products ? (
         <div className="cards grid grid-cols-12 gap-3">
-          {responseData.map((proudect) => (
-            <Card productInfo={proudect} key={proudect.category._id} />
+          {products.map((proudect) => (
+            <Card productInfo={proudect} key={proudect._id} />
           ))}
         </div>
       ) : (
