@@ -2,6 +2,7 @@ import axios from 'axios';
 import Card from '../../Components/Card/Card';
 import { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
+import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -23,12 +24,15 @@ export default function Home() {
   }, []);
   return (
     <>
+      <section className="grid grid-cols-12 mb-8">
+        <HomeSlider />
+      </section>
       {products ? (
-        <div className="cards grid grid-cols-12 gap-3">
+        <section className="cards grid grid-cols-12 gap-3">
           {products.map((proudect) => (
             <Card productInfo={proudect} key={proudect._id} />
           ))}
-        </div>
+        </section>
       ) : (
         <Loading />
       )}

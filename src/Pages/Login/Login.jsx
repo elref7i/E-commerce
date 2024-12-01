@@ -154,7 +154,7 @@ export default function Login() {
             </footer>
           </form>
         </div>
-        <div className="image-login col-span-6 rounded-md bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:block overflow-hidden  shadow-current ">
+        <div className="image-login col-span-6 rounded-md  bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:block overflow-hidden  shadow-current ">
           <img
             src={imageLogin}
             className="block h-[400px]  object-contain"
