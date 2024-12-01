@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 export default function Card({ productInfo }) {
   const { imageCover, category, description, title, price, ratingsAverage } =
     productInfo;
-  console.log(productInfo);
 
   return (
     <>
