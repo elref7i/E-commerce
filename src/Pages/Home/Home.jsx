@@ -27,7 +27,7 @@ export default function Home() {
       <section className="grid grid-cols-12 mb-8">
         <HomeSlider />
       </section>
-      <section className="mb-8">
+      <section className="mb-8 ">
         <CategorySlider />
       </section>
       {products ? (

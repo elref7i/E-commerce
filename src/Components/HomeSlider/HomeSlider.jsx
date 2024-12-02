@@ -18,7 +18,6 @@ export default function HomeSlider() {
           modules={[Autoplay]}
           slidesPerView={1}
           loop={true}
-          data-swiper-autoplay="2000"
           className="w-full h-full object-cover "
           autoplay={{
             delay: 2000,

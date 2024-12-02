@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/autoplay';
+import { Autoplay } from 'swiper/modules';
 import Loading from '../Loading/Loading';
 export default function CategorySlider() {
   const [categories, setCategories] = useState(null);
@@ -15,7 +17,6 @@ export default function CategorySlider() {
         data: { data },
       } = await axios.request(options);
       setCategories(data);
-      // console.log(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -23,22 +24,47 @@ export default function CategorySlider() {
   useEffect(() => {
     getCategories();
   }, []);
-  // useEffect;
   return (
     <>
       {!categories ? (
         <Loading />
       ) : (
-        <Swiper className="grid grid-cols-12" slidesPerView={8} loop={true}>
+        <Swiper
+          slidesPerView={1}
+          loop={true}
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 2,
+            },
+            640: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 7,
+            },
+          }}
+        >
           {categories.map((category) => {
             return (
-              <SwiperSlide key={category._id} className="col-span-1">
-                <img
-                  src={category.image}
-                  className="w-[150px] h-[150px] object-cover"
-                  alt=""
-                />
-                <h3>{category.name}</h3>
+              <SwiperSlide className="cursor-pointer" key={category._id}>
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src={category.image}
+                    className="w-[150px] h-[150px] object-cover mb-2"
+                    alt=""
+                  />
+                  <h3 className="text-center text-lg font-medium">
+                    {category.name}
+                  </h3>
+                </div>
               </SwiperSlide>
             );
           })}
