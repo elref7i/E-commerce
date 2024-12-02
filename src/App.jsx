@@ -7,17 +7,26 @@ import { Toaster } from 'react-hot-toast';
 import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
 import VerifyResetCode from './Pages/VerifyResetCode/VerifyResetCode';
 import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
+    children: [{ index: true, element: <Home /> }],
+  },
   {
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <Home /> },
+      { path: '*', element: <NotFoundPage /> },
       { path: '/register', element: <Signup /> },
-      { path: '/login', element: <Login /> },
       { path: '/foregetPassword', element: <ForgetPassword /> },
       { path: '/verifyResetCode', element: <VerifyResetCode /> },
-      { path: '*', element: <NotFoundPage /> },
+      { path: '/login', element: <Login /> },
     ],
   },
 ]);
