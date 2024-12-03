@@ -8,6 +8,8 @@ import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
 import VerifyResetCode from './Pages/VerifyResetCode/VerifyResetCode';
 import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
+import GuestRoute from './Components/GuestRoute/GuestRoute';
+import UserProvider from './context/User.context';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,20 +22,26 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <GuestRoute>
+        <Layout />
+      </GuestRoute>
+    ),
     children: [
-      { path: '*', element: <NotFoundPage /> },
       { path: '/register', element: <Signup /> },
       { path: '/foregetPassword', element: <ForgetPassword /> },
       { path: '/verifyResetCode', element: <VerifyResetCode /> },
       { path: '/login', element: <Login /> },
     ],
   },
+  { path: '*', element: <NotFoundPage /> },
 ]);
 export default function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
       <Toaster />
     </>
   );

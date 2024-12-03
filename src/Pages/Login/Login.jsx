@@ -1,16 +1,18 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
 import favicon from '../../assets/images/favicon.png';
+import { UserContext } from '../../context/User.context';
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
   const [incorrectData, setIncorrectData] = useState(null);
   const navigator = useNavigate();
+  const { setToken } = useContext(UserContext);
   const validationSchema = Yup.object({
     email: Yup.string()
       .required('Please provide your email address.')
@@ -37,6 +39,7 @@ export default function Login() {
       console.log(data);
       if (data.message === 'success') {
         toast.success('True');
+        setToken(data.token);
         setIncorrectData(null);
         setTimeout(() => {
           navigator('/');

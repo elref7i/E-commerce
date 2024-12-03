@@ -2,14 +2,13 @@ import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../../context/User.context';
 
-export default function ProtectedRoute({ children }) {
+export default function GuestRoute({ children }) {
   // let token = false;
   const { token } = useContext(UserContext);
-  if (token) {
+
+  if (!token) {
     return children;
   } else {
-    return <Navigate to="/login" />;
+    <Navigate to="/" />;
   }
 }
-
-//* Token => Navbar-Cart-WishList-ProotectedRoute-GuestRoute

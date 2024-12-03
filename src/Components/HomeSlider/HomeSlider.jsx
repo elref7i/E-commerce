@@ -9,7 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 //*SwiperSlide => Create swiper in swiper
 
 // Import Swiper styles
-
 export default function HomeSlider() {
   return (
     <>
