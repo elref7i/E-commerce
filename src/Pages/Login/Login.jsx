@@ -40,6 +40,7 @@ export default function Login() {
       if (data.message === 'success') {
         toast.success('True');
         setToken(data.token);
+        localStorage.setItem('token', data.token);
         setIncorrectData(null);
         setTimeout(() => {
           navigator('/');

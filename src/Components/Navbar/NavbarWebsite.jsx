@@ -1,9 +1,11 @@
 // import { Link, NavLink } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../context/User.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
+  const { token } = useContext(UserContext);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -100,27 +102,39 @@ export default function NavbarWebsite() {
           </li>
         </ul>
         <div className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end ">
-          <div className="cart relative cursor-pointer ">
-            <i className="fa-solid fa-cart-shopping text-2xl"></i>
-            <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-              <i
-                className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
-                title="Wait"
-              ></i>
+          {token ? (
+            <div className="cart relative cursor-pointer ">
+              <i className="fa-solid fa-cart-shopping text-2xl"></i>
+              <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
+                <i
+                  className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
+                  title="Wait"
+                ></i>
+              </div>
             </div>
-          </div>
-          <Link
-            to="/login"
-            className="btn bg-primary-500 hover:bg-primary-600 px-3 py-2 font-semibold "
-          >
-            Login Now
-            <span className="ml-2">
-              <i className="fa-solid fa-arrow-right"></i>
-            </span>
-          </Link>
-          <Link to="/" className="">
-            <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
-          </Link>
+          ) : (
+            ''
+          )}
+          {!token ? (
+            <Link
+              to="/login"
+              className="btn bg-primary-500 hover:bg-primary-600 px-3 py-2 font-semibold "
+            >
+              Login Now
+              <span className="ml-2">
+                <i className="fa-solid fa-arrow-right"></i>
+              </span>
+            </Link>
+          ) : (
+            ''
+          )}
+          {token ? (
+            <Link to="/" className="">
+              <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
+            </Link>
+          ) : (
+            ''
+          )}
         </div>
         <div className="icon-menue col-span-1  order-1 sm:order-none">
           <i

@@ -5,7 +5,7 @@ export const UserContext = createContext(null);
 console.log(UserContext);
 
 export default function UserProvider({ children }) {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'));
   return (
     <UserContext.Provider value={{ token, setToken }}>
       {children}
