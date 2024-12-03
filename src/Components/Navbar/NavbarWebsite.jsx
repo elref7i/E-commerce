@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/User.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
-  const { token } = useContext(UserContext);
+  const { token, logOut } = useContext(UserContext);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -25,9 +25,10 @@ export default function NavbarWebsite() {
     setIsOpanMenue(!isOpanMenue);
     console.log(isOpanMenue);
   }
+
   return (
     <nav className="shadow-sm shadow-current py-5 bg-gray-100">
-      <div className="container grid grid-cols-12 gap-x-3 items-center ">
+      <div className="container grid grid-cols-12 gap-x-3  items-center ">
         <Link to="/" className="col-span-11  sm:col-span-6 lg:col-span-2 ">
           <img
             src={freshcCartLogo}
@@ -35,73 +36,79 @@ export default function NavbarWebsite() {
             alt="Flowbite React Logo"
           />
         </Link>
-        <ul
+        {token && (
+          <ul
+            className={`${
+              isOpanMenue ? 'flex' : 'hidden'
+            }  order-10 col-span-12 lg:order-none flex-col lg:flex-row flex justify-self-center self-center items-center gap-5 text-center  lg:col-span-6`}
+          >
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => {
+                  return `nav-link ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) => {
+                  return `nav-link  ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Cart
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/prouducts"
+                className={({ isActive }) => {
+                  return `nav-link  ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Prouducts
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/categories"
+                className={({ isActive }) => {
+                  return `nav-link  ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Categories
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/brands"
+                className={({ isActive }) => {
+                  return `nav-link  ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Brands
+              </NavLink>
+            </li>
+          </ul>
+        )}
+        <div
           className={`${
-            isOpanMenue ? 'flex' : 'hidden'
-          }  order-10 col-span-12 lg:order-none flex-col lg:flex-row flex justify-self-center self-center items-center gap-5 text-center  lg:col-span-6`}
+            !token ? 'lg:col-span-10' : 'lg:col-span-4 '
+          } flex gap-5 items-center order-2 sm:order-none col-span-12  justify-self-center sm:col-span-5 md:justify-self-end`}
         >
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => {
-                return `nav-link ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/cart"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Cart
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/prouducts"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Prouducts
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/categories"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Categories
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/brands"
-              className={({ isActive }) => {
-                return `nav-link  ${
-                  isActive ? 'before:!w-full font-semibold' : ''
-                }`;
-              }}
-            >
-              Brands
-            </NavLink>
-          </li>
-        </ul>
-        <div className="flex gap-5 items-center order-2 sm:order-none col-span-12 sm:col-span-5 lg:col-span-4 justify-self-center  md:justify-self-end ">
           {token ? (
             <div className="cart relative cursor-pointer ">
               <i className="fa-solid fa-cart-shopping text-2xl"></i>
@@ -130,7 +137,10 @@ export default function NavbarWebsite() {
           )}
           {token ? (
             <Link to="/" className="">
-              <i className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"></i>
+              <i
+                className="fa-solid fa-right-from-bracket text-xl text-red-400 hover:text-red-600 transition-colors duration-200"
+                onClick={logOut}
+              ></i>
             </Link>
           ) : (
             ''
