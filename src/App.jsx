@@ -11,6 +11,7 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import GuestRoute from './Components/GuestRoute/GuestRoute';
 import UserProvider from './context/User.context';
 import CartProvider from './context/Cart.context';
+import Cart from './Pages/Cart/Cart';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -19,7 +20,10 @@ const router = createBrowserRouter([
         <Layout />
       </ProtectedRoute>
     ),
-    children: [{ index: true, element: <Home /> }],
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'cart', element: <Cart /> },
+    ],
   },
   {
     path: '/',
@@ -29,10 +33,10 @@ const router = createBrowserRouter([
       </GuestRoute>
     ),
     children: [
-      { path: '/register', element: <Signup /> },
-      { path: '/foregetPassword', element: <ForgetPassword /> },
-      { path: '/verifyResetCode', element: <VerifyResetCode /> },
-      { path: '/login', element: <Login /> },
+      { path: 'register', element: <Signup /> },
+      { path: 'foregetPassword', element: <ForgetPassword /> },
+      { path: 'verifyResetCode', element: <VerifyResetCode /> },
+      { path: 'login', element: <Login /> },
     ],
   },
   { path: '*', element: <NotFoundPage /> },
