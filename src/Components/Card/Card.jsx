@@ -1,7 +1,18 @@
+/* eslint-disable react/prop-types */
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/Cart.context';
 export default function Card({ productInfo }) {
-  const { imageCover, category, description, title, price, ratingsAverage } =
-    productInfo;
+  const {
+    imageCover,
+    category,
+    description,
+    title,
+    price,
+    ratingsAverage,
+    id,
+  } = productInfo;
+  const { addProductToCart } = useContext(CartContext);
 
   return (
     <>
@@ -10,14 +21,15 @@ export default function Card({ productInfo }) {
           <img src={imageCover} className="w-full h-48 object-contain" alt="" />
           <ul className="opacity-0 pl-3 justify-center flex gap-5 flex-col absolute group-hover/parent:opacity-100 duration-500 transition-opacity inset-0 bg-black bg-opacity-15 top-50 ">
             <li className="animation-icon">
-              <Link to="cart">
-                <i className="fa-regular fa-heart"></i>
-              </Link>
+              <i className="fa-regular fa-heart"></i>
             </li>
-            <li className="animation-icon">
-              <Link to="">
-                <i className="fa-solid fa-cart-shopping"></i>
-              </Link>
+            <li
+              className="animation-icon"
+              onClick={() => {
+                addProductToCart({ productId: id });
+              }}
+            >
+              <i className="fa-solid fa-cart-shopping"></i>
             </li>
             <li className="animation-icon">
               <Link to="">

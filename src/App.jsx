@@ -10,6 +10,7 @@ import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import GuestRoute from './Components/GuestRoute/GuestRoute';
 import UserProvider from './context/User.context';
+import CartProvider from './context/Cart.context';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -40,7 +41,9 @@ export default function App() {
   return (
     <>
       <UserProvider>
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </UserProvider>
       <Toaster />
     </>
