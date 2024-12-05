@@ -28,7 +28,7 @@ export default function CartProvider({ children }) {
       console.log(data);
       if (data.status === 'success') {
         toast.success(data.status);
-        setNumOfCartItems(data.numOfCartItems);
+        // setNumOfCartItems(data.numOfCartItems);
       }
     } catch (error) {
       console.log(error);

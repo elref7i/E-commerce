@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/User.context';
-import { CartContext } from '../../context/Cart.context';
+// import { CartContext } from '../../context/Cart.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
   const { token, logOut } = useContext(UserContext);
