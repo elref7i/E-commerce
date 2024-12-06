@@ -10,7 +10,7 @@ export const CartContext = createContext(null);
 export default function CartProvider({ children }) {
   const { token } = useContext(UserContext);
   const [cartInfo, setCartInfo] = useState(null);
-  // const [numOfCartItems, setNumOfCartItems] = useState(0);
+  const [numOfCartItems, setNumOfCartItems] = useState(0);
   async function addProductToCart({ productId }) {
     const waitingToast = toast.loading('Watting');
     try {
@@ -28,7 +28,8 @@ export default function CartProvider({ children }) {
       console.log(data);
       if (data.status === 'success') {
         toast.success(data.status);
-        // setNumOfCartItems(data.numOfCartItems);
+        getProductToCart();
+        setNumOfCartItems(data.numOfCartItems);
       }
     } catch (error) {
       console.log(error);
@@ -69,6 +70,7 @@ export default function CartProvider({ children }) {
       if (data.status === 'success') {
         setCartInfo(data);
         toast.success(data.status);
+        setNumOfCartItems(data.numOfCartItems);
       }
     } catch (error) {
       console.log(error);
@@ -77,13 +79,41 @@ export default function CartProvider({ children }) {
       toast.dismiss(removeProduct);
     }
   }
+  async function clearAllCart() {
+    const clearAll = toast.loading('Watting');
+    try {
+      const options = {
+        url: 'https://ecommerce.routemisr.com/api/v1/cart',
+        method: 'DELETE',
+        headers: {
+          token,
+        },
+      };
+      let { data } = await axios.request(options);
+      console.log(data);
+      if (data.message === 'success') {
+        setNumOfCartItems(0);
+        setCartInfo({
+          numOfCartItems: 0,
+        });
+        toast.success(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.data.response.message);
+    } finally {
+      toast.dismiss(clearAll);
+    }
+  }
   return (
     <CartContext.Provider
       value={{
         addProductToCart,
         getProductToCart,
-        cartInfo,
         removeProductFromCart,
+        clearAllCart,
+        cartInfo,
+        numOfCartItems,
       }}
     >
       {children}

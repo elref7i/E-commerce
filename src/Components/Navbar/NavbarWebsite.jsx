@@ -3,11 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/User.context';
-// import { CartContext } from '../../context/Cart.context';
+import { CartContext } from '../../context/Cart.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
   const { token, logOut } = useContext(UserContext);
-  // const { numOfCartItems } = useContext(CartContext);
+  const { numOfCartItems } = useContext(CartContext);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -115,11 +115,11 @@ export default function NavbarWebsite() {
             <Link to="cart" className="cart relative cursor-pointer ">
               <i className="fa-solid fa-cart-shopping text-2xl"></i>
               <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-                <i
+                {/* <i
                   className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
                   title="Wait"
-                ></i>
-                {/* {numOfCartItems} */}
+                ></i> */}
+                <h5 className="text-white"> {numOfCartItems}</h5>
               </div>
             </Link>
           ) : (
