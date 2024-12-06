@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+import { CartContext } from '../../context/Cart.context';
+
 /* eslint-disable react/prop-types */
 export default function CartProduct({ cartInfo }) {
   console.log(cartInfo);
   const { price, count } = cartInfo;
   const { category, title, imageCover, id } = cartInfo.product;
-
+  let { removeProductFromCart } = useContext(CartContext);
   return (
     <>
       <div className="grid grid-cols-12 items-center gap-3   justify-center sm:justify-between shadow-md p-1  relative">
@@ -28,7 +31,12 @@ export default function CartProduct({ cartInfo }) {
           <div className="counter text-xl font-bold text">{count}</div>
           <i className="fa-solid fa-plus text-lg font-bold text-primary-500 hover:text-primary-700 duration-300 transition-colors cursor-pointer"></i>
         </div>
-        <div className="size-8 absolute top-2 right-1  bg-slate-200 text-red-600  flex rounded-full items-center justify-center hover:text-slate-200 hover:bg-red-600 duration-200 transition-colors">
+        <div
+          className="size-8 absolute top-2 right-1  bg-slate-200 text-red-600  flex rounded-full items-center justify-center hover:text-slate-200 hover:bg-red-600 duration-200 transition-colors"
+          onClick={() => {
+            removeProductFromCart({ rmProductID: id });
+          }}
+        >
           <i className="fa-solid fa-x text-lg cursor-pointer "></i>
         </div>
       </div>

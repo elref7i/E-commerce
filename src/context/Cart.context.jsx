@@ -53,9 +53,38 @@ export default function CartProvider({ children }) {
       console.log(error);
     }
   }
+  async function removeProductFromCart({ rmProductID }) {
+    const removeProduct = toast.loading('watting ');
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/cart/${rmProductID}`,
+        method: 'DELETE',
+        headers: {
+          token,
+        },
+      };
+
+      let { data } = await axios.request(options);
+      console.log(data);
+      if (data.status === 'success') {
+        setCartInfo(data);
+        toast.success(data.status);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    } finally {
+      toast.dismiss(removeProduct);
+    }
+  }
   return (
     <CartContext.Provider
-      value={{ addProductToCart, getProductToCart, cartInfo }}
+      value={{
+        addProductToCart,
+        getProductToCart,
+        cartInfo,
+        removeProductFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>

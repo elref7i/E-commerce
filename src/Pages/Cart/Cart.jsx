@@ -17,7 +17,7 @@ export default function Cart() {
       ) : (
         <section>
           {cartInfo.numOfCartItems === 0 ? (
-            <h2>refai</h2>
+            <p>Refai</p>
           ) : (
             <div className="space-y-4 mb-5">
               {cartInfo.data.products.map((product) => (
