@@ -10,8 +10,6 @@ export const CartContext = createContext(null);
 export default function CartProvider({ children }) {
   const { token } = useContext(UserContext);
   const [cartInfo, setCartInfo] = useState(null);
-  const [numOfCartItems, setNumOfCartItems] = useState(0);
-  // const [countQuntity, setCountQuntity] = useState(0);
   async function addProductToCart({ productId }) {
     const waitingToast = toast.loading('Watting');
     try {
@@ -30,7 +28,6 @@ export default function CartProvider({ children }) {
       if (data.status === 'success') {
         toast.success(data.status);
         getProductToCart();
-        setNumOfCartItems(data.numOfCartItems);
       }
     } catch (error) {
       console.log(error);
@@ -71,7 +68,6 @@ export default function CartProvider({ children }) {
       if (data.status === 'success') {
         setCartInfo(data);
         toast.success(data.status);
-        setNumOfCartItems(data.numOfCartItems);
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +89,6 @@ export default function CartProvider({ children }) {
       let { data } = await axios.request(options);
       console.log(data);
       if (data.message === 'success') {
-        setNumOfCartItems(0);
         setCartInfo({
           numOfCartItems: 0,
         });
@@ -143,7 +138,6 @@ export default function CartProvider({ children }) {
         clearAllCart,
         updateProductCount,
         cartInfo,
-        numOfCartItems,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import { CartContext } from '../../context/Cart.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
   const { token, logOut } = useContext(UserContext);
-  const { numOfCartItems } = useContext(CartContext);
+  const { cartInfo, getProductToCart } = useContext(CartContext);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -17,6 +17,7 @@ export default function NavbarWebsite() {
   };
   useEffect(() => {
     handleResize();
+    getProductToCart();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -29,7 +30,7 @@ export default function NavbarWebsite() {
   }
 
   return (
-    <nav className="shadow-sm shadow-current py-5 bg-gray-100">
+    <nav className="shadow fixed top-0 right-0 left-0 z-50 py-5 bg-gray-100">
       <div className="container grid grid-cols-12 gap-x-3  items-center ">
         <Link to="/" className="col-span-11  sm:col-span-6 lg:col-span-2 ">
           <img
@@ -56,18 +57,7 @@ export default function NavbarWebsite() {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/cart"
-                className={({ isActive }) => {
-                  return `nav-link  ${
-                    isActive ? 'before:!w-full font-semibold' : ''
-                  }`;
-                }}
-              >
-                Cart
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/prouducts"
@@ -104,6 +94,18 @@ export default function NavbarWebsite() {
                 Brands
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/order"
+                className={({ isActive }) => {
+                  return `nav-link  ${
+                    isActive ? 'before:!w-full font-semibold' : ''
+                  }`;
+                }}
+              >
+                Orders
+              </NavLink>
+            </li>
           </ul>
         )}
         <div
@@ -115,11 +117,14 @@ export default function NavbarWebsite() {
             <Link to="cart" className="cart relative cursor-pointer ">
               <i className="fa-solid fa-cart-shopping text-2xl"></i>
               <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-                {/* <i
-                  className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
-                  title="Wait"
-                ></i> */}
-                <h5 className="text-white"> {numOfCartItems}</h5>
+                {cartInfo === null ? (
+                  <i
+                    className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
+                    title="Wait"
+                  ></i>
+                ) : (
+                  <span className="text-white"> {cartInfo.numOfCartItems}</span>
+                )}
               </div>
             </Link>
           ) : (

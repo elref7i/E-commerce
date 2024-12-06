@@ -23,6 +23,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'cart', element: <Cart /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
   {
@@ -37,9 +38,9 @@ const router = createBrowserRouter([
       { path: 'foregetPassword', element: <ForgetPassword /> },
       { path: 'verifyResetCode', element: <VerifyResetCode /> },
       { path: 'login', element: <Login /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
-  { path: '*', element: <NotFoundPage /> },
 ]);
 export default function App() {
   return (
