@@ -11,6 +11,7 @@ export default function CartProvider({ children }) {
   const { token } = useContext(UserContext);
   const [cartInfo, setCartInfo] = useState(null);
   const [numOfCartItems, setNumOfCartItems] = useState(0);
+  // const [countQuntity, setCountQuntity] = useState(0);
   async function addProductToCart({ productId }) {
     const waitingToast = toast.loading('Watting');
     try {
@@ -105,6 +106,34 @@ export default function CartProvider({ children }) {
       toast.dismiss(clearAll);
     }
   }
+
+  async function updateProductCount({ productID, count }) {
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/cart/${productID}`,
+        method: 'PUT',
+        headers: {
+          token,
+        },
+        data: {
+          count,
+        },
+      };
+      let { data } = await axios.request(options);
+      console.log(data);
+      if (data.status === 'success') {
+        setCartInfo(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // function increaseCount() {
+  //   setNumberCount()
+  // }
+  // function decreaseCount(){
+
+  // }
   return (
     <CartContext.Provider
       value={{
@@ -112,6 +141,7 @@ export default function CartProvider({ children }) {
         getProductToCart,
         removeProductFromCart,
         clearAllCart,
+        updateProductCount,
         cartInfo,
         numOfCartItems,
       }}
