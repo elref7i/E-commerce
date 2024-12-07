@@ -2,7 +2,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
-import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 export default function Card({ productInfo }) {
   const {
     imageCover,
@@ -13,6 +12,8 @@ export default function Card({ productInfo }) {
     ratingsAverage,
     id,
   } = productInfo;
+  console.log(productInfo);
+
   const { addProductToCart } = useContext(CartContext);
 
   return (
@@ -45,7 +46,7 @@ export default function Card({ productInfo }) {
               {category.name}
             </h2>
             <Link
-              to={`productdetails/${id}`}
+              to={`/productdetails/${id}`}
               className="namec-category text-xl font-medium line-clamp-1"
               title={`${title}`}
             >
