@@ -15,6 +15,7 @@ export default function Home() {
       };
       let { data } = await axios.request(options);
       setProducts(data.data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
