@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
+import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 export default function Card({ productInfo }) {
   const {
     imageCover,
@@ -43,12 +44,13 @@ export default function Card({ productInfo }) {
             <h2 className="Category text-sm font-medium text-primary-500 mb-1">
               {category.name}
             </h2>
-            <h3
+            <Link
+              to={`productdetails/${id}`}
               className="namec-category text-xl font-medium line-clamp-1"
               title={`${title}`}
             >
               {title}
-            </h3>
+            </Link>
             <p
               className="description line-clamp-2 text-slate-500"
               title={`${description}`}

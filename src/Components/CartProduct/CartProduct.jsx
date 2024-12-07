@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/Cart.context';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
 export default function CartProduct({ cartInfo }) {
@@ -21,9 +22,12 @@ export default function CartProduct({ cartInfo }) {
             />
           </div>
           <article>
-            <h2 className="text-sm md:text-lg font-semibold text-primary-500">
+            <Link
+              to={`/productdetails/${id}`}
+              className="text-sm md:text-lg font-semibold text-primary-500"
+            >
               {title}
-            </h2>
+            </Link>
             <h3 className="text-[12px] sm:text-sm">{category.name}</h3>
             <h4 className="text-primary-300 font-semibold">${price}</h4>
           </article>
