@@ -12,6 +12,7 @@ import GuestRoute from './Components/GuestRoute/GuestRoute';
 import UserProvider from './context/User.context';
 import CartProvider from './context/Cart.context';
 import Cart from './Pages/Cart/Cart';
+import ProductDetails from './Pages/ProductDetails/ProductDetails';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'cart', element: <Cart /> },
       { path: '*', element: <NotFoundPage /> },
+      { path: 'productdetails', element: <ProductDetails /> },
     ],
   },
   {

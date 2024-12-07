@@ -32,7 +32,7 @@ export default function Card({ productInfo }) {
               <i className="fa-solid fa-cart-shopping"></i>
             </li>
             <li className="animation-icon">
-              <Link to="">
+              <Link to="productdetails">
                 <i className="fa-regular fa-eye"></i>
               </Link>
             </li>
