@@ -1,12 +1,16 @@
 import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
-// import CartProduct from '../../Components/CartProduct/CartProduct';
+
+import { HiShoppingCart } from 'react-icons/hi';
+import { Button } from 'flowbite-react';
+
 import CartProduct from '../../Components/CartProduct/CartProduct';
 import { Link } from 'react-router-dom';
+import CheckClearAll from '../../Components/CheckClearAll/CheckClearAll';
 
 export default function Cart() {
-  const { cartInfo, getProductToCart, clearAllCart } = useContext(CartContext);
+  const { cartInfo, getProductToCart } = useContext(CartContext);
   useEffect(() => {
     getProductToCart();
   }, []);
@@ -40,19 +44,21 @@ export default function Cart() {
                   <CartProduct cartInfo={product} key={product._id} />
                 ))}
               </div>
-              <div className="flex justify-center sm:justify-between items-center flex-wrap gap-3">
+              <div className="flex justify-center mb-8 sm:justify-between items-center flex-wrap gap-3">
                 <p className="text-lg">
                   Your Total Cart Price{' '}
                   <span className="font-bold text-primary-500">
                     ${cartInfo.data.totalCartPrice}
                   </span>
                 </p>
-                <button
-                  className="clea btn bg-red-600 text-xl font-medium block ml-auto hover:bg-red-700 px-4 py-3"
-                  onClick={clearAllCart}
-                >
-                  Clear All
-                </button>
+
+                <CheckClearAll />
+                <Link to="/checkout">
+                  <Button className="group/parent py-2 btn bg-primary-500 hover:!bg-primary-600 duration-300 transition-colors">
+                    <HiShoppingCart className="group-hover/parent:animate-none animate-bounce mr-2  h-5 w-5 duration-300 transition-[animate]" />
+                    Buy now
+                  </Button>
+                </Link>
               </div>
             </>
           )}

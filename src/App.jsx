@@ -13,6 +13,7 @@ import UserProvider from './context/User.context';
 import CartProvider from './context/Cart.context';
 import Cart from './Pages/Cart/Cart';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
+import Checkout from './Pages/Checkout/Checkout';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: 'cart', element: <Cart /> },
       { path: '*', element: <NotFoundPage /> },
       { path: '/productdetails/:id', element: <ProductDetails /> },
+      { path: '/checkout', element: <Checkout /> },
     ],
   },
   {
