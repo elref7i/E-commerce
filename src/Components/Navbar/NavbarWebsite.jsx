@@ -96,7 +96,7 @@ export default function NavbarWebsite() {
             </li>
             <li>
               <NavLink
-                to="/order"
+                to="/allorders"
                 className={({ isActive }) => {
                   return `nav-link  ${
                     isActive ? 'before:!w-full font-semibold' : ''

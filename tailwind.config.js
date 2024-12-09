@@ -26,6 +26,9 @@ export default {
           950: '#044504',
         },
       },
+      fontFamily: {
+        cairo: 'Cairo Variable',
+      },
     },
   },
   plugins: [flowbite.plugin()],

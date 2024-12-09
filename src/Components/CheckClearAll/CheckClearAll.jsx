@@ -10,7 +10,7 @@ export default function CheckClearAll() {
   return (
     <>
       <Button
-        className="bg-red-600  text-xl !font-bold block ml-auto hover:bg-red-700  py-2"
+        className="bg-red-600  text-xl !font-bold block ml-auto hover:!bg-red-700 focus:ring-0  py-2"
         onClick={() => setOpenModal(true)}
       >
         Clear All
