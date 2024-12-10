@@ -7,10 +7,11 @@ import { Button } from 'flowbite-react';
 
 import CartProduct from '../../Components/CartProduct/CartProduct';
 import { Link } from 'react-router-dom';
-import CheckClearAll from '../../Components/CheckClearAll/CheckClearAll';
+import CheckClearAll from '../../Components/Check/Check';
 
 export default function Cart() {
-  const { cartInfo, getProductToCart } = useContext(CartContext);
+  const { cartInfo, getProductToCart, clearAllCart } = useContext(CartContext);
+
   useEffect(() => {
     getProductToCart();
   }, []);
@@ -52,7 +53,7 @@ export default function Cart() {
                   </span>
                 </p>
 
-                <CheckClearAll />
+                <CheckClearAll ClearCart={clearAllCart} />
                 <Link to="/checkout">
                   <Button className="group/parent py-2 btn bg-primary-500 hover:!bg-primary-600 duration-300 transition-colors">
                     <HiShoppingCart className="group-hover/parent:animate-none animate-bounce mr-2  h-5 w-5 duration-300 transition-[animate]" />

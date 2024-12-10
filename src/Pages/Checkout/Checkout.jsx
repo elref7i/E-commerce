@@ -1,6 +1,6 @@
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/User.context';
 import axios from 'axios';
 import { CartContext } from '../../context/Cart.context';

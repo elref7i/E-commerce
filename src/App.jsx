@@ -25,11 +25,11 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <Home /> },
-      { path: 'cart', element: <Cart /> },
+      { path: '/cart', element: <Cart /> },
       { path: '*', element: <NotFoundPage /> },
-      { path: 'productdetails/:id', element: <ProductDetails /> },
-      { path: 'checkout', element: <Checkout /> },
-      { path: 'allorders', element: <Orders /> },
+      { path: '/productdetails/:id', element: <ProductDetails /> },
+      { path: '/checkout', element: <Checkout /> },
+      { path: '/allorders', element: <Orders /> },
     ],
   },
   {
@@ -40,10 +40,10 @@ const router = createBrowserRouter([
       </GuestRoute>
     ),
     children: [
-      { path: 'register', element: <Signup /> },
-      { path: 'foregetPassword', element: <ForgetPassword /> },
-      { path: 'verifyResetCode', element: <VerifyResetCode /> },
-      { path: 'login', element: <Login /> },
+      { path: '/register', element: <Signup /> },
+      { path: '/foregetPassword', element: <ForgetPassword /> },
+      { path: '/verifyResetCode', element: <VerifyResetCode /> },
+      { path: '/login', element: <Login /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

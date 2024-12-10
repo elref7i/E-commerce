@@ -1,11 +1,9 @@
 import { Button, Modal } from 'flowbite-react';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
-import { CartContext } from '../../context/Cart.context';
 
-export default function CheckClearAll() {
+export default function CheckClearAll({ ClearCart }) {
   const [openModal, setOpenModal] = useState(false);
-  const { clearAllCart } = useContext(CartContext);
 
   return (
     <>
@@ -32,7 +30,7 @@ export default function CheckClearAll() {
               <Button
                 color="failure"
                 onClick={() => {
-                  clearAllCart();
+                  ClearCart();
                   setOpenModal(false);
                 }}
               >

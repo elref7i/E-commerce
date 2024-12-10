@@ -158,7 +158,11 @@ export default function ProductDetails() {
                 return (
                   <>
                     <SwiperSlide>
-                      <Card productInfo={product} key={product._id} />
+                      <Card
+                        productInfo={product}
+                        setProduct={setProduct}
+                        key={product._id}
+                      />
                     </SwiperSlide>
                     ;
                   </>

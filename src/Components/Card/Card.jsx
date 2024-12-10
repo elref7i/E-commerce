@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
-export default function Card({ productInfo }) {
+export default function Card({ productInfo, setProduct }) {
   const {
     imageCover,
     category,
@@ -34,7 +34,12 @@ export default function Card({ productInfo }) {
               <i className="fa-solid fa-cart-shopping"></i>
             </li>
             <li className="animation-icon">
-              <Link to={`productdetails/${id}`}>
+              <Link
+                to={`/productdetails/${id}`}
+                onClick={() => {
+                  setProduct(productInfo);
+                }}
+              >
                 <i className="fa-regular fa-eye"></i>
               </Link>
             </li>
@@ -46,6 +51,9 @@ export default function Card({ productInfo }) {
               {category.name}
             </h2>
             <Link
+              onClick={() => {
+                setProduct(productInfo);
+              }}
               to={`/productdetails/${id}`}
               className="namec-category text-xl font-medium line-clamp-1"
               title={`${title}`}
