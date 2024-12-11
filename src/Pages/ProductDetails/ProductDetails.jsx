@@ -7,6 +7,9 @@ import ReactImageGallery from 'react-image-gallery';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Card from '../../Components/Card/Card';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css/autoplay';
+
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState(null);
@@ -139,8 +142,13 @@ export default function ProductDetails() {
             </article>
           </section>
           <Swiper
+            modules={[Autoplay]}
             slidesPerView={1}
             spaceBetween={15}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
             breakpoints={{
               300: {
                 slidesPerView: 2,

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button, Modal } from 'flowbite-react';
 import { useState } from 'react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
