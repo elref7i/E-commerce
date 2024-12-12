@@ -3,6 +3,7 @@ import { UserContext } from '../../context/User.context';
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import Loading from '../../Components/Loading/Loading';
+import { Helmet } from 'react-helmet';
 
 export default function Orders() {
   const { token } = useContext(UserContext);
@@ -29,6 +30,10 @@ export default function Orders() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Orders </title>
+        <meta name="Orders Page Website" content="Freshcart | Orders Page" />
+      </Helmet>
       {orders ? (
         <section className="space-y-5">
           {orders.map((order) => (

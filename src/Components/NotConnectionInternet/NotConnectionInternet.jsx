@@ -1,10 +1,9 @@
-import notConection from '../../assets/images/notConnection.jpg';
+// // import notConection from '../../assets/images/notConection.png';
 
-export default function NotConnectionInternet() {
-  return (
-    <div className="text-primary-500 text-center font-bold bg-slate-200 justify-center ">
-      a7aaa
-      <img src={notConection} className="" alt="" />
-    </div>
-  );
-}
+// export default function NotConnectionInternet() {
+//   return (
+//     <div className=" fixed bottom-0 text-primary-500 h-screen text-center font-bold bg-slate-200 ">
+//       <p>Not Connection with internet</p>
+//     </div>
+//   );
+// }

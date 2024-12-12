@@ -9,6 +9,7 @@ import 'swiper/css';
 import Card from '../../Components/Card/Card';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css/autoplay';
+import { Helmet } from 'react-helmet';
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
@@ -51,6 +52,13 @@ export default function ProductDetails() {
   }, [product]);
   return (
     <>
+      <Helmet>
+        <title>Product Details </title>
+        <meta
+          name="Product Details Page Website"
+          content="Freshcart | Product Details Page"
+        />
+      </Helmet>
       {product === null ? (
         <Loading />
       ) : (

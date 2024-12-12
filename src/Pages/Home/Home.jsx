@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
 import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 import CategorySlider from '../../Components/CategorySlider/CategorySlider';
-import useOnline from '../../hooks/useOnline';
+import { Helmet } from 'react-helmet';
+// import useOnline from '../../hooks/useOnline';
 export default function Home() {
   const [products, setProducts] = useState(null);
-  let isOnline = useOnline();
+  // let isOnline = useOnline();
   async function getData() {
     try {
       const options = {
@@ -26,9 +27,10 @@ export default function Home() {
   }, []);
   return (
     <>
-      <h2 className="text-center animate-bounce text-primary-500 font-bold mb-5">
-        {isOnline ? '* Online' : 'offlinne'}
-      </h2>
+      <Helmet>
+        <title>Home </title>
+        <meta name="Home Page Website" content="Freshcart | Home Page" />
+      </Helmet>
       <section className="grid grid-cols-12 mb-8">
         <HomeSlider />
       </section>

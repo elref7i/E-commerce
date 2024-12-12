@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import favicon from '../../assets/images/favicon.png';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function VerifyResetCode() {
   const [errorResponse, setErrorResponse] = useState(null);
@@ -48,6 +49,13 @@ export default function VerifyResetCode() {
   });
   return (
     <>
+      <Helmet>
+        <title>Verify Reset Code </title>
+        <meta
+          name="Verify Reset Code  Page Website"
+          content="Freshcart | Verify Reset Code  Page"
+        />
+      </Helmet>
       <section className="shadow-sm shadow-current rounded-lg  md:rounded-tr-[50px]  max-w-sm mx-auto p-5 ">
         <div className="p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">

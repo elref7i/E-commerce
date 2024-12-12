@@ -15,9 +15,9 @@ import Cart from './Pages/Cart/Cart';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Checkout from './Pages/Checkout/Checkout';
 import Orders from './Pages/Orders/Orders';
-import Online from './Components/Online/Online';
-import NotConnectionInternet from './Components/NotConnectionInternet/NotConnectionInternet';
-import Offline from './Components/Offline/Offline';
+//*Lib
+import { Offline } from 'react-detect-offline';
+//* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -54,17 +54,32 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <>
-      <Online>
-        <UserProvider>
-          <CartProvider>
-            <RouterProvider router={router} />
-          </CartProvider>
-        </UserProvider>
-        <Toaster />
-      </Online>
+      {
+        //*custom Hook
+        /* <Online> */
+      }
+      <UserProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
+      </UserProvider>
+      <Toaster />
+      {/* </Online> */}
       <Offline>
-        <NotConnectionInternet />
+        <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md ">
+          <i className="fa-solid fa-wifi text-red-600"></i>
+          <p>Wifi is not connect</p>
+        </div>
       </Offline>
+      {
+        //*Custom Hook
+        /* <Offline>
+        <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md ">
+          <i className="fa-solid fa-wifi text-red-600"></i>
+          <p>Wifi is not connect</p>
+        </div>
+      </Offline> */
+      }
     </>
   );
 }

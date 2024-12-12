@@ -5,6 +5,7 @@ import { UserContext } from '../../context/User.context';
 import axios from 'axios';
 import { CartContext } from '../../context/Cart.context';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 // import * as Yup from 'yup';
 export default function Checkout() {
   const { token } = useContext(UserContext);
@@ -98,6 +99,13 @@ export default function Checkout() {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout </title>
+        <meta
+          name="Checkout Page Website"
+          content="Freshcart | Checkout Page"
+        />
+      </Helmet>
       <section>
         <h1 className="font-bold text-2xl">Shipping Address</h1>
         <form className="py-5 space-y-5" onSubmit={formik.handleSubmit}>

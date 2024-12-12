@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
 import favicon from '../../assets/images/favicon.png';
 import { UserContext } from '../../context/User.context';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
@@ -64,6 +65,10 @@ export default function Login() {
   });
   return (
     <>
+      <Helmet>
+        <title>Login </title>
+        <meta name="Login Page Website" content="Freshcart | Login Page" />
+      </Helmet>
       <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]   md:max-w-[800px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">

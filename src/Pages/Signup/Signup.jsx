@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
 import favicon from '../../assets/images/favicon.png';
+import { Helmet } from 'react-helmet';
 
 export default function Signup() {
   const [checkEmailExist, setCheckEmailExist] = useState(null);
@@ -80,6 +81,10 @@ export default function Signup() {
   });
   return (
     <>
+      <Helmet>
+        <title>Sign Up </title>
+        <meta name="Sign Up Page Website" content="Freshcart | Sign Up Page" />
+      </Helmet>
       <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:max-w-[900px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-2 flex flex-col justify-center rounded-md">
           <header className="text-center mb-2 space-y-2">

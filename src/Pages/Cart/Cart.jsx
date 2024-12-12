@@ -8,6 +8,7 @@ import { Button } from 'flowbite-react';
 import CartProduct from '../../Components/CartProduct/CartProduct';
 import { Link } from 'react-router-dom';
 import CheckClearAll from '../../Components/Check/Check';
+import { Helmet } from 'react-helmet';
 
 export default function Cart() {
   const { cartInfo, getProductToCart, clearAllCart } = useContext(CartContext);
@@ -18,6 +19,10 @@ export default function Cart() {
 
   return (
     <>
+      <Helmet>
+        <title>Cart </title>
+        <meta name="cart Page Website" content="Freshcart | cart Page" />
+      </Helmet>
       {cartInfo === null ? (
         <Loading />
       ) : (
