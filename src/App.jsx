@@ -15,6 +15,9 @@ import Cart from './Pages/Cart/Cart';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Checkout from './Pages/Checkout/Checkout';
 import Orders from './Pages/Orders/Orders';
+import Online from './Components/Online/Online';
+import NotConnectionInternet from './Components/NotConnectionInternet/NotConnectionInternet';
+import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -51,12 +54,17 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <>
-      <UserProvider>
-        <CartProvider>
-          <RouterProvider router={router} />
-        </CartProvider>
-      </UserProvider>
-      <Toaster />
+      <Online>
+        <UserProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </UserProvider>
+        <Toaster />
+      </Online>
+      <Offline>
+        <NotConnectionInternet />
+      </Offline>
     </>
   );
 }
