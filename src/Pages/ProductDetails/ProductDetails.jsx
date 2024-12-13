@@ -45,7 +45,7 @@ export default function ProductDetails() {
   }
   useEffect(() => {
     getSpecificProduct();
-  }, []);
+  }, [id]);
   useEffect(() => {
     if (product === null) return;
     getRalatedProduct();
