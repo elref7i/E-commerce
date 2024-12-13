@@ -1,30 +1,29 @@
 import axios from 'axios';
 import Card from '../../Components/Card/Card';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
 import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 import CategorySlider from '../../Components/CategorySlider/CategorySlider';
 import { Helmet } from 'react-helmet';
+import { useQuery } from '@tanstack/react-query';
 // import useOnline from '../../hooks/useOnline';
 export default function Home() {
-  const [products, setProducts] = useState(null);
-  // let isOnline = useOnline();
   async function getData() {
-    try {
-      const options = {
-        url: 'https://ecommerce.routemisr.com/api/v1/products',
-        method: 'GET',
-      };
-      let { data } = await axios.request(options);
-      setProducts(data.data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const options = {
+      url: 'https://ecommerce.routemisr.com/api/v1/products',
+      method: 'GET',
+    };
+    return axios.request(options);
   }
-  useEffect(() => {
-    getData();
-  }, []);
+
+  let { data, isLoading } = useQuery({
+    queryKey: ['homeProuducts'],
+    queryFn: getData,
+    staleTime: 5000,
+  });
+  // console.log(data);
+
+  if (isLoading) return <Loading />;
   return (
     <>
       <Helmet>
@@ -37,15 +36,11 @@ export default function Home() {
       <section className="mb-8 ">
         <CategorySlider />
       </section>
-      {products ? (
-        <section className="cards grid grid-cols-12 gap-5">
-          {products.map((proudect) => (
-            <Card productInfo={proudect} key={proudect._id} />
-          ))}
-        </section>
-      ) : (
-        <Loading />
-      )}
+      <section className="cards grid grid-cols-12 gap-5">
+        {data.data.data.map((proudect) => (
+          <Card productInfo={proudect} key={proudect._id} />
+        ))}
+      </section>
     </>
   );
 }

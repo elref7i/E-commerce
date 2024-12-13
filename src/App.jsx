@@ -15,10 +15,12 @@ import Cart from './Pages/Cart/Cart';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Checkout from './Pages/Checkout/Checkout';
 import Orders from './Pages/Orders/Orders';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 //*Lib
 import { Offline } from 'react-detect-offline';
 import Brands from './Pages/Brands/Brands';
 import Prouducts from './Pages/Prouducts/Prouducts';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
@@ -55,6 +57,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+const myClient = new QueryClient();
 export default function App() {
   return (
     <>
@@ -62,19 +66,22 @@ export default function App() {
         //*custom Hook
         /* <Online> */
       }
-      <UserProvider>
-        <CartProvider>
-          <RouterProvider router={router} />
-        </CartProvider>
-      </UserProvider>
-      <Toaster />
       {/* </Online> */}
-      <Offline>
-        <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md ">
-          <i className="fa-solid fa-wifi text-red-600"></i>
-          <p>Wifi is not connect</p>
-        </div>
-      </Offline>
+      <QueryClientProvider client={myClient}>
+        <UserProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </UserProvider>
+        <Toaster />
+        <Offline>
+          <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md ">
+            <i className="fa-solid fa-wifi text-red-600"></i>
+            <p>Wifi is not connect</p>
+          </div>
+        </Offline>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
       {
         //*Custom Hook
         /* <Offline>
