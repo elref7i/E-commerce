@@ -17,6 +17,7 @@ import Checkout from './Pages/Checkout/Checkout';
 import Orders from './Pages/Orders/Orders';
 //*Lib
 import { Offline } from 'react-detect-offline';
+import Brands from './Pages/Brands/Brands';
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: '/productdetails/:id', element: <ProductDetails /> },
       { path: '/checkout', element: <Checkout /> },
       { path: '/allorders', element: <Orders /> },
+      { path: '/brands', element: <Brands /> },
     ],
   },
   {

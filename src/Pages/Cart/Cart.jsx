@@ -12,7 +12,6 @@ import { Helmet } from 'react-helmet';
 
 export default function Cart() {
   const { cartInfo, getProductToCart, clearAllCart } = useContext(CartContext);
-
   useEffect(() => {
     getProductToCart();
   }, []);

@@ -45,7 +45,7 @@ export default function ProductDetails() {
   }
   useEffect(() => {
     getSpecificProduct();
-  }, []);
+  }, [id]);
   useEffect(() => {
     if (product === null) return;
     getRalatedProduct();
@@ -63,6 +63,9 @@ export default function ProductDetails() {
         <Loading />
       ) : (
         <>
+          <Helmet>
+            <title>{product.title} </title>
+          </Helmet>
           <section className="grid grid-cols-12 gap-1 md:gap-8 bg-slate-100 p-4 rounded-xl mb-10">
             <div className="image-product flex items-center bg-white col-span-12 md:col-span-4 rounded-md shadow-lg overflow-hidden">
               {/* <img
@@ -174,11 +177,7 @@ export default function ProductDetails() {
                 return (
                   <>
                     <SwiperSlide>
-                      <Card
-                        productInfo={product}
-                        setProduct={setProduct}
-                        key={product._id}
-                      />
+                      <Card setProduct={setProduct} key={product._id} />
                     </SwiperSlide>
                     ;
                   </>
