@@ -46,7 +46,7 @@ export default function CartProvider({ children }) {
         },
       };
       const { data } = await axios.request(options);
-      console.log(data);
+      // console.log(data);
       setCartInfo(data);
     } catch (error) {
       console.log(error);
@@ -64,7 +64,7 @@ export default function CartProvider({ children }) {
       };
 
       let { data } = await axios.request(options);
-      console.log(data);
+      // console.log(data);
       if (data.status === 'success') {
         setCartInfo(data);
         toast.success(data.status);
@@ -87,7 +87,7 @@ export default function CartProvider({ children }) {
         },
       };
       let { data } = await axios.request(options);
-      console.log(data);
+      // console.log(data);
       if (data.message === 'success') {
         setCartInfo({
           numOfCartItems: 0,
@@ -115,7 +115,7 @@ export default function CartProvider({ children }) {
         },
       };
       let { data } = await axios.request(options);
-      console.log(data);
+      // console.log(data);
       if (data.status === 'success') {
         setCartInfo(data);
       }

@@ -30,7 +30,7 @@ export default function NavbarWebsite() {
   }
 
   return (
-    <nav className="shadow fixed top-0 right-0 left-0 z-50 py-5 bg-gray-100">
+    <nav className="shadow fixed top-0 right-0 left-0 z-30 py-5 bg-gray-100">
       <div className="container grid grid-cols-12 gap-x-3  items-center ">
         <Link to="/" className="col-span-11  sm:col-span-6 lg:col-span-2 ">
           <img

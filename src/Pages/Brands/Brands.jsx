@@ -25,6 +25,7 @@ export default function Brands() {
     <>
       <Helmet>
         <title>Brands</title>
+        <meta name="Brands Website" content="Freshcart | Brands" />
       </Helmet>
       {brands ? (
         <section className="all-brands">

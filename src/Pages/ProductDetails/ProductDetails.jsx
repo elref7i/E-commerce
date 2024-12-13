@@ -37,7 +37,7 @@ export default function ProductDetails() {
         method: 'GET',
       };
       const { data } = await axios.request(options);
-      console.log(data.data);
+      // console.log(data.data);
       setRelatedProduct(data.data);
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ export default function ProductDetails() {
   }
   useEffect(() => {
     getSpecificProduct();
-  }, [id]);
+  }, []);
   useEffect(() => {
     if (product === null) return;
     getRalatedProduct();
@@ -68,11 +68,6 @@ export default function ProductDetails() {
           </Helmet>
           <section className="grid grid-cols-12 gap-1 md:gap-8 bg-slate-100 p-4 rounded-xl mb-10">
             <div className="image-product flex items-center bg-white col-span-12 md:col-span-4 rounded-md shadow-lg overflow-hidden">
-              {/* <img
-              src={product.imageCover}
-              className="w-full  h-64 lg:h-96 object-contain"
-              alt=""
-            /> */}
               <ReactImageGallery
                 items={product.images.map((image) => {
                   return {
@@ -177,7 +172,7 @@ export default function ProductDetails() {
                 return (
                   <>
                     <SwiperSlide>
-                      <Card setProduct={setProduct} key={product._id} />
+                      <Card productInfo={product} key={product._id} />
                     </SwiperSlide>
                     ;
                   </>
