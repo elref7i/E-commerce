@@ -9,6 +9,8 @@ import { useQuery } from '@tanstack/react-query';
 // import useOnline from '../../hooks/useOnline';
 export default function Home() {
   async function getData() {
+    console.log('✅');
+
     const options = {
       url: 'https://ecommerce.routemisr.com/api/v1/products',
       method: 'GET',
@@ -19,7 +21,7 @@ export default function Home() {
   let { data, isLoading } = useQuery({
     queryKey: ['homeProuducts'],
     queryFn: getData,
-    staleTime: 5000,
+    refetchOnMount: false,
   });
   // console.log(data);
 

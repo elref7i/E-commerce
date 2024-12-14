@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
 export default function Card({ productInfo }) {
-  console.log(productInfo);
   const {
     imageCover,
     category,
