@@ -45,14 +45,43 @@ export default function WhishListProvider({ children }) {
         },
       };
       let { data } = await axios.request(options);
-      setProductWishlist(data.data);
+      setProductWishlist(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }
+  async function deleteProductFromWishlist({ productId }) {
+    const removeProduct = toast.loading('watting ');
+    try {
+      const options = {
+        url: `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
+        method: 'DELETE',
+        headers: {
+          token,
+        },
+      };
+      let { data } = await axios.request(options);
+      if (data.status === 'success') {
+        getLoggedUserWishlist();
+        toast.success(data.status);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    } finally {
+      toast.dismiss(removeProduct);
+    }
+  }
+
   return (
     <WishListContext.Provider
-      value={{ addProuductWishList, getLoggedUserWishlist, productWishlist }}
+      value={{
+        addProuductWishList,
+        getLoggedUserWishlist,
+        productWishlist,
+        deleteProductFromWishlist,
+      }}
     >
       {children}
     </WishListContext.Provider>

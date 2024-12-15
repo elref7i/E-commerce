@@ -4,10 +4,13 @@ import freshcCartLogo from '../../assets/images/freshcart-logo.svg';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/User.context';
 import { CartContext } from '../../context/Cart.context';
+import { WishListContext } from '../../context/WishList.context';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
   const { token, logOut } = useContext(UserContext);
   const { cartInfo, getProductToCart } = useContext(CartContext);
+  const { productWishlist, getLoggedUserWishlist } =
+    useContext(WishListContext);
   const handleResize = () => {
     if (window.innerWidth >= 1024) {
       setIsOpanMenue(true);
@@ -18,6 +21,7 @@ export default function NavbarWebsite() {
   useEffect(() => {
     handleResize();
     getProductToCart();
+    getLoggedUserWishlist();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -117,13 +121,36 @@ export default function NavbarWebsite() {
             <>
               <div className="flex gap-5">
                 <Link to="/wishlist" className="cart relative cursor-pointer  ">
-                  <i className="fa-regular fa-heart text-2xl hover:text-primary-500 duration-300 transition-colors"></i>
-                  <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-                    1
+                  <i
+                    className={` ${
+                      productWishlist !== null && productWishlist.count > 0
+                        ? 'fa-solid text-primary-400  '
+                        : 'fa-regular'
+                    }
+                    }  text-2xl hover:text-primary-500  fa-heart duration-300 transition-colors`}
+                  ></i>
+                  <div className="heart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
+                    {productWishlist === null ? (
+                      <i
+                        className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
+                        title="Wait"
+                      ></i>
+                    ) : (
+                      <span className="text-white">
+                        {' '}
+                        {productWishlist.count}
+                      </span>
+                    )}
                   </div>
                 </Link>
                 <Link to="cart" className="cart relative cursor-pointer ">
-                  <i className="fa-solid fa-cart-shopping text-2xl hover:text-primary-500 duration-300 transition-colors"></i>
+                  <i
+                    className={`${
+                      cartInfo !== null && cartInfo.numOfCartItems > 0
+                        ? 'fa-cart-shopping text-primary-400  '
+                        : 'fa-cart-plus '
+                    } fa-solid text-2xl hover:text-primary-500 duration-300 transition-colors`}
+                  ></i>
                   <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
                     {cartInfo === null ? (
                       <i

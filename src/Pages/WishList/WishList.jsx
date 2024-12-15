@@ -5,7 +5,7 @@ import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
 
 export default function WishList() {
-  const { getLoggedUserWishlist, productWishlist } =
+  const { getLoggedUserWishlist, productWishlist, deleteProductFromWishlist } =
     useContext(WishListContext);
   const { addProductToCart } = useContext(CartContext);
 
@@ -16,7 +16,7 @@ export default function WishList() {
     <>
       <section className="my-wishlist space-y-4 mb-5">
         {productWishlist ? (
-          productWishlist.map((product) => (
+          productWishlist.data.map((product) => (
             <div
               key={product.id}
               className="flex items-center gap-5 shadow-md p-5 relative"
@@ -50,7 +50,12 @@ export default function WishList() {
                   Add to cart
                 </button>
               </div>
-              <div className="size-8 absolute top-2 right-1  bg-slate-200 text-red-600  flex rounded-full items-center justify-center hover:text-slate-200 hover:bg-red-600 duration-200 transition-colors">
+              <div
+                onClick={() => {
+                  deleteProductFromWishlist({ productId: product.id });
+                }}
+                className="size-8 absolute top-2 right-1  bg-slate-200 text-red-600  flex rounded-full items-center justify-center hover:text-slate-200 hover:bg-red-600 duration-200 transition-colors"
+              >
                 <i className="fa-solid fa-x text-lg cursor-pointer "></i>
               </div>
             </div>
