@@ -172,8 +172,8 @@ export default function ProductDetails() {
                 {relatedProduct.map((product) => {
                   return (
                     <>
-                      <SwiperSlide>
-                        <Card productInfo={product} key={product._id} />
+                      <SwiperSlide key={product._id}>
+                        <Card productInfo={product} />
                       </SwiperSlide>
                       ;
                     </>
