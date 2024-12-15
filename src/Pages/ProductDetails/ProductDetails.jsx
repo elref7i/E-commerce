@@ -147,41 +147,43 @@ export default function ProductDetails() {
               </div>
             </article>
           </section>
-          <Swiper
-            modules={[Autoplay]}
-            slidesPerView={1}
-            spaceBetween={15}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              300: {
-                slidesPerView: 2,
-              },
-              640: {
-                slidesPerView: 3,
-              },
-              768: {
-                slidesPerView: 4,
-              },
-            }}
-          >
-            {relatedProduct ? (
-              relatedProduct.map((product) => {
-                return (
-                  <>
-                    <SwiperSlide>
-                      <Card productInfo={product} key={product._id} />
-                    </SwiperSlide>
-                    ;
-                  </>
-                );
-              })
-            ) : (
-              <Loading />
-            )}
-          </Swiper>
+          {relatedProduct ? (
+            <>
+              <Swiper
+                modules={[Autoplay]}
+                slidesPerView={1}
+                spaceBetween={15}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  300: {
+                    slidesPerView: 2,
+                  },
+                  640: {
+                    slidesPerView: 3,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                }}
+              >
+                {relatedProduct.map((product) => {
+                  return (
+                    <>
+                      <SwiperSlide>
+                        <Card productInfo={product} key={product._id} />
+                      </SwiperSlide>
+                      ;
+                    </>
+                  );
+                })}
+              </Swiper>
+            </>
+          ) : (
+            <Loading />
+          )}
         </>
       )}
     </>

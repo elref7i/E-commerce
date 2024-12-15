@@ -11,7 +11,7 @@ export default function Categories() {
     return axios.request(options);
   }
   let { data, isLoading } = useQuery({
-    queryKey: ['homeCategory'],
+    queryKey: ['Categories'],
     queryFn: getCategories,
     refetchOnMount: false,
   });
