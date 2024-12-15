@@ -67,7 +67,7 @@ export default function NavbarWebsite() {
                   }`;
                 }}
               >
-                Prouducts
+                Products
               </NavLink>
             </li>
             <li>
@@ -114,19 +114,32 @@ export default function NavbarWebsite() {
           } flex gap-5 items-center order-2 sm:order-none col-span-12  justify-self-center sm:col-span-5 md:justify-self-end`}
         >
           {token ? (
-            <Link to="cart" className="cart relative cursor-pointer ">
-              <i className="fa-solid fa-cart-shopping text-2xl"></i>
-              <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
-                {cartInfo === null ? (
-                  <i
-                    className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
-                    title="Wait"
-                  ></i>
-                ) : (
-                  <span className="text-white"> {cartInfo.numOfCartItems}</span>
-                )}
+            <>
+              <div className="flex gap-5">
+                <Link to="cart" className="cart relative cursor-pointer  ">
+                  <i className="fa-regular fa-heart text-2xl hover:text-primary-500 duration-300 transition-colors"></i>
+                  <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
+                    1
+                  </div>
+                </Link>
+                <Link to="cart" className="cart relative cursor-pointer ">
+                  <i className="fa-solid fa-cart-shopping text-2xl hover:text-primary-500 duration-300 transition-colors"></i>
+                  <div className="cart-counter absolute h-6 w-6 flex items-center  justify-center rounded-full bg-primary-500 top-0 right-0 translate-x-1/2 -translate-y-1/2">
+                    {cartInfo === null ? (
+                      <i
+                        className="fa-solid fa-spinner text-white h-4 w-4 animate-spin"
+                        title="Wait"
+                      ></i>
+                    ) : (
+                      <span className="text-white">
+                        {' '}
+                        {cartInfo.numOfCartItems}
+                      </span>
+                    )}
+                  </div>
+                </Link>
               </div>
-            </Link>
+            </>
           ) : (
             ''
           )}

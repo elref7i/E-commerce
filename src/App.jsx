@@ -21,6 +21,7 @@ import { Offline } from 'react-detect-offline';
 import Brands from './Pages/Brands/Brands';
 import Prouducts from './Pages/Prouducts/Prouducts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Categories from './Pages/Categories/Categories';
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
       { path: '/allorders', element: <Orders /> },
       { path: '/brands', element: <Brands /> },
       { path: '/prouducts', element: <Prouducts /> },
+      { path: '/categories', element: <Categories /> },
     ],
   },
   {

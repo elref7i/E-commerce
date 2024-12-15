@@ -46,7 +46,7 @@ export default function Card({ productInfo }) {
             </h2>
             <Link
               to={`/productdetails/${id}`}
-              className="namec-category text-xl font-medium line-clamp-1"
+              className="namec-category text-xl  font-medium line-clamp-1"
               title={`${title}`}
             >
               {title}
