@@ -8,6 +8,19 @@ export default {
       padding: '0.75rem',
     },
     extend: {
+      animation: {
+        model: 'showModel  1s ',
+      },
+      keyframes: {
+        showModel: {
+          '0%': {
+            transform: 'translateY(-200px)',
+          },
+          '100%': {
+            transform: 'translateY(0px)',
+          },
+        },
+      },
       screens: {
         '2xl': '1280px',
       },
