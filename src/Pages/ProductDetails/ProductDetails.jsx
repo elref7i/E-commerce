@@ -10,12 +10,15 @@ import Card from '../../Components/Card/Card';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css/autoplay';
 import { Helmet } from 'react-helmet';
+import { WishListContext } from '../../context/WishList.context';
+import { RelatedContext } from '../../context/Related.context';
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
-  const [relatedProduct, setRelatedProduct] = useState(null);
+  // const [relatedProduct, setRelatedProduct] = useState(null);
   const { addProductToCart } = useContext(CartContext);
-
+  const { getRalatedProduct, relatedProduct } = useContext(RelatedContext);
+  const { addProuductWishList } = useContext(WishListContext);
   let { id } = useParams();
   async function getSpecificProduct() {
     try {
@@ -30,25 +33,25 @@ export default function ProductDetails() {
       console.log(error);
     }
   }
-  async function getRalatedProduct() {
-    try {
-      const options = {
-        url: `https://ecommerce.routemisr.com/api/v1/products?category[in]=${product.category._id}`,
-        method: 'GET',
-      };
-      const { data } = await axios.request(options);
-      // console.log(data.data);
-      setRelatedProduct(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function getRalatedProduct() {
+  //   try {
+  //     const options = {
+  //       url: `https://ecommerce.routemisr.com/api/v1/products?category[in]=${product.category._id}`,
+  //       method: 'GET',
+  //     };
+  //     const { data } = await axios.request(options);
+  //     // console.log(data.data);
+  //     setRelatedProduct(data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   useEffect(() => {
     getSpecificProduct();
   }, [id]);
   useEffect(() => {
     if (product === null) return;
-    getRalatedProduct();
+    getRalatedProduct({ categoryID: product.category._id });
   }, [product]);
   return (
     <>
@@ -141,8 +144,13 @@ export default function ProductDetails() {
                 >
                   Add Cart
                 </button>
-                <div className="size-12 border-2 border-solid border-primary-500 text-primary-500  hover:text-white hover:border-white hover:bg-primary-500 rounded-3xl flex items-center justify-center cursor-pointer duration-300 transition-colors">
-                  <i className="fa-regular fa-heart text-2xl  "></i>
+                <div
+                  onClick={() => {
+                    addProuductWishList({ productId: product.id });
+                  }}
+                  className="size-12 border-2 border-solid border-primary-500 text-primary-500  hover:text-white hover:border-white hover:bg-primary-500 rounded-3xl flex items-center justify-center cursor-pointer duration-300 transition-colors"
+                >
+                  <i className="fa-regular fa-heart text-2xl"></i>
                 </div>
               </div>
             </article>

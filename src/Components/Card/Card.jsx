@@ -24,7 +24,7 @@ export default function Card({ productInfo }) {
           <img src={imageCover} className="w-full h-48 object-contain" alt="" />
           <ul className="opacity-0 pl-3 justify-center flex gap-5 flex-col absolute group-hover/parent:opacity-100 duration-500 transition-opacity inset-0 bg-black bg-opacity-15 top-50 ">
             <li
-              className="animation-icon"
+              className="animation-icon bg-white text-primary-500 "
               onClick={() => {
                 addProuductWishList({ productId: id });
               }}
@@ -32,14 +32,14 @@ export default function Card({ productInfo }) {
               <i className="fa-regular fa-heart"></i>
             </li>
             <li
-              className="animation-icon"
+              className="animation-icon bg-white text-primary-500"
               onClick={() => {
                 addProductToCart({ productId: id });
               }}
             >
               <i className="fa-solid fa-cart-shopping"></i>
             </li>
-            <li className="animation-icon">
+            <li className="animation-icon bg-white text-primary-500">
               <Link to={`/productdetails/${id}`}>
                 <i className="fa-regular fa-eye"></i>
               </Link>

@@ -24,6 +24,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Categories from './Pages/Categories/Categories';
 import WhishListProvider from './context/WishList.context';
 import WishList from './Pages/WishList/WishList';
+import RelatedProductsProvider from './context/Related.context';
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
@@ -76,7 +77,9 @@ export default function App() {
         <UserProvider>
           <CartProvider>
             <WhishListProvider>
-              <RouterProvider router={router} />
+              <RelatedProductsProvider>
+                <RouterProvider router={router} />
+              </RelatedProductsProvider>
             </WhishListProvider>
           </CartProvider>
         </UserProvider>
