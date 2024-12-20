@@ -7,6 +7,9 @@ import { useState } from 'react';
 
 export default function Categories() {
   const [dataSubcategories, setDataSubcategories] = useState(null);
+  const [nameCategory, setNameCategory] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   async function getCategories() {
     const options = {
       url: 'https://ecommerce.routemisr.com/api/v1/categories',
@@ -14,13 +17,16 @@ export default function Categories() {
     };
     return axios.request(options);
   }
+
   let { data, isLoading } = useQuery({
     queryKey: ['Categories'],
     queryFn: getCategories,
     refetchOnMount: false,
   });
+
   async function getSubCategories({ productId }) {
-    const subCat = toast.loading('Watting');
+    setLoading(true);
+    const subCat = toast.loading('Waiting');
     try {
       const options = {
         url: `https://ecommerce.routemisr.com/api/v1/categories/${productId}/subcategories`,
@@ -28,19 +34,18 @@ export default function Categories() {
       };
       const { data } = await axios.request(options);
       setDataSubcategories(data.data);
-      console.log(data);
-
-      toast.success('success');
+      toast.success('Success');
     } catch (error) {
       console.log(error);
-      toast.error('error');
+      toast.error('Error');
     } finally {
+      setLoading(false);
       toast.dismiss(subCat);
     }
   }
 
   if (isLoading) return <Loading />;
-  !console.log(data);
+
   return (
     <>
       <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
@@ -68,10 +73,11 @@ export default function Categories() {
           <div
             onClick={() => {
               getSubCategories({ productId: category._id });
+              setNameCategory(category.name);
+              setDataSubcategories(null);
             }}
             key={category._id}
-            className="cursor-pointer category text-center rounded-md overflow-hidden 
-        shadow-md col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 "
+            className="cursor-pointer category text-center rounded-md overflow-hidden shadow-md col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 "
           >
             <div className="h-64">
               <img
@@ -86,34 +92,28 @@ export default function Categories() {
           </div>
         ))}
       </section>
-      <section className="bg-slate-200 rounded-md p-5 ">
-        <h2 className="name-sub-category font-bold text-3xl text-primary-500 text-center">
-          Women&apos;s Fashion subcategories
-        </h2>
-        <div className="subs grid grid-cols-12 gap-5 py-5">
-          {dataSubcategories
-            ? dataSubcategories.map((cat) => (
+
+      {loading ? (
+        <Loading />
+      ) : (
+        dataSubcategories && (
+          <section className="bg-slate-200 rounded-md p-5 ">
+            <h2 className="name-sub-category font-bold text-3xl text-primary-500 text-center">
+              {nameCategory}
+            </h2>
+            <div className="text-nowrap subs grid grid-cols-12 gap-5 py-5">
+              {dataSubcategories.map((cat) => (
                 <div
                   key={cat._id}
-                  className="col-span-12 bg-white text-center p-6 rounded-lg shadow-md text-lg font-bold capitalize sm:col-span-4 md:col-span-3"
+                  className="col-span-12 bg-white text-center p-6 rounded-lg shadow-md text-sm md:text-lg font-bold capitalize md:col-span-6 lg:col-span-4"
                 >
-                  AHmed refai
+                  {cat.name}
                 </div>
-              ))
-            : ''}
-        </div>
-      </section>
+              ))}
+            </div>
+          </section>
+        )
+      )}
     </>
   );
-}
-
-{
-  /* <h2 className="name-sub-category font-bold text-3xl text-primary-500 text-center">
-Women&apos;s Fashion subcategories
-</h2>
-<div className="subs grid grid-cols-12 gap-5 py-5">
-<div className="col-span-12 bg-white text-center p-6 rounded-lg shadow-md text-lg font-bold capitalize sm:col-span-4 md:col-span-3">
-  AHmed refai
-</div>
-</div> */
 }
