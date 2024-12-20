@@ -14,12 +14,15 @@ export default function WishList() {
   }, []);
   return (
     <>
-      <section className="my-wishlist space-y-4 mb-5">
+      <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
+        <i className="fa-solid fa-heart text-3xl animate-pulse"></i> My Wishlist
+      </h1>
+      <section className="my-wishlist shadow-md p-3 rounded-md bg-slate-50 space-y-4 mb-5">
         {productWishlist ? (
           productWishlist.data.map((product) => (
             <div
               key={product.id}
-              className="flex items-center gap-5 shadow-md p-5 relative"
+              className="flex bg-white rounded-md items-center gap-5 shadow-md p-5 relative"
             >
               <div className="w-[100px] sm:min-w-[150px]  h-[150px] ">
                 <img
@@ -36,13 +39,12 @@ export default function WishList() {
                   >
                     {product.title}
                   </Link>
-                  <h3 className=" text-[12px] sm:text-sm">refai</h3>
                   <h4 className="text-primary-300 font-semibold">
                     ${product.price}
                   </h4>
                 </article>
                 <button
-                  className=" w-fit text-sm md:text-xl btn bg-primary-500 hover:bg-primary-600 px-2 py-3"
+                  className=" w-fit text-sm md:text-lg btn bg-primary-500 hover:bg-primary-600 px-2 py-3"
                   onClick={() => {
                     addProductToCart({ productId: product.id });
                   }}

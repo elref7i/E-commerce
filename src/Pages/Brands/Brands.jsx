@@ -34,8 +34,9 @@ export default function Brands() {
         <meta name="Brands Website" content="Freshcart | Brands" />
       </Helmet>
       <section className="all-brands">
-        <h1 className="font-bold text-4xl text-primary-500 mb-8 text-center">
-          All Brands
+        <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
+          <i className="fa-solid fa-tags text-3xl animate-pulse"></i>
+          Top Brands
         </h1>
         <div className="brands grid grid-cols-12 gap-4 shadow-primary-500 hover:shadow-slate-500 duration-500 transition-shadow p-5 shadow-inner rounded-md">
           {data.data.data.map((brand) => (

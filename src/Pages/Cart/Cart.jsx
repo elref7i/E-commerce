@@ -22,6 +22,9 @@ export default function Cart() {
         <title>Cart </title>
         <meta name="cart Page Website" content="Freshcart | cart Page" />
       </Helmet>
+      <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
+        <i className="fa-solid fa-box text-3xl animate-pulse"></i> Shopping Cart
+      </h1>
       {cartInfo === null ? (
         <Loading />
       ) : (
@@ -49,21 +52,22 @@ export default function Cart() {
                   <CartProduct cartInfo={product} key={product._id} />
                 ))}
               </div>
-              <div className="flex justify-center mb-8 sm:justify-between items-center flex-wrap gap-3">
-                <p className="text-lg">
+              <div className="flex justify-center  mb-8 sm:justify-between items-center flex-wrap gap-3">
+                <p className="font-medium text-lg md:text-xl">
                   Your Total Cart Price{' '}
                   <span className="font-bold text-primary-500">
                     ${cartInfo.data.totalCartPrice}
                   </span>
                 </p>
-
-                <CheckClearAll ClearCart={clearAllCart} />
-                <Link to="/checkout">
-                  <Button className="group/parent py-2 btn bg-primary-500 hover:!bg-primary-600 duration-300 transition-colors">
-                    <HiShoppingCart className="group-hover/parent:animate-none animate-bounce mr-2  h-5 w-5 duration-300 transition-[animate]" />
-                    Buy now
-                  </Button>
-                </Link>
+                <div className="flex items-center gap-3">
+                  <CheckClearAll ClearCart={clearAllCart} />
+                  <Link to="/checkout">
+                    <Button className="group/parent py-2 btn bg-primary-500 hover:!bg-primary-600 duration-300 transition-colors">
+                      <HiShoppingCart className="group-hover/parent:animate-none animate-bounce mr-2  h-5 w-5 duration-300 transition-[animate]" />
+                      Buy now
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </>
           )}

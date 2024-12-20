@@ -21,6 +21,11 @@ export default function Categories() {
   if (isLoading) return <Loading />;
   return (
     <>
+      <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
+        <i className="fa-solid fa-layer-group text-3xl animate-pulse"></i>
+        Explore Categories
+      </h1>
+
       <section className="grid grid-cols-12 gap-4">
         {data.data.data.map((category) => (
           <Link
