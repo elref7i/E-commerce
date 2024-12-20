@@ -5,27 +5,27 @@ import Loading from '../../Components/Loading/Loading';
 import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 import CategorySlider from '../../Components/CategorySlider/CategorySlider';
 import { Helmet } from 'react-helmet';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
+import { ProductsContext } from '../../context/Products.context';
+import { useFormik } from 'formik';
+// import { useState } from 'react';
 // import useOnline from '../../hooks/useOnline';
 export default function Home() {
-  async function getData() {
-    console.log('✅');
+  const { data, isLoading, searchProducts, searchedData, status } =
+    useContext(ProductsContext);
 
-    const options = {
-      url: 'https://ecommerce.routemisr.com/api/v1/products',
-      method: 'GET',
-    };
-    return axios.request(options);
-  }
-
-  let { data, isLoading } = useQuery({
-    queryKey: ['homeProuducts'],
-    queryFn: getData,
-    refetchOnMount: false,
+  const formik = useFormik({
+    initialValues: {
+      valueInput: '',
+    },
   });
-  // console.log(data);
 
   if (isLoading) return <Loading />;
+
+  const {
+    data: { data: allProducts },
+  } = data;
   return (
     <>
       <Helmet>
@@ -38,10 +38,25 @@ export default function Home() {
       <section className="mb-8 ">
         <CategorySlider />
       </section>
+      <form className="mb-8 w-3/4 mx-auto">
+        <input
+          name="valueInput"
+          type="search"
+          value={formik.values.valueInput}
+          placeholder="Search ..."
+          className="form-control border-b-2 w-full"
+          onChange={(e) => {
+            formik.handleChange(e);
+            searchProducts(e.target.value);
+          }}
+        />
+      </form>
       <section className="cards grid grid-cols-12 gap-5">
-        {data.data.data.map((proudect) => (
-          <Card productInfo={proudect} key={proudect._id} />
-        ))}
+        {(status === 'products'.toLowerCase() ? allProducts : searchedData).map(
+          (proudect) => (
+            <Card productInfo={proudect} key={proudect._id} />
+          )
+        )}
       </section>
     </>
   );

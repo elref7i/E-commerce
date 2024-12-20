@@ -25,6 +25,7 @@ import Categories from './Pages/Categories/Categories';
 import WhishListProvider from './context/WishList.context';
 import WishList from './Pages/WishList/WishList';
 import RelatedProductsProvider from './context/Related.context';
+import ProductsProvider from './context/Products.context';
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {
@@ -75,13 +76,15 @@ export default function App() {
       {/* </Online> */}
       <QueryClientProvider client={myClient}>
         <UserProvider>
-          <CartProvider>
-            <WhishListProvider>
-              <RelatedProductsProvider>
-                <RouterProvider router={router} />
-              </RelatedProductsProvider>
-            </WhishListProvider>
-          </CartProvider>
+          <ProductsProvider>
+            <CartProvider>
+              <WhishListProvider>
+                <RelatedProductsProvider>
+                  <RouterProvider router={router} />
+                </RelatedProductsProvider>
+              </WhishListProvider>
+            </CartProvider>
+          </ProductsProvider>
         </UserProvider>
         <Toaster />
         <Offline>
