@@ -1,19 +1,16 @@
-import axios from 'axios';
 import Card from '../../Components/Card/Card';
-// import { useEffect, useState } from 'react';
 import Loading from '../../Components/Loading/Loading';
 import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 import CategorySlider from '../../Components/CategorySlider/CategorySlider';
 import { Helmet } from 'react-helmet';
-// import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/Products.context';
 import { useFormik } from 'formik';
-// import { useState } from 'react';
-// import useOnline from '../../hooks/useOnline';
+import { WishListContext } from '../../context/WishList.context';
 export default function Home() {
   const { data, isLoading, searchProducts, searchedData, status } =
     useContext(ProductsContext);
+  const { checkProduct } = useContext(WishListContext);
 
   const formik = useFormik({
     initialValues: {
@@ -54,7 +51,11 @@ export default function Home() {
       <section className="cards grid grid-cols-12 gap-5">
         {(status === 'products'.toLowerCase() ? allProducts : searchedData).map(
           (proudect) => (
-            <Card productInfo={proudect} key={proudect._id} />
+            <Card
+              productInfo={proudect}
+              checkProduct={checkProduct}
+              key={proudect._id}
+            />
           )
         )}
       </section>

@@ -5,9 +5,11 @@ import toast from 'react-hot-toast';
 
 export const WishListContext = createContext(null);
 
+// eslint-disable-next-line react/prop-types
 export default function WhishListProvider({ children }) {
   const { token } = useContext(UserContext);
   const [productWishlist, setProductWishlist] = useState(null);
+  const [checkProduct, setCheckProduct] = useState(false);
 
   async function addProuductWishList({ productId }) {
     const toastload = toast.loading('Watting');
@@ -27,6 +29,7 @@ export default function WhishListProvider({ children }) {
         toast.success(data.status);
         console.log(data);
         getLoggedUserWishlist();
+        setCheckProduct(true);
       }
     } catch (error) {
       console.log(error);
@@ -35,6 +38,7 @@ export default function WhishListProvider({ children }) {
       toast.dismiss(toastload);
     }
   }
+
   async function getLoggedUserWishlist() {
     try {
       const options = {
@@ -46,7 +50,7 @@ export default function WhishListProvider({ children }) {
       };
       let { data } = await axios.request(options);
       setProductWishlist(data);
-      console.log(data);
+      console.log(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -74,6 +78,13 @@ export default function WhishListProvider({ children }) {
     }
   }
 
+  function checkedProduct({ productId }) {
+    if (!productWishlist || !productWishlist.data) return false;
+    const productInfo = productWishlist.data.find(
+      (product) => product.id === productId
+    );
+    return productInfo;
+  }
   return (
     <WishListContext.Provider
       value={{
@@ -81,6 +92,8 @@ export default function WhishListProvider({ children }) {
         getLoggedUserWishlist,
         productWishlist,
         deleteProductFromWishlist,
+        checkProduct,
+        checkedProduct,
       }}
     >
       {children}

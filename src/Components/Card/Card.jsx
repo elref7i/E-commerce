@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
 import { WishListContext } from '../../context/WishList.context';
-export default function Card({ productInfo }) {
+export default function Card({ productInfo, checkProduct }) {
   const {
     imageCover,
     category,
@@ -15,8 +15,7 @@ export default function Card({ productInfo }) {
   } = productInfo;
 
   const { addProductToCart } = useContext(CartContext);
-  const { addProuductWishList } = useContext(WishListContext);
-
+  const { addProuductWishList, checkedProduct } = useContext(WishListContext);
   return (
     <>
       <div className="group/parent card bg-white shadow-md rounded-md overflow-hidden  col-span-12 sm:col-span-6 md:col-span-4  lg:col-span-3">
@@ -24,7 +23,11 @@ export default function Card({ productInfo }) {
           <img src={imageCover} className="w-full h-48 object-contain" alt="" />
           <ul className="opacity-0 pl-3 justify-center flex gap-5 flex-col absolute group-hover/parent:opacity-100 duration-500 transition-opacity inset-0 bg-black bg-opacity-15 top-50 ">
             <li
-              className="animation-icon bg-white text-primary-500 "
+              className={`animation-icon ${
+                checkedProduct({ productId: id })
+                  ? 'text-white bg-primary-500'
+                  : 'bg-white text-primary-500'
+              } `}
               onClick={() => {
                 addProuductWishList({ productId: id });
               }}

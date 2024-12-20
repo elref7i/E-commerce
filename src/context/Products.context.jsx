@@ -11,7 +11,6 @@ export default function ProductsProvider({ children }) {
 
   async function getData() {
     console.log('✅');
-
     const options = {
       url: 'https://ecommerce.routemisr.com/api/v1/products',
       method: 'GET',
