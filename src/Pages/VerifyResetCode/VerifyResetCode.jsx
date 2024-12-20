@@ -57,10 +57,19 @@ export default function VerifyResetCode() {
   return (
     <>
       <Helmet>
-        <title>Verify Reset Code </title>
+        <title>Verify Reset Code - Freshcart</title>
         <meta
-          name="Verify Reset Code  Page Website"
-          content="Freshcart | Verify Reset Code  Page"
+          name="description"
+          content="Verify your reset code to create a new password for your Freshcart account."
+        />
+        <meta
+          name="keywords"
+          content="Verify Reset Code, Freshcart, Password Reset, Shopping, Online Store"
+        />
+        <meta property="og:title" content="Verify Reset Code - Freshcart" />
+        <meta
+          property="og:description"
+          content="Enter your reset code to create a new password for your Freshcart account."
         />
       </Helmet>
       <section className="shadow-sm shadow-current rounded-lg  md:rounded-tr-[50px]  max-w-sm mx-auto p-5 ">

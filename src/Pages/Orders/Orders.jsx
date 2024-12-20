@@ -31,8 +31,20 @@ export default function Orders() {
   return (
     <>
       <Helmet>
-        <title>Orders </title>
-        <meta name="Orders Page Website" content="Freshcart | Orders Page" />
+        <title>Orders - Freshcart</title>
+        <meta
+          name="description"
+          content="Track your orders and manage your purchases with ease at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Orders, Freshcart, Shopping, Order History, Online Store"
+        />
+        <meta property="og:title" content="Orders - Freshcart" />
+        <meta
+          property="og:description"
+          content="View and manage all your orders in one place. Check your order status and history on Freshcart."
+        />
       </Helmet>
       <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
         <i className="fa-solid fa-box text-3xl animate-pulse"></i> Order History
@@ -45,9 +57,12 @@ export default function Orders() {
               className="order p-5 border-2 border-solid border-primary-200 rounded-lg"
             >
               <header className="flex flex-wrap gap-4 sm:gap-0 items-center justify-between mb-8 bg-slate-50 p-2 shadow-md">
-                <h3 className="text-xl pl-2 text-slate-500">
-                  order ID{' '}
-                  <span className="font-bold text-black">#{order.id}</span>
+                <h3 className="text-xl font-bold pl-2 text-primary-500">
+                  Order ID :{' '}
+                  <span className="font-bold text-black bg-gray-200 px-2 py-1 rounded-md">
+                    {' '}
+                    #{order.id}
+                  </span>
                 </h3>
                 <div className="status text-white flex gap-2 items-center font-cairo">
                   {order.isPaid ? (

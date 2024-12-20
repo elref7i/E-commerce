@@ -26,8 +26,20 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Home </title>
-        <meta name="Home Page Website" content="Freshcart | Home Page" />
+        <title>Home - Freshcart</title>
+        <meta
+          name="description"
+          content="Welcome to Freshcart. Shop the latest products from a variety of categories and enjoy fast delivery."
+        />
+        <meta
+          name="keywords"
+          content="Freshcart, Home, Shopping, Online Store, Deals"
+        />
+        <meta property="og:title" content="Home - Freshcart" />
+        <meta
+          property="og:description"
+          content="Browse through a wide range of products and exclusive offers on Freshcart. Your one-stop shopping destination."
+        />
       </Helmet>
       <section className="grid grid-cols-12 mb-8">
         <HomeSlider />

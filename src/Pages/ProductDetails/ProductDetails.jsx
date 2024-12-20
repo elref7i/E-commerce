@@ -57,10 +57,19 @@ export default function ProductDetails() {
   return (
     <>
       <Helmet>
-        <title>Product Details </title>
+        <title>Product Details - Freshcart</title>
         <meta
-          name="Product Details Page Website"
-          content="Freshcart | Product Details Page"
+          name="description"
+          content="Get detailed information about the product, including features, specifications, and pricing, only at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Product Details, Freshcart, Product Information, Online Store, Shopping"
+        />
+        <meta property="og:title" content="Product Details - Freshcart" />
+        <meta
+          property="og:description"
+          content="Find all the details you need about your favorite products on Freshcart, including reviews, pricing, and specifications."
         />
       </Helmet>
       {product === null ? (
@@ -68,7 +77,17 @@ export default function ProductDetails() {
       ) : (
         <>
           <Helmet>
-            <title>{product.title} </title>
+            <title>{product.title} - Freshcart</title>
+            <meta name="description" content={product.description} />
+            <meta
+              name="keywords"
+              content={`${product.title}, Freshcart, ${product.category}, Shopping, Online Store`}
+            />
+            <meta
+              property="og:title"
+              content={`${product.title} - Freshcart`}
+            />
+            <meta property="og:description" content={product.description} />
           </Helmet>
           <section className="grid grid-cols-12 gap-1 md:gap-8 bg-slate-100 p-4 rounded-xl mb-10">
             <div className="image-product flex items-center bg-white col-span-12 md:col-span-4 rounded-md shadow-lg overflow-hidden">

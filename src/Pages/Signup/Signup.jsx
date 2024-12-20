@@ -87,8 +87,20 @@ export default function Signup() {
   return (
     <>
       <Helmet>
-        <title>Sign Up </title>
-        <meta name="Sign Up Page Website" content="Freshcart | Sign Up Page" />
+        <title>Signup - Freshcart</title>
+        <meta
+          name="description"
+          content="Create a new account on Freshcart to start shopping and track your orders."
+        />
+        <meta
+          name="keywords"
+          content="Signup, Freshcart, Create Account, Shopping, Online Store"
+        />
+        <meta property="og:title" content="Signup - Freshcart" />
+        <meta
+          property="og:description"
+          content="Create a new account on Freshcart and start shopping today!"
+        />
       </Helmet>
       <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:max-w-[900px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-2 flex flex-col justify-center rounded-md">

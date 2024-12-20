@@ -100,10 +100,19 @@ export default function Checkout() {
   return (
     <>
       <Helmet>
-        <title>Checkout </title>
+        <title>Checkout - Freshcart</title>
         <meta
-          name="Checkout Page Website"
-          content="Freshcart | Checkout Page"
+          name="description"
+          content="Complete your purchase and choose between online payment or cash on delivery at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Checkout, Freshcart, Online Payment, Cash on Delivery, Shopping"
+        />
+        <meta property="og:title" content="Checkout - Freshcart" />
+        <meta
+          property="og:description"
+          content="Finish your shopping experience and choose your preferred payment method at Freshcart."
         />
       </Helmet>
       <section>

@@ -43,7 +43,7 @@ export default function Login() {
         setIncorrectData(null);
         setTimeout(() => {
           navigator('/');
-        }, 2000);
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
@@ -69,8 +69,20 @@ export default function Login() {
   return (
     <>
       <Helmet>
-        <title>Login </title>
-        <meta name="Login Page Website" content="Freshcart | Login Page" />
+        <title>Login - Freshcart</title>
+        <meta
+          name="description"
+          content="Login to your Freshcart account to access your shopping cart, wishlist, and order history."
+        />
+        <meta
+          name="keywords"
+          content="Login, Freshcart, User Account, Shopping, Online Store"
+        />
+        <meta property="og:title" content="Login - Freshcart" />
+        <meta
+          property="og:description"
+          content="Login to your Freshcart account to access your shopping cart and more!"
+        />
       </Helmet>
       <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]   md:max-w-[800px] mx-auto grid-cols-12 p-5 ">
         <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">

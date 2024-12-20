@@ -58,10 +58,19 @@ export default function ForgetPassword() {
   return (
     <>
       <Helmet>
-        <title>Forget Password </title>
+        <title>Forgot Password - Freshcart</title>
         <meta
-          name="Forget Password Page Website"
-          content="Freshcart | Forget Password Page"
+          name="description"
+          content="Forgot your password? Reset it here and get back to shopping on Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Forgot Password, Freshcart, Reset Password, Shopping, Online Store"
+        />
+        <meta property="og:title" content="Forgot Password - Freshcart" />
+        <meta
+          property="og:description"
+          content="Reset your Freshcart account password and continue your shopping experience."
         />
       </Helmet>
       <section className="shadow-sm shadow-current rounded-lg  md:rounded-tr-[50px]  max-w-sm mx-auto p-5 ">

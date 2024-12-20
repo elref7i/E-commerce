@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Categories() {
   async function getCategories() {
@@ -25,7 +26,29 @@ export default function Categories() {
         <i className="fa-solid fa-layer-group text-3xl animate-pulse"></i>
         Explore Categories
       </h1>
-
+      <Helmet>
+        <title>Categories - Freshcart</title>
+        <meta
+          name="description"
+          content="Browse through various categories of products and find what you need at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Categories, Freshcart, Shopping, Products, Online Store"
+        />
+        <meta property="og:title" content="Categories - Freshcart" />
+        <meta
+          property="og:description"
+          content="Explore a wide range of products under different categories at Freshcart. Find your favorite items now!"
+        />
+      </Helmet>
+      {/* <Helmet>
+        <title>Categories </title>
+        <meta
+          name="Categories Page Website"
+          content="Freshcart | Categories Page"
+        />
+      </Helmet> */}
       <section className="grid grid-cols-12 gap-4">
         {data.data.data.map((category) => (
           <Link

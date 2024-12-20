@@ -3,6 +3,7 @@ import { WishListContext } from '../../context/WishList.context';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
+import { Helmet } from 'react-helmet';
 
 export default function WishList() {
   const { getLoggedUserWishlist, productWishlist, deleteProductFromWishlist } =
@@ -14,6 +15,22 @@ export default function WishList() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Wishlist - Freshcart</title>
+        <meta
+          name="description"
+          content="Add products to your wishlist and save your favorite items for later at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Wishlist, Freshcart, Shopping Wishlist, Favorite Products, Online Store"
+        />
+        <meta property="og:title" content="Wishlist - Freshcart" />
+        <meta
+          property="og:description"
+          content="Create and manage your wishlist on Freshcart. Save your favorite products and buy them later."
+        />
+      </Helmet>
       <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
         <i className="fa-solid fa-heart text-3xl animate-pulse"></i> My Wishlist
       </h1>

@@ -19,8 +19,20 @@ export default function Cart() {
   return (
     <>
       <Helmet>
-        <title>Cart </title>
-        <meta name="cart Page Website" content="Freshcart | cart Page" />
+        <title>Cart - Freshcart</title>
+        <meta
+          name="description"
+          content="View and manage the items in your cart. Secure checkout and easy payment options at Freshcart."
+        />
+        <meta
+          name="keywords"
+          content="Cart, Freshcart, Shopping Cart, Checkout, Online Store"
+        />
+        <meta property="og:title" content="Cart - Freshcart" />
+        <meta
+          property="og:description"
+          content="Review the products you've added to your cart and proceed to checkout with Freshcart."
+        />
       </Helmet>
       <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
         <i className="fa-solid fa-box text-3xl animate-pulse"></i> Shopping Cart

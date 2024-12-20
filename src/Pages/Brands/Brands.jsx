@@ -30,8 +30,20 @@ export default function Brands() {
   return (
     <>
       <Helmet>
-        <title>Brands</title>
-        <meta name="Brands Website" content="Freshcart | Brands" />
+        <title>Brands - Freshcart</title>
+        <meta
+          name="description"
+          content="Discover top brands available at Freshcart. Shop from leading brands in various categories."
+        />
+        <meta
+          name="keywords"
+          content="Brands, Freshcart, Shopping, Top Brands, Online Store"
+        />
+        <meta property="og:title" content="Brands - Freshcart" />
+        <meta
+          property="og:description"
+          content="Explore a diverse selection of brands at Freshcart and find the best deals on products from your favorite brands."
+        />
       </Helmet>
       <section className="all-brands">
         <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
