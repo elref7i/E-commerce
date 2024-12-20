@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
 import { WishListContext } from '../../context/WishList.context';
-export default function Card({ productInfo, checkProduct }) {
+export default function Card({ productInfo }) {
   const {
     imageCover,
     category,

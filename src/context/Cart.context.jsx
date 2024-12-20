@@ -27,8 +27,8 @@ export default function CartProvider({ children }) {
         },
       };
       const { data } = await axios.request(options);
-      console.log(data);
       if (data.status === 'success') {
+        console.log(data);
         toast.success('Product added to your cart successfully!');
         getProductToCart();
       }
@@ -52,7 +52,7 @@ export default function CartProvider({ children }) {
         },
       };
       const { data } = await axios.request(options);
-      // console.log(data);
+      console.log(data.data.products);
       setCartInfo(data);
     } catch (error) {
       console.log(error);
@@ -137,12 +137,6 @@ export default function CartProvider({ children }) {
       console.log(error);
     }
   }
-  // function increaseCount() {
-  //   setNumberCount()
-  // }
-  // function decreaseCount(){
-
-  // }
   return (
     <CartContext.Provider
       value={{

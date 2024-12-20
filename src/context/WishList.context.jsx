@@ -55,7 +55,7 @@ export default function WhishListProvider({ children }) {
       };
       let { data } = await axios.request(options);
       setProductWishlist(data);
-      console.log(data.data);
+      //! console.log(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +91,7 @@ export default function WhishListProvider({ children }) {
   function checkedProduct({ productId }) {
     if (!productWishlist || !productWishlist.data) return false;
     const productInfo = productWishlist.data.find(
-      (product) => product.id === productId
+      (productFind) => productFind._id === productId
     );
     return productInfo;
   }

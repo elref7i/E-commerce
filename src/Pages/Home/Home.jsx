@@ -6,11 +6,9 @@ import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/Products.context';
 import { useFormik } from 'formik';
-import { WishListContext } from '../../context/WishList.context';
 export default function Home() {
   const { data, isLoading, searchProducts, searchedData, status } =
     useContext(ProductsContext);
-  const { checkProduct } = useContext(WishListContext);
 
   const formik = useFormik({
     initialValues: {
@@ -63,11 +61,7 @@ export default function Home() {
       <section className="cards grid grid-cols-12 gap-5">
         {(status === 'products'.toLowerCase() ? allProducts : searchedData).map(
           (proudect) => (
-            <Card
-              productInfo={proudect}
-              checkProduct={checkProduct}
-              key={proudect._id}
-            />
+            <Card productInfo={proudect} key={proudect._id} />
           )
         )}
       </section>
