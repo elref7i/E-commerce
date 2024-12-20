@@ -43,9 +43,9 @@ export default function Signup() {
   });
   async function sendDataToRegister(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
-    const loadingClose = toast.loading('Watting ... ', {
-      position: 'top-center',
-    });
+    const loadingClose = toast.loading(
+      'Registering your account... Please wait.'
+    );
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/auth/signup',
@@ -53,16 +53,21 @@ export default function Signup() {
         data: values,
       };
       let { data } = await axios.request(options);
-      console.log(data);
       if (data.message === 'success') {
-        toast.success(data.message);
+        //!   console.log(data);
+        toast.success(
+          'Account registered successfully! Redirecting to login page...'
+        );
         setCheckEmailExist(null);
         setTimeout(() => {
           navigate('/login');
         }, 2000);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message ||
+        'Failed to register your account. Please try again later.';
+      toast.error(errorMessage);
       setCheckEmailExist(error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);

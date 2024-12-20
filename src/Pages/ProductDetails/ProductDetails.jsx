@@ -18,7 +18,8 @@ export default function ProductDetails() {
   // const [relatedProduct, setRelatedProduct] = useState(null);
   const { addProductToCart } = useContext(CartContext);
   const { getRalatedProduct, relatedProduct } = useContext(RelatedContext);
-  const { addProuductWishList } = useContext(WishListContext);
+  const { addProuductWishList, checkedProduct } = useContext(WishListContext);
+
   let { id } = useParams();
   async function getSpecificProduct() {
     try {
@@ -135,7 +136,7 @@ export default function ProductDetails() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-8 items-center justify-between flex-wrap">
+              <div className="flex gap-5 items-center justify-between flex-wrap">
                 <button
                   onClick={() => {
                     addProductToCart({ productId: product.id });
@@ -146,11 +147,15 @@ export default function ProductDetails() {
                 </button>
                 <div
                   onClick={() => {
-                    addProuductWishList({ productId: product.id });
+                    addProuductWishList({ productId: id });
                   }}
-                  className="size-12 border-2 border-solid border-primary-500 text-primary-500  hover:text-white hover:border-white hover:bg-primary-500 rounded-3xl flex items-center justify-center cursor-pointer duration-300 transition-colors"
+                  className={` rounded-full p-5 size-8 flex items-center justify-center cursor-pointer ${
+                    checkedProduct({ productId: id })
+                      ? 'text-white bg-primary-500'
+                      : 'bg-white text-primary-500'
+                  } `}
                 >
-                  <i className="fa-regular fa-heart text-2xl"></i>
+                  <i className="fa-regular fa-heart"></i>
                 </div>
               </div>
             </article>

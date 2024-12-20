@@ -17,9 +17,9 @@ export default function VerifyResetCode() {
   });
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
-    const loadingClose = toast.loading('Watting ... ', {
-      position: 'top-center',
-    });
+    const loadingClose = toast.loading(
+      'Please wait while we process your request...'
+    );
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',
@@ -27,14 +27,21 @@ export default function VerifyResetCode() {
         data: values,
       };
       let { data } = await axios.request(options);
-      toast.success(data.message);
+
+      toast.success('Verification successful! Redirecting to login...');
       setTimeout(() => {
         navigator('/login');
       }, 2000);
-      console.log(data);
+      //! console.log(data);
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          'An unexpected error occurred. Please try again.',
+        {
+          position: 'top-center',
+        }
+      );
       setErrorResponse(error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);

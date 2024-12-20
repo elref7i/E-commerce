@@ -13,7 +13,7 @@ export default function RelatedProductsProvider({ children }) {
         method: 'GET',
       };
       const { data } = await axios.request(options);
-      // console.log(data.data);
+      //! console.log(data.data);
       setRelatedProduct(data.data);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ export default function RelatedProductsProvider({ children }) {
       const { data } = await axios.get(
         `https://ecommerce.routemisr.com/api/v1/brands/${brandID}`
       );
-      console.log(data.data);
+      //! console.log(data.data);
       setSpecificBrand(data.data);
     } catch (error) {
       console.log(error);

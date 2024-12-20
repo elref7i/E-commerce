@@ -27,9 +27,7 @@ export default function Login() {
   });
   async function sendDataToLogin(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
-    const loadingClose = toast.loading('Watting ... ', {
-      position: 'top-center',
-    });
+    const loadingClose = toast.loading('Logging in... Please wait.');
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/auth/signin',
@@ -37,9 +35,9 @@ export default function Login() {
         data: values,
       };
       let { data } = await axios.request(options);
-      console.log(data);
       if (data.message === 'success') {
-        toast.success('True');
+        //!  console.log(data);
+        toast.success('Login successful! Redirecting to home page...');
         setToken(data.token);
         localStorage.setItem('token', data.token);
         setIncorrectData(null);
@@ -49,7 +47,12 @@ export default function Login() {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message ||
+        'Login failed. Please try again later.';
+      toast.error(errorMessage, {
+        position: 'top-center',
+      });
       setIncorrectData(error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);

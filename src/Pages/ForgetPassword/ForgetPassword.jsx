@@ -17,9 +17,7 @@ export default function ForgetPassword() {
   });
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
-    const loadingClose = toast.loading('Watting ... ', {
-      position: 'top-center',
-    });
+    const loadingClose = toast.loading('Sending reset email... Please wait.');
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',
@@ -27,12 +25,24 @@ export default function ForgetPassword() {
         data: values,
       };
       let { data } = await axios.request(options);
-      toast.success(data.message);
-      setTimeout(() => {
-        navigator('/verifyResetCode');
-      }, 2000);
+      if (data.statusMsg === 'success') {
+        //! console.log(data);
+        toast.success(
+          'Reset email sent successfully! Redirecting to verification page...',
+          {
+            position: 'top-center',
+          }
+        );
+        toast.success(data.message);
+        setTimeout(() => {
+          navigator('/verifyResetCode');
+        }, 2000);
+      }
     } catch (error) {
-      toast.error(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message ||
+        'Failed to send reset email. Please try again later.';
+      toast.error(errorMessage);
       setErrorResponse(error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);

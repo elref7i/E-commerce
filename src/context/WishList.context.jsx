@@ -12,7 +12,9 @@ export default function WhishListProvider({ children }) {
   const [checkProduct, setCheckProduct] = useState(false);
 
   async function addProuductWishList({ productId }) {
-    const toastload = toast.loading('Watting');
+    const toastload = toast.loading(
+      'Adding product to your wishlist... Please wait.'
+    );
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/wishlist',
@@ -26,14 +28,17 @@ export default function WhishListProvider({ children }) {
       };
       let { data } = await axios.request(options);
       if (data.status === 'success') {
-        toast.success(data.status);
+        toast.success('Product added to your wishlist successfully!');
         console.log(data);
         getLoggedUserWishlist();
         setCheckProduct(true);
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.data.response.message);
+      toast.error(
+        error.response?.data?.message ||
+          'Failed to add product to wishlist. Please try again.'
+      );
     } finally {
       toast.dismiss(toastload);
     }
@@ -56,7 +61,9 @@ export default function WhishListProvider({ children }) {
     }
   }
   async function deleteProductFromWishlist({ productId }) {
-    const removeProduct = toast.loading('watting ');
+    const removeProduct = toast.loading(
+      'Removing product from your wishlist... Please wait.'
+    );
     try {
       const options = {
         url: `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
@@ -68,11 +75,14 @@ export default function WhishListProvider({ children }) {
       let { data } = await axios.request(options);
       if (data.status === 'success') {
         getLoggedUserWishlist();
-        toast.success(data.status);
+        toast.success('Product removed from your wishlist successfully!');
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          'Failed to remove product from wishlist. Please try again.'
+      );
     } finally {
       toast.dismiss(removeProduct);
     }

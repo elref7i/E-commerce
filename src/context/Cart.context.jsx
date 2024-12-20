@@ -11,7 +11,10 @@ export default function CartProvider({ children }) {
   const { token } = useContext(UserContext);
   const [cartInfo, setCartInfo] = useState(null);
   async function addProductToCart({ productId }) {
-    const waitingToast = toast.loading('Watting');
+    const waitingToast = toast.loading(
+      'Adding product to your cart... Please wait.'
+    );
+
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/cart',
@@ -26,12 +29,15 @@ export default function CartProvider({ children }) {
       const { data } = await axios.request(options);
       console.log(data);
       if (data.status === 'success') {
-        toast.success(data.status);
+        toast.success('Product added to your cart successfully!');
         getProductToCart();
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          'Failed to add product to cart. Please try again.'
+      );
     } finally {
       toast.dismiss(waitingToast);
     }
@@ -53,7 +59,9 @@ export default function CartProvider({ children }) {
     }
   }
   async function removeProductFromCart({ rmProductID }) {
-    const removeProduct = toast.loading('watting ');
+    const removeProduct = toast.loading(
+      'Removing product from your cart... Please wait.'
+    );
     try {
       const options = {
         url: `https://ecommerce.routemisr.com/api/v1/cart/${rmProductID}`,
@@ -67,17 +75,20 @@ export default function CartProvider({ children }) {
       // console.log(data);
       if (data.status === 'success') {
         setCartInfo(data);
-        toast.success(data.status);
+        toast.success('Product removed from your cart successfully!');
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          'Failed to remove product from cart. Please try again.'
+      );
     } finally {
       toast.dismiss(removeProduct);
     }
   }
   async function clearAllCart() {
-    const clearAll = toast.loading('Watting');
+    const clearAll = toast.loading('Clearing your cart... Please wait.');
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/cart',
@@ -92,11 +103,14 @@ export default function CartProvider({ children }) {
         setCartInfo({
           numOfCartItems: 0,
         });
-        toast.success(data.message);
+        toast.success('Your cart has been successfully cleared!');
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.data.response.message);
+      toast.error(
+        error.response?.data?.message ||
+          'Failed to clear the cart. Please try again.'
+      );
     } finally {
       toast.dismiss(clearAll);
     }
