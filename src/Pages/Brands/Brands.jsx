@@ -1,26 +1,37 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Loading from '../../Components/Loading/Loading';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { ModelBrand } from '../../Components/ModelBrand/ModelBrand';
-import { useContext } from 'react';
-import { RelatedContext } from '../../context/Related.context';
 
 export default function Brands() {
   const [showMedol, setShowModel] = useState(false);
-  const { getSpecificBrand } = useContext(RelatedContext);
+  const [specificBrand, setSpecificBrand] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function getALlBrands() {
-    const options = {
-      url: 'https://ecommerce.routemisr.com/api/v1/brands',
-      method: 'GET',
-    };
-    return axios.request(options);
+    return axios.get('https://ecommerce.routemisr.com/api/v1/brands');
+  }
+  async function getSpecificBrand({ brandID }) {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(
+        `https://ecommerce.routemisr.com/api/v1/brands/${brandID}`
+      );
+      //! console.log(data.data);
+      setSpecificBrand(data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
   let { data, isLoading } = useQuery({
     queryKey: ['Brands'],
     queryFn: getALlBrands,
+    staleTime: 1000,
     refetchOnMount: false,
   });
   console.log(data);
@@ -66,8 +77,12 @@ export default function Brands() {
           ))}
         </div>
         {showMedol && (
-          <div className="fixed w-screen min-h-screen  flex items-center  justify-center  inset-0 bg-slate-50 bg-opacity-50">
-            <ModelBrand setShowModel={setShowModel} isLoading={isLoading} />
+          <div className="fixed w-screen min-h-screen  flex items-center  justify-center  inset-0 bg-slate-100 bg-opacity-60  ">
+            <ModelBrand
+              specificBrand={specificBrand}
+              setShowModel={setShowModel}
+              loading={loading}
+            />
           </div>
         )}
       </section>

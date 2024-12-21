@@ -9,7 +9,7 @@ export default {
     },
     extend: {
       animation: {
-        model: 'showModel  1s ',
+        model: 'showModel  .8s ',
       },
       keyframes: {
         showModel: {

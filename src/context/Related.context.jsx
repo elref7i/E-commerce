@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios';
 import { createContext, useState } from 'react';
 export const RelatedContext = createContext(0);
 
 export default function RelatedProductsProvider({ children }) {
   const [relatedProduct, setRelatedProduct] = useState(null);
-  const [specificBrand, setSpecificBrand] = useState(null);
+  // const [loading, setLoading] = useState(false);
 
   async function getRalatedProduct({ categoryID }) {
     try {
@@ -19,25 +20,12 @@ export default function RelatedProductsProvider({ children }) {
       console.log(error);
     }
   }
-  async function getSpecificBrand({ brandID }) {
-    try {
-      const { data } = await axios.get(
-        `https://ecommerce.routemisr.com/api/v1/brands/${brandID}`
-      );
-      //! console.log(data.data);
-      setSpecificBrand(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <RelatedContext.Provider
       value={{
         getRalatedProduct,
         relatedProduct,
-        getSpecificBrand,
-        specificBrand,
       }}
     >
       {children}

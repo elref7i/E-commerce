@@ -10,12 +10,7 @@ export default function ProductsProvider({ children }) {
   const [status, setStatus] = useState('products'.toLowerCase());
 
   async function getData() {
-    console.log('✅');
-    const options = {
-      url: 'https://ecommerce.routemisr.com/api/v1/products',
-      method: 'GET',
-    };
-    return axios.request(options);
+    return axios.get('https://ecommerce.routemisr.com/api/v1/products');
   }
 
   let { data, isLoading } = useQuery({
