@@ -16,11 +16,11 @@ export default function Footer() {
               app.
             </p>
           </header>
-          <form className="contact-email flex gap-4 flex-wra justify-center  items-center relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
+          <form className="contact-email flex flex-wrap gap-4 flex-wra justify-center  items-center relative before:absolute before:w-full before:h-[2px] before:bg-gray-200 before:-bottom-8  mb-5 ">
             <div className="email-input flex-1">
               <input
                 type="email"
-                className="form-control w-full border-2 rounded-md"
+                className="form-control w-full border-2 rounded-md min-w-48"
                 placeholder="Email.."
               />
             </div>
@@ -73,6 +73,37 @@ export default function Footer() {
               </ul>
             </div>
           </div>
+          <section className="social-media text-center  space-y-3">
+            <h2 className="text-center text-primary-500 font-extrabold text-3xl">
+              Follow Us
+            </h2>
+            <div className="social-icons flex gap-4 *:text-xl  w-fit mx-auto">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                aria-label="Facebook"
+                className="size-9 flex items-center justify-center rounded-full hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-400  hover:text-white duration-300 transition-colors"
+              >
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                aria-label="Instagram"
+                className="size-9 flex items-center justify-center rounded-full bg-slate-200  hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500  hover:text-white duration-300 transition-colors"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                aria-label="Twitter"
+                className="size-9 flex items-center justify-center rounded-full bg-slate-200 hover:bg-black hover:text-white duration-300 transition-colors"
+              >
+                <i className="fa-brands fa-x-twitter"></i>
+              </a>
+            </div>
+          </section>
         </div>
       </footer>
     </>

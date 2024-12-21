@@ -33,12 +33,22 @@ export default function Prouducts() {
   return (
     <>
       <Helmet>
-        <title>Prouducts </title>
+        <title>Products - Freshcart</title>
         <meta
-          name="Prouducts Page Website"
-          content="Freshcart | Prouducts Page"
+          name="description"
+          content="Discover a variety of products in different categories on Freshcart. Shop now and enjoy exclusive deals."
+        />
+        <meta
+          name="keywords"
+          content="Freshcart, Products, Shopping, Online Store, Deals, Categories"
+        />
+        <meta property="og:title" content="Products - Freshcart" />
+        <meta
+          property="og:description"
+          content="Explore our extensive product catalog and find the best deals on Freshcart. Your go-to online store for quality products."
         />
       </Helmet>
+
       <section>
         <div className="grid grid-cols-12 gap-5 mb-8">
           <div className="search col-span-12 sm:col-span-8 lg:col-span-10">
