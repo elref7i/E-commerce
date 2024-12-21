@@ -11,6 +11,8 @@ import { Helmet } from 'react-helmet';
 export default function Signup() {
   const [checkEmailExist, setCheckEmailExist] = useState(null);
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
+  const emailRegx = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+
   const phoneRegx = /^(02)?01[0125][0-9]{8}/;
   const navigate = useNavigate();
   const validationSchema = Yup.object({
@@ -18,11 +20,12 @@ export default function Signup() {
       .required('Please enter your name. This field cannot be empty.')
       .min(3, 'Your name should be at least 4 characters long.')
       .max(20, 'Your name should not exceed 20 characters.'),
-
     email: Yup.string()
       .required('Please provide your email address.')
-      .email('The email you entered is not valid. Please check again.'),
-
+      .matches(
+        emailRegx,
+        'The email you entered is not valid. Please check again.'
+      ),
     password: Yup.string()
       .required('Please set a password.')
       .matches(

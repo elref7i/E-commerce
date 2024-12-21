@@ -20,6 +20,7 @@ export default function VerifyResetCode() {
     const loadingClose = toast.loading(
       'Please wait while we process your request...'
     );
+
     try {
       const options = {
         url: 'https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',
@@ -32,7 +33,7 @@ export default function VerifyResetCode() {
       setTimeout(() => {
         navigator('/login');
       }, 2000);
-      //! console.log(data);
+      // ! console.log(data);
     } catch (error) {
       console.log(error);
       toast.error(

@@ -8,12 +8,16 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default function ForgetPassword() {
+  const emailRegx = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
   const [errorResponse, setErrorResponse] = useState(null);
   const navigator = useNavigate();
   const validationSchema = Yup.object({
     email: Yup.string()
       .required('Please provide your email address.')
-      .email('The email you entered is not valid. Please check again.'),
+      .matches(
+        emailRegx,
+        'The email you entered is not valid. Please check again.'
+      ),
   });
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
@@ -33,7 +37,6 @@ export default function ForgetPassword() {
             position: 'top-center',
           }
         );
-        toast.success(data.message);
         setTimeout(() => {
           navigator('/verifyResetCode');
         }, 2000);
