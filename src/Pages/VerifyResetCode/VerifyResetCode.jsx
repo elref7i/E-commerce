@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import favicon from '../../assets/images/favicon.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -73,7 +73,14 @@ export default function VerifyResetCode() {
           content="Enter your reset code to create a new password for your Freshcart account."
         />
       </Helmet>
+
       <section className="shadow-sm shadow-current rounded-lg  md:rounded-tr-[50px]  max-w-sm mx-auto p-5 ">
+        <Link to="/foregetPassword">
+          <i
+            className=" fa-solid fa-chevron-left size-8 flex items-center rounded-full justify-center bg-slate-100 hover:bg-slate-200 hover:text-primary-300 mb-4 cursor-pointer "
+            title="back To Home"
+          ></i>
+        </Link>
         <div className="p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">
             <div className="size-24 mx-auto">
@@ -121,12 +128,6 @@ export default function VerifyResetCode() {
                 className="btn flex-1  mx-auto px-4 py-2 bg-primary-500 hover:bg-primary-600"
               >
                 Verity
-              </button>
-              <button
-                type="submit"
-                className="outline-btn flex-1 px-4 py-2 hover:text-white hover:bg-primary-400 hover:border-primary-400"
-              >
-                Send Again
               </button>
             </footer>
           </form>

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import favicon from '../../assets/images/favicon.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -77,16 +77,19 @@ export default function ForgetPassword() {
         />
       </Helmet>
       <section className="shadow-sm shadow-current rounded-lg  md:rounded-tr-[50px]  max-w-sm mx-auto p-5 ">
+        <Link to="/login">
+          <i
+            className=" fa-solid fa-chevron-left size-8 flex items-center rounded-full justify-center bg-slate-100 hover:bg-slate-200 hover:text-primary-300 mb-4 cursor-pointer "
+            title="back To Home"
+          ></i>
+        </Link>
         <div className="p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">
             <div className="size-24 mx-auto">
               <img src={favicon} className="mb-5" alt="" />
             </div>
-            <h1 className="font-bold  text-3xl ">
+            <h1 className="font-bold  text-xl sm:text-3xl ">
               Forget Password?:
-              {/* <span>
-                <i className="fa-solid fa-hand-sparkles ml-2 text-primary-800 hover:text-primary-600"></i>
-              </span> */}
             </h1>
             <p className="font-medium pb-6 text-sm text-slate-400 ">
               Enter your email address

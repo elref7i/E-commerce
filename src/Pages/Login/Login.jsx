@@ -94,7 +94,7 @@ export default function Login() {
             <div className="size-24 mx-auto">
               <img src={favicon} className="mb-5" alt="" />
             </div>
-            <h1 className="font-bold  text-3xl ">
+            <h1 className="font-bold  text-xl sm:text-3xl ">
               Welcome Back:
               <span>
                 <i className="fa-solid fa-hand-sparkles ml-2 text-primary-800 hover:text-primary-600"></i>
