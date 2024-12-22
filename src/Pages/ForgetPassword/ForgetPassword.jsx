@@ -13,12 +13,10 @@ export default function ForgetPassword() {
   const navigator = useNavigate();
   const validationSchema = Yup.object({
     email: Yup.string()
-      .required('Please provide your email address.')
-      .matches(
-        emailRegx,
-        'The email you entered is not valid. Please check again.'
-      ),
+      .required('* Email is required.')
+      .matches(emailRegx, '* Invalid email.'),
   });
+
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
     const loadingClose = toast.loading('Sending reset email... Please wait.');
@@ -46,7 +44,7 @@ export default function ForgetPassword() {
         error.response?.data?.message ||
         'Failed to send reset email. Please try again later.';
       toast.error(errorMessage);
-      setErrorResponse(error.response.data.message);
+      setErrorResponse('*' + error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);
     }
@@ -111,7 +109,6 @@ export default function ForgetPassword() {
               />
               {formik.touched.email && formik.errors.email ? (
                 <p className="not-valid-value text-wrap break-words  text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.email}
                 </p>
               ) : (
@@ -119,7 +116,6 @@ export default function ForgetPassword() {
               )}
               {errorResponse ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {errorResponse}
                 </p>
               ) : (

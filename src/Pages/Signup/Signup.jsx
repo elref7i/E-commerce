@@ -17,33 +17,23 @@ export default function Signup() {
   const navigate = useNavigate();
   const validationSchema = Yup.object({
     name: Yup.string()
-      .required('Please enter your name. This field cannot be empty.')
-      .min(3, 'Your name should be at least 4 characters long.')
-      .max(20, 'Your name should not exceed 20 characters.'),
+      .required('* Name is required.')
+      .min(3, '* Minimum 3 characters.')
+      .max(20, '* Maximum 20 characters.'),
     email: Yup.string()
-      .required('Please provide your email address.')
-      .matches(
-        emailRegx,
-        'The email you entered is not valid. Please check again.'
-      ),
+      .required('* Email is required.')
+      .matches(emailRegx, '* Invalid email address.'),
     password: Yup.string()
-      .required('Please set a password.')
-      .matches(
-        passwordRegx,
-        'Your password must be 6-20 characters and can include letters, numbers, and special characters.'
-      ),
-
+      .required('* Password is required.')
+      .matches(passwordRegx, '* Invalid password format.'),
     rePassword: Yup.string()
-      .required('Please confirm your password.')
-      .oneOf(
-        [Yup.ref('password')],
-        'The passwords do not match. Please try again.'
-      ),
-
+      .required('* Please confirm your password.')
+      .oneOf([Yup.ref('password')], '* Passwords must match.'),
     phone: Yup.string()
-      .required('Please provide your phone number.')
-      .matches(phoneRegx, 'The phone number you entered is not valid'),
+      .required('* Phone number is required.')
+      .matches(phoneRegx, '* Invalid phone number.'),
   });
+
   async function sendDataToRegister(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
     const loadingClose = toast.loading(
@@ -71,7 +61,7 @@ export default function Signup() {
         error.response?.data?.message ||
         'Failed to register your account. Please try again later.';
       toast.error(errorMessage);
-      setCheckEmailExist(error.response.data.message);
+      setCheckEmailExist('*' + error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);
     }
@@ -105,14 +95,13 @@ export default function Signup() {
           content="Create a new account on Freshcart and start shopping today!"
         />
       </Helmet>
-      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]  md:max-w-[900px] mx-auto grid-cols-12 p-5 ">
-        <div className="col-span-12 md:col-span-6 p-2 flex flex-col justify-center rounded-md">
-          <header className="text-center mb-2 space-y-2">
-            <div className="size-24  mx-auto ">
+      <section className="mx-auto min-h-[600px]  w-full sm:w-3/4  shadow-lg lg:w-1/3 bg-slate-50 p-3 rounded-lg ">
+        <div className="p-2 flex flex-col justify-center rounded-md">
+          <header className="text-center mb-1">
+            <div className="size-[90px] mx-auto ">
               <img src={favicon} alt="" />
             </div>
-            <h1 className="font-bold text-3xl">Get Started:</h1>
-
+            <h1 className="font-bold text-3xl mb-1">Get Started:</h1>
             <p className="font-medium pb-6 text-sm text-slate-400">
               Welcome to FreshCart - let&apos;s create your account
             </p>
@@ -133,7 +122,6 @@ export default function Signup() {
               />
               {formik.touched.name && formik.errors.name ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.name}
                 </p>
               ) : (
@@ -152,7 +140,6 @@ export default function Signup() {
               />
               {formik.touched.email && formik.errors.email ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.email}
                 </p>
               ) : (
@@ -160,7 +147,6 @@ export default function Signup() {
               )}
               {checkEmailExist ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {checkEmailExist}
                 </p>
               ) : (
@@ -179,7 +165,6 @@ export default function Signup() {
               />
               {formik.touched.password && formik.errors.password ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.password}
                 </p>
               ) : (
@@ -198,7 +183,6 @@ export default function Signup() {
               />
               {formik.touched.rePassword && formik.errors.rePassword ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.rePassword}
                 </p>
               ) : (
@@ -217,7 +201,6 @@ export default function Signup() {
               />
               {formik.touched.phone && formik.errors.phone ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.phone}
                 </p>
               ) : (
@@ -244,13 +227,6 @@ export default function Signup() {
               </div>
             </footer>
           </form>
-        </div>
-        <div className="image-login col-span-6  rounded-md bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:flex items-center justify-center overflow-hidden  shadow-current ">
-          <img
-            src={imageLogin}
-            className="block h-[400px]  object-contain"
-            alt=""
-          />
         </div>
       </section>
     </>

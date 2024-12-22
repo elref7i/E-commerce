@@ -12,8 +12,8 @@ export default function VerifyResetCode() {
   const navigator = useNavigate();
   const validationSchema = Yup.object({
     resetCode: Yup.string()
-      .required('Please provide your resetCode.')
-      .matches(/^\d{6}$/, 'Reset code must be exactly 6 digits.'),
+      .required('* Please provide your resetCode.')
+      .matches(/^\d{6}$/, '* Reset code must be exactly 6 digits.'),
   });
   async function sendGmailForeget(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
@@ -42,7 +42,7 @@ export default function VerifyResetCode() {
           position: 'top-center',
         }
       );
-      setErrorResponse(error.response.data.message);
+      setErrorResponse('*' + error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);
     }
@@ -106,7 +106,6 @@ export default function VerifyResetCode() {
               />
               {formik.touched.resetCode && formik.errors.resetCode ? (
                 <p className="not-valid-value text-wrap break-words  text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {formik.errors.resetCode}
                 </p>
               ) : (
@@ -114,7 +113,6 @@ export default function VerifyResetCode() {
               )}
               {errorResponse ? (
                 <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
                   {errorResponse}
                 </p>
               ) : (

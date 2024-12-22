@@ -46,11 +46,11 @@ export default function Login() {
       console.log(error);
       const errorMessage =
         error.response?.data?.message ||
-        'Login failed. Please try again later.';
+        '* Login failed. Please try again later.';
       toast.error(errorMessage, {
         position: 'top-center',
       });
-      setIncorrectData(error.response.data.message);
+      setIncorrectData('*' + error.response.data.message);
     } finally {
       toast.dismiss(loadingClose);
     }
@@ -81,10 +81,10 @@ export default function Login() {
           content="Login to your Freshcart account to access your shopping cart and more!"
         />
       </Helmet>
-      <section className="mx-auto min-h-[600px] w-full sm:w-3/4  shadow-lg lg:w-1/3 bg-slate-50 p-3 rounded-lg ">
+      <section className="mx-auto min-h-[500px] w-full sm:w-3/4  shadow-lg lg:w-1/3 bg-slate-50 p-3 rounded-lg ">
         <div className="p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">
-            <div className="size-24 mx-auto">
+            <div className="size-[90px] mx-auto">
               <img src={favicon} className="mb-5" alt="" />
             </div>
             <h1 className="font-bold  text-xl sm:text-3xl ">
