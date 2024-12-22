@@ -4,7 +4,6 @@ import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
 import favicon from '../../assets/images/favicon.png';
 import { UserContext } from '../../context/User.context';
 import { Helmet } from 'react-helmet';
@@ -17,17 +16,11 @@ export default function Login() {
   const { setToken } = useContext(UserContext);
   const validationSchema = Yup.object({
     email: Yup.string()
-      .required('Please provide your email address.')
-      .matches(
-        emailRegx,
-        'The email you entered is not valid. Please check again.'
-      ),
+      .required('* Email is required.')
+      .matches(emailRegx, '* Invalid email address.'),
     password: Yup.string()
-      .required('Please set a password.')
-      .matches(
-        passwordRegx,
-        'Your password must be 6-20 characters and can include letters, numbers, and special characters.'
-      ),
+      .required('* Password is required.')
+      .matches(passwordRegx, '* Invalid password.'),
   });
   async function sendDataToLogin(values) {
     //* بيرجع ID عشان اقدر اتحكم فيه اوقفو او اشغلو
@@ -88,8 +81,8 @@ export default function Login() {
           content="Login to your Freshcart account to access your shopping cart and more!"
         />
       </Helmet>
-      <section className="shadow-sm shadow-current rounded-lg grid gap-6 md:rounded-tr-[50px]   md:max-w-[800px] mx-auto grid-cols-12 p-5 ">
-        <div className="col-span-12 md:col-span-6 p-3 flex flex-col justify-center rounded-md">
+      <section className="mx-auto min-h-[600px] w-full sm:w-3/4  shadow-lg lg:w-1/3 bg-slate-50 p-3 rounded-lg ">
+        <div className="p-3 flex flex-col justify-center rounded-md">
           <header className="text-center mb-6 space-y-2">
             <div className="size-24 mx-auto">
               <img src={favicon} className="mb-5" alt="" />
@@ -105,10 +98,10 @@ export default function Login() {
             </p>
           </header>
           <form
-            className="space-y-10  w-full mx-auto "
+            className="space-y-5  w-full mx-auto "
             onSubmit={formik.handleSubmit}
           >
-            <div className="email space-y-1">
+            <div className="email space-y-1 ">
               <input
                 type="email"
                 className="form-control border-b-2 w-full"
@@ -119,26 +112,24 @@ export default function Login() {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.email && formik.errors.email ? (
-                <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
+                <p className={`not-valid-value text-red-600 font-medium`}>
                   {formik.errors.email}
                 </p>
               ) : (
                 ''
               )}
               {incorrectData ? (
-                <p className="not-valid-value text-red-600 font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
+                <p className={`not-valid-value text-red-600 font-medium`}>
                   {incorrectData}
                 </p>
               ) : (
                 ''
               )}
             </div>
-            <div className="password space-y-1">
+            <div className="password  space-y-1">
               <input
                 type="password"
-                className="form-control mb-2 border-b-2 w-full"
+                className="form-control  border-b-2 w-full"
                 placeholder="Password"
                 name="password"
                 value={formik.values.password}
@@ -146,8 +137,7 @@ export default function Login() {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.password && formik.errors.password ? (
-                <p className="not-valid-value text-red-600 text-wrap font-medium">
-                  <span className="mr-1 font-bold animate-pulse">*</span>
+                <p className={`not-valid-value text-red-600 font-medium`}>
                   {formik.errors.password}
                 </p>
               ) : (
@@ -155,7 +145,7 @@ export default function Login() {
               )}
               <Link
                 to="/foregetPassword"
-                className="block text-end text-sm italic text-red-500 hover:text-red-700 duration-300 transition-colors "
+                className="block pt-2 ml-auto w-fit text-end text-sm italic text-red-500 hover:text-red-700 duration-300 transition-colors "
               >
                 Forget Password?
               </Link>
@@ -181,13 +171,6 @@ export default function Login() {
               </div>
             </footer>
           </form>
-        </div>
-        <div className="image-login col-span-6 rounded-md  bg-[#191A1E] py-8 rounded-tr-[50px] hidden md:block overflow-hidden  shadow-current ">
-          <img
-            src={imageLogin}
-            className="block h-[400px]  object-contain"
-            alt=""
-          />
         </div>
       </section>
     </>

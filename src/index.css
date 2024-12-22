@@ -6,7 +6,7 @@
     @apply relative w-fit text-base font-medium  before:absolute before:w-0 hover:before:w-full before:h-[2.5px] before:bg-primary-200 before:-bottom-1 before:left-0 before:transition-[width] before:duration-300;
   }
   .form-control {
-    @apply rounded-md  border-[1px] bg-slate-50 border-solid  focus:ring-0 focus:outline-none  border-primary-500 focus:border-primary-700 focus:ring-offset-0;
+    @apply rounded-full  border-[1px] bg-slate-50 border-solid  focus:ring-0 focus:outline-none  border-primary-500 focus:border-primary-700 focus:ring-offset-0;
   }
   .btn {
     @apply rounded-md text-white text-nowrap  transition-colors duration-300;

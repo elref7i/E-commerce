@@ -28,7 +28,6 @@ export default function VerifyResetCode() {
         data: values,
       };
       let { data } = await axios.request(options);
-
       toast.success('Verification successful! Redirecting to login...');
       setTimeout(() => {
         navigator('/login');
