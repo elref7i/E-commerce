@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/Products.context';
 import { useFormik } from 'formik';
+import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 export default function Home() {
   const { data, isLoading, searchProducts, searchedData, status } =
     useContext(ProductsContext);
@@ -38,7 +39,9 @@ export default function Home() {
           content="Browse through a wide range of products and exclusive offers on Freshcart. Your one-stop shopping destination."
         />
       </Helmet>
-      {/*  */}
+      <section className="grid grid-cols-12 mb-8">
+        <HomeSlider />
+      </section>
       <section className="mb-8 ">
         <CategorySlider />
       </section>
