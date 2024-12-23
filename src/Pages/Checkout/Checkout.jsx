@@ -6,7 +6,7 @@ import axios from 'axios';
 import { CartContext } from '../../context/Cart.context';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 export default function Checkout() {
   const { token } = useContext(UserContext);
   const { cartInfo, getProductToCart } = useContext(CartContext);
@@ -69,19 +69,19 @@ export default function Checkout() {
       toast.dismiss(toastLoading);
     }
   }
-  // const validationSchema = Yup.object({
-  //   'shippingAddress.details': Yup.string()
-  //     .required('please enter hte Details')
-  //     .min(20, 'zawd taney')
-  //     .max(40, 'bora7a ya 3am'),
-  //   'shippingAddress.phone': Yup.string()
-  //     .required('please enter hte Phone')
-  //     .matches(/^(02)?01[0125][0-9]{8}/, 'error'),
-  //   'shippingAddress.city': Yup.string()
-  //     .required('please enter hte City')
-  //     .min(3, 'error City')
-  //     .max(15, 'error City'),
-  // });
+  const validationSchema = Yup.object({
+    shippingAddress: Yup.object().shape({
+      city: Yup.string()
+        .required('* City is required')
+        .min(2, '* City must be at least 2 characters long'),
+      phone: Yup.string()
+        .matches(/^[0-9]{10}$/, '* Phone must be 10 digits')
+        .required('* Phone is required'),
+      details: Yup.string()
+        .required('* Details are required')
+        .min(10, '* Details must be at least 10 characters long'),
+    }),
+  });
   const formik = useFormik({
     initialValues: {
       shippingAddress: {
@@ -90,12 +90,20 @@ export default function Checkout() {
         city: '',
       },
     },
-    // validationSchema,
+    validationSchema,
     onSubmit: (values) => {
       if (paymentWay === 'cash') createCashOrder(values);
       else createOnlineOrder(values);
     },
   });
+  const isPhoneTouchedAndError =
+    formik.touched.shippingAddress?.phone &&
+    formik.errors.shippingAddress?.phone;
+  const isCityTouchedAndError =
+    formik.touched.shippingAddress?.city && formik.errors.shippingAddress?.city;
+  const isDetailsTouchedAndError =
+    formik.touched.shippingAddress?.details &&
+    formik.errors.shippingAddress?.details;
 
   return (
     <>
@@ -120,7 +128,7 @@ export default function Checkout() {
         <form className="py-5 space-y-5" onSubmit={formik.handleSubmit}>
           <div className="city">
             <input
-              className="form-control border-b-2 w-full"
+              className="border-solid border-primary-600 focus:ring-0 focus:shadow-none focus:outline-none focus:border-primary-600 border-b-2 w-full"
               type="text"
               name="shippingAddress.city"
               onChange={formik.handleChange}
@@ -128,18 +136,15 @@ export default function Checkout() {
               value={formik.values.shippingAddress.city}
               placeholder="City"
             />
-            {/* {formik.errors['shippingAddress.city'] &&
-            formik.touched.shippingAddress.city ? (
+            {isCityTouchedAndError && (
               <p className="text-red-600 font-medium">
-                {formik.errors['shippingAddress.city']}
+                {formik.errors.shippingAddress.city}
               </p>
-            ) : (
-              ''
-            )} */}
+            )}
           </div>
           <div className="phone">
             <input
-              className="form-control border-b-2 w-full"
+              className="border-solid border-primary-600 focus:ring-0 border-b-2 w-full focus:outline-none focus:border-primary-600 "
               type="tel"
               name="shippingAddress.phone"
               onChange={formik.handleChange}
@@ -147,33 +152,27 @@ export default function Checkout() {
               value={formik.values.shippingAddress.phone}
               placeholder="Phone"
             />
-            {/* {formik.errors['shippingAddress.phone'] &&
-            formik.touched.shippingAddress.phone ? (
+            {isPhoneTouchedAndError && (
               <p className="text-red-600 font-medium">
-                {formik.errors['shippingAddress.phone']}
+                {formik.errors.shippingAddress.phone}
               </p>
-            ) : (
-              ''
-            )} */}
+            )}
           </div>
 
           <div className="details">
             <textarea
-              className="form-control border-b-2 w-full"
+              className="border-solid border-primary-600 focus:ring-0 border-b-2 w-full focus:outline-none focus:border-primary-600 "
               name="shippingAddress.details"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.shippingAddress.details}
               placeholder="Details"
             ></textarea>
-            {/* {formik.errors['shippingAddress.details'] &&
-            formik.touched.shippingAddress.details ? (
+            {isDetailsTouchedAndError && (
               <p className="text-red-600 font-medium">
-                {formik.errors['shippingAddress.details']}
+                {formik.errors.shippingAddress.details}
               </p>
-            ) : (
-              ''
-            )} */}
+            )}
           </div>
           <div className="btns flex gap-3 items-center flex-wrap  ">
             <button

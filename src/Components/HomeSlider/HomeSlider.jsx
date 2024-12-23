@@ -12,7 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export default function HomeSlider() {
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-8 row-span-7">
         <Swiper
           modules={[Autoplay]}
           slidesPerView={1}

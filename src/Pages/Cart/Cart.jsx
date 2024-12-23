@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
+import imageloadin from '../../assets/images/Animation - 1734929112513.gif';
 
 import { HiShoppingCart } from 'react-icons/hi';
 import { Button } from 'flowbite-react';
@@ -44,7 +45,8 @@ export default function Cart() {
           {cartInfo.numOfCartItems === 0 ? (
             <>
               <div className="text-center bg-slate-200 p-5">
-                <p className="mb-3">
+                <img src={imageloadin} alt="" className="w-16 mx-auto mb-2" />
+                <p className="mb-4">
                   Oops! Your cart is empty. Start shopping now by clicking the
                   button below and find something you love!
                 </p>

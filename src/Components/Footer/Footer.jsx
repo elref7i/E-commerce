@@ -4,6 +4,8 @@ import payPal from '../../assets/images/paypal.png';
 import americanExpress from '../../assets/images/American-Express-Color.png';
 import getGooglePlay from '../../assets/images/get-google-play.png';
 import getAppleStore from '../../assets/images/get-apple-store.png';
+import imageloadin from '../../assets/images/Animation - 1734929967700.gif';
+
 export default function Footer() {
   return (
     <>
@@ -74,9 +76,12 @@ export default function Footer() {
             </div>
           </div>
           <section className="social-media text-center  space-y-3">
-            <h2 className="text-center text-primary-500 font-extrabold text-3xl">
-              Follow Us
-            </h2>
+            <div className="flex flex-col justify-center items-center">
+              <h2 className="text-center text-primary-500 font-extrabold text-3xl">
+                Follow Us
+              </h2>
+              <img src={imageloadin} className="w-8" alt="" />
+            </div>
             <div className="social-icons flex gap-4 *:text-xl  w-fit mx-auto">
               <a
                 href="https://facebook.com"
