@@ -26,6 +26,8 @@ import WhishListProvider from './context/WishList.context';
 import WishList from './Pages/WishList/WishList';
 import RelatedProductsProvider from './context/Related.context';
 import ProductsProvider from './context/Products.context';
+import { ToastContainer } from 'react-toastify';
+
 //* custom hook import Offline from './Components/Offline/Offline';
 const router = createBrowserRouter([
   {

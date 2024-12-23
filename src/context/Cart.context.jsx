@@ -29,6 +29,7 @@ export default function CartProvider({ children }) {
       const { data } = await axios.request(options);
       if (data.status === 'success') {
         console.log(data);
+
         toast.success('Product added to your cart successfully!');
         getProductToCart();
       }

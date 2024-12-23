@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/User.context';
 import { CartContext } from '../../context/Cart.context';
 import { WishListContext } from '../../context/WishList.context';
+import { CheckLogout } from '../CheckLogout/CheckLogout';
 export default function NavbarWebsite() {
   const [isOpanMenue, setIsOpanMenue] = useState(false);
-  const { token, logOut } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const { cartInfo, getProductToCart } = useContext(CartContext);
   const { productWishlist, getLoggedUserWishlist } =
     useContext(WishListContext);
@@ -169,10 +170,11 @@ export default function NavbarWebsite() {
               ></i>
             </div>
             <Link to="/" className="">
-              <i
+              <CheckLogout />
+              {/* <i
                 className="fa-solid fa-right-from-bracket sm:text-xl text-red-400 hover:text-red-600 transition-colors duration-200"
                 onClick={logOut}
-              ></i>
+              ></i> */}
             </Link>
           </div>
         ) : (
