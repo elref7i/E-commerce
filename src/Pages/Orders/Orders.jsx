@@ -46,8 +46,9 @@ export default function Orders() {
           content="View and manage all your orders in one place. Check your order status and history on Freshcart."
         />
       </Helmet>
-      <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
-        <i className="fa-solid fa-box text-3xl animate-pulse"></i> Order History
+      <h1 className="text-3xl md:text-5xl font-bold mb-8 text-primary-600 border-b-4  pb-4 ">
+        <i className="fa-solid fa-box text-4xl animate-bounce"></i> &nbsp; Order
+        History
       </h1>
       {orders ? (
         <section className="space-y-5">

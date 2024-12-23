@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { ProductsContext } from '../../context/Products.context';
 import { useFormik } from 'formik';
 import HomeSlider from '../../Components/HomeSlider/HomeSlider';
+
 export default function Home() {
   const { data, isLoading, searchProducts, searchedData, status } =
     useContext(ProductsContext);

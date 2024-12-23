@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Loading from '../../Components/Loading/Loading';
@@ -7,20 +6,20 @@ import { useState } from 'react';
 import { ModelBrand } from '../../Components/ModelBrand/ModelBrand';
 
 export default function Brands() {
-  const [showMedol, setShowModel] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [specificBrand, setSpecificBrand] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  async function getALlBrands() {
+  async function getAllBrands() {
     return axios.get('https://ecommerce.routemisr.com/api/v1/brands');
   }
+
   async function getSpecificBrand({ brandID }) {
     setLoading(true);
     try {
       const { data } = await axios.get(
         `https://ecommerce.routemisr.com/api/v1/brands/${brandID}`
       );
-      //! console.log(data.data);
       setSpecificBrand(data.data);
     } catch (error) {
       console.log(error);
@@ -28,13 +27,13 @@ export default function Brands() {
       setLoading(false);
     }
   }
+
   let { data, isLoading } = useQuery({
     queryKey: ['Brands'],
-    queryFn: getALlBrands,
+    queryFn: getAllBrands,
     staleTime: 1000,
     refetchOnMount: false,
   });
-  console.log(data);
 
   if (isLoading) return <Loading />;
 
@@ -56,34 +55,40 @@ export default function Brands() {
           content="Explore a diverse selection of brands at Freshcart and find the best deals on products from your favorite brands."
         />
       </Helmet>
-      <section className="all-brands">
-        <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
-          <i className="fa-solid fa-tags text-3xl animate-pulse"></i>
-          Top Brands
+
+      <section className="all-brands bg-gray-50 py-10 p-4">
+        <h1 className="text-3xl md:text-5xl font-bold mb-8 text-primary-600 border-b-4  pb-4 ">
+          <i className="fa-solid fa-tags text-4xl animate-bounce"></i>
+          &nbsp; Top Brands
         </h1>
-        <div className="brands grid grid-cols-12 gap-4 shadow-primary-500 hover:shadow-slate-500 duration-500 transition-shadow p-5 shadow-inner rounded-md">
+
+        <div className="brands grid grid-cols-12 gap-6 container mx-auto ">
           {data.data.data.map((brand) => (
             <div
+              key={brand._id}
               onClick={() => {
                 getSpecificBrand({ brandID: brand._id });
-                setShowModel(true);
+                setShowModal(true);
               }}
-              key={brand._id}
-              className="card text-center shadow-sm rounded-md shadow-slate-500 hover:shadow-primary-400 duration-300 transition-shadow cursor-pointer col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
+              className="card text-center p-4 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow cursor-pointer col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
             >
-              <h6>
-                <brand className="id"></brand>
-              </h6>
-              <img src={brand.image} alt={brand.name} />
-              <h2 className="mb-2 text-xl font-medium">{brand.name}</h2>
+              <img
+                src={brand.image}
+                alt={brand.name}
+                className="w-full h-40 object-contain mb-4 rounded-md"
+              />
+              <h2 className="text-xl font-semibold text-gray-700">
+                {brand.name}
+              </h2>
             </div>
           ))}
         </div>
-        {showMedol && (
-          <div className="fixed w-screen min-h-screen  flex items-center  justify-center  inset-0 bg-slate-100 bg-opacity-60  ">
+
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <ModelBrand
               specificBrand={specificBrand}
-              setShowModel={setShowModel}
+              setShowModal={setShowModal}
               loading={loading}
             />
           </div>

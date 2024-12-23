@@ -48,9 +48,9 @@ export default function Categories() {
 
   return (
     <>
-      <h1 className="text-2xl md:text-4xl font-bold mb-5 text-primary-500 border-b-2 border-primary-500 pb-2 flex items-center gap-2">
-        <i className="fa-solid fa-layer-group text-3xl animate-pulse"></i>
-        Explore Categories
+      <h1 className="text-3xl md:text-5xl font-bold mb-8 text-primary-600 border-b-4  pb-4 ">
+        <i className="fa-solid fa-layer-group text-4xl animate-bounce "></i>
+        &nbsp; Explore Categories
       </h1>
       <Helmet>
         <title>Categories - Freshcart</title>
