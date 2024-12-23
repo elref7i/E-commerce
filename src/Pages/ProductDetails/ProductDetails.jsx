@@ -34,19 +34,7 @@ export default function ProductDetails() {
       console.log(error);
     }
   }
-  // async function getRalatedProduct() {
-  //   try {
-  //     const options = {
-  //       url: `https://ecommerce.routemisr.com/api/v1/products?category[in]=${product.category._id}`,
-  //       method: 'GET',
-  //     };
-  //     const { data } = await axios.request(options);
-  //     // console.log(data.data);
-  //     setRelatedProduct(data.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+
   useEffect(() => {
     getSpecificProduct();
   }, [id]);

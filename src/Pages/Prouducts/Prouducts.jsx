@@ -1,7 +1,7 @@
 import DropdownFilter from '../../Components/DropdownFilter/DropdownFilter';
 import Card from '../../Components/Card/Card';
 import Loading from '../../Components/Loading/Loading';
-import axios from 'axios';
+// import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { useFormik } from 'formik';
@@ -10,14 +10,6 @@ import { ProductsContext } from '../../context/Products.context';
 export default function Prouducts() {
   const { data, isLoading, searchProducts, searchedData, status } =
     useContext(ProductsContext);
-
-  async function getSortProuducts() {
-    return axios.get(
-      'https://ecommerce.routemisr.com/api/v1/products?sort=-price'
-    );
-  }
-  // useQuery({})
-
   const formik = useFormik({
     initialValues: {
       valueInput: '',

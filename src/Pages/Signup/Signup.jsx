@@ -4,7 +4,6 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import imageLogin from '../../assets/images/fun-3d-cartoon-shopping-bag-dancing.jpg';
 import favicon from '../../assets/images/favicon.png';
 import { Helmet } from 'react-helmet';
 
@@ -12,7 +11,6 @@ export default function Signup() {
   const [checkEmailExist, setCheckEmailExist] = useState(null);
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
   const emailRegx = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
-
   const phoneRegx = /^(02)?01[0125][0-9]{8}/;
   const navigate = useNavigate();
   const validationSchema = Yup.object({

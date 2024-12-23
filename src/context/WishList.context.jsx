@@ -55,7 +55,7 @@ export default function WhishListProvider({ children }) {
       };
       let { data } = await axios.request(options);
       setProductWishlist(data);
-      //! console.log(data.data);
+      // !console.log(data.data);
     } catch (error) {
       console.log(error);
     }
