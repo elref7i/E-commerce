@@ -2,10 +2,8 @@ import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
 import imageloadin from '../../assets/images/Animation - 1734929112513.gif';
-
 import { HiShoppingCart } from 'react-icons/hi';
 import { Button } from 'flowbite-react';
-
 import CartProduct from '../../Components/CartProduct/CartProduct';
 import { Link } from 'react-router-dom';
 import CheckClearAll from '../../Components/Check/Check';

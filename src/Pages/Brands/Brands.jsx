@@ -71,6 +71,9 @@ export default function Brands() {
               key={brand._id}
               className="card text-center shadow-sm rounded-md shadow-slate-500 hover:shadow-primary-400 duration-300 transition-shadow cursor-pointer col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
             >
+              <h6>
+                <brand className="id"></brand>
+              </h6>
               <img src={brand.image} alt={brand.name} />
               <h2 className="mb-2 text-xl font-medium">{brand.name}</h2>
             </div>

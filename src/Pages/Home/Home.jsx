@@ -1,6 +1,5 @@
 import Card from '../../Components/Card/Card';
 import Loading from '../../Components/Loading/Loading';
-import HomeSlider from '../../Components/HomeSlider/HomeSlider';
 import CategorySlider from '../../Components/CategorySlider/CategorySlider';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
@@ -39,9 +38,7 @@ export default function Home() {
           content="Browse through a wide range of products and exclusive offers on Freshcart. Your one-stop shopping destination."
         />
       </Helmet>
-      <section className="grid grid-cols-12 mb-8">
-        <HomeSlider />
-      </section>
+      {/*  */}
       <section className="mb-8 ">
         <CategorySlider />
       </section>

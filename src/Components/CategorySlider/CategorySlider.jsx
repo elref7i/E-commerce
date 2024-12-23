@@ -18,7 +18,6 @@ export default function CategorySlider() {
     queryFn: getCategories,
     refetchOnMount: false,
   });
-  // console.log(data);
   if (isLoading) return <Loading />;
   return (
     <>

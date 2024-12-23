@@ -69,11 +69,6 @@ const myClient = new QueryClient();
 export default function App() {
   return (
     <>
-      {
-        //*custom Hook
-        /* <Online> */
-      }
-      {/* </Online> */}
       <QueryClientProvider client={myClient}>
         <UserProvider>
           <ProductsProvider>
@@ -95,15 +90,6 @@ export default function App() {
         </Offline>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      {
-        //*Custom Hook
-        /* <Offline>
-        <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md ">
-          <i className="fa-solid fa-wifi text-red-600"></i>
-          <p>Wifi is not connect</p>
-        </div>
-      </Offline> */
-      }
     </>
   );
 }

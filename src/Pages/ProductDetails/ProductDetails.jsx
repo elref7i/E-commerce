@@ -15,7 +15,6 @@ import { RelatedContext } from '../../context/Related.context';
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
-  // const [relatedProduct, setRelatedProduct] = useState(null);
   const { addProductToCart } = useContext(CartContext);
   const { getRalatedProduct, relatedProduct } = useContext(RelatedContext);
   const { addProuductWishList, checkedProduct } = useContext(WishListContext);

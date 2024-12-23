@@ -1,7 +1,6 @@
 import DropdownFilter from '../../Components/DropdownFilter/DropdownFilter';
 import Card from '../../Components/Card/Card';
 import Loading from '../../Components/Loading/Loading';
-// import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { useFormik } from 'formik';
