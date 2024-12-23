@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/Cart.context';
 import Loading from '../../Components/Loading/Loading';
 import { Helmet } from 'react-helmet';
+import imageloadin from '../../assets/images/Animation - 1734995792926.gif';
 
 export default function WishList() {
   const { getLoggedUserWishlist, productWishlist, deleteProductFromWishlist } =
@@ -35,7 +36,7 @@ export default function WishList() {
         <i className="fa-solid fa-heart text-3xl animate-pulse"></i> My Wishlist
       </h1>
       <section className="my-wishlist shadow-md p-3 rounded-md bg-slate-50 space-y-4 mb-5">
-        {productWishlist ? (
+        {productWishlist && productWishlist?.data.length !== 0 ? (
           productWishlist.data.map((product) => (
             <div
               key={product.id}
@@ -79,6 +80,22 @@ export default function WishList() {
               </div>
             </div>
           ))
+        ) : productWishlist?.data.length === 0 ? (
+          <>
+            <div className="text-center bg-slate-200 p-5">
+              <img src={imageloadin} alt="" className="w-24 mx-auto mb-2" />
+              <p className="mb-4">
+                <b>Oops!</b> Your wishlist is empty. Start adding products you
+                love by clicking the button below!
+              </p>
+              <Link
+                to="/"
+                className="btn bg-primary-500 hover:bg-primary-600 px-5 py-2"
+              >
+                Back To Home
+              </Link>
+            </div>
+          </>
         ) : (
           <Loading />
         )}

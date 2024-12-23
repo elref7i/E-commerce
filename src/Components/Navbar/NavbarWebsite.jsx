@@ -169,18 +169,11 @@ export default function NavbarWebsite() {
                 onClick={toggle}
               ></i>
             </div>
-            <Link to="/" className="">
-              <CheckLogout />
-              {/* <i
-                className="fa-solid fa-right-from-bracket sm:text-xl text-red-400 hover:text-red-600 transition-colors duration-200"
-                onClick={logOut}
-              ></i> */}
-            </Link>
+            <CheckLogout />
           </div>
         ) : (
           ''
         )}
-
         {!token ? (
           <div className="col-span-6 sm:col-span-8 justify-self-end">
             <Link

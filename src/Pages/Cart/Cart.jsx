@@ -45,8 +45,8 @@ export default function Cart() {
               <div className="text-center bg-slate-200 p-5">
                 <img src={imageloadin} alt="" className="w-16 mx-auto mb-2" />
                 <p className="mb-4">
-                  Oops! Your cart is empty. Start shopping now by clicking the
-                  button below and find something you love!
+                  <b>Oops!</b> Your cart is empty. Start shopping now by
+                  clicking the button below and find something you love!
                 </p>
                 <Link
                   to="/"
