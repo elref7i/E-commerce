@@ -10,29 +10,43 @@ export default function ProductsProvider({ children }) {
   const [status, setStatus] = useState('products'.toLowerCase());
 
   async function getData() {
-    return axios.get('https://ecommerce.routemisr.com/api/v1/products');
+    const [products, sortedProducts] = await Promise.all([
+      axios.get('https://ecommerce.routemisr.com/api/v1/products'),
+      axios.get('https://ecommerce.routemisr.com/api/v1/products?sort=-price'),
+    ]);
+    return { products: products.data, sortedProducts: sortedProducts.data };
   }
 
   let { data, isLoading } = useQuery({
-    queryKey: ['homeProuducts'],
+    queryKey: ['homeProducts'],
     queryFn: getData,
     refetchOnMount: false,
   });
+  console.log(data);
 
   function searchProducts(value) {
     console.log(value);
-    const productFilter = data.data.data.filter((product) =>
-      product.title.toLowerCase().includes(value.toLowerCase())
-    );
+    if (data?.products?.data) {
+      const productFilter = data.products.data.filter((product) =>
+        product.title.toLowerCase().includes(value.toLowerCase())
+      );
 
-    setSearchedData(productFilter);
-    setStatus('search');
-    console.log(productFilter);
+      setSearchedData(productFilter);
+      setStatus('search');
+      console.log(productFilter);
+    }
   }
 
   return (
     <ProductsContext.Provider
-      value={{ data, isLoading, searchedData, status, searchProducts }}
+      value={{
+        data,
+        isLoading,
+        searchedData,
+        status,
+        searchProducts,
+        setStatus,
+      }}
     >
       {children}
     </ProductsContext.Provider>

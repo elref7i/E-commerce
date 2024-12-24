@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ProductsContext } from '../../context/Products.context';
 
-export default function DropdownFilter({ setStatus }) {
+export default function DropdownFilter() {
   const [showList, setShowList] = useState(false);
   const [checkSortHigh, setCheckSortHigh] = useState(false);
+  const { setStatus } = useContext(ProductsContext);
 
   return (
     <>
@@ -30,11 +32,11 @@ export default function DropdownFilter({ setStatus }) {
               className="cursor-pointer rounded-md size-6 focus:shadow-none text-primary-500 hover:text-primary-800 flex items-center justify-center gap-2"
               onClick={() => {
                 if (checkSortHigh) {
-                  setStatus('prouducts');
+                  setStatus('products');
                   setCheckSortHigh(false);
                 } else {
                   setCheckSortHigh(true);
-                  setStatus('sortHigh');
+                  setStatus('sortHigh'.toLowerCase());
                 }
               }}
             />

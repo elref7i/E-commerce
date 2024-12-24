@@ -17,10 +17,6 @@ export default function Prouducts() {
 
   if (isLoading) return <Loading />;
 
-  const {
-    data: { data: allProducts },
-  } = data;
-
   return (
     <>
       <Helmet>
@@ -63,7 +59,9 @@ export default function Prouducts() {
 
         <section className="cards grid grid-cols-12 gap-5">
           {(status === 'products'.toLowerCase()
-            ? allProducts
+            ? data.products.data
+            : status === 'sortHigh'.toLowerCase()
+            ? data.sortedProducts.data
             : searchedData
           ).map((proudect) => (
             <Card productInfo={proudect} key={proudect._id} />
