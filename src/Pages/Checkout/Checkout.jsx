@@ -12,6 +12,7 @@ export default function Checkout() {
   const { cartInfo, getProductToCart } = useContext(CartContext);
   const [paymentWay, setPaymentWay] = useState(null);
   const navigate = useNavigate();
+
   const phoneRegx = /^(02)?01[0125][0-9]{8}/;
   async function createCashOrder(values) {
     let toastLoading = toast.loading('Watting');
@@ -75,11 +76,11 @@ export default function Checkout() {
         .required('* City is required')
         .min(2, '* City must be at least 2 characters long'),
       phone: Yup.string()
-        .matches(/^[0-9]{10}$/, '* Phone must be 10 digits')
+        .matches(phoneRegx, '* Phone must be 10 digits')
         .required('* Phone is required'),
       details: Yup.string()
         .required('* Details are required')
-        .matches(phoneRegx, '* Details must be at least 10 characters long'),
+        .min(10, '* Details must be at least 10 characters long'),
     }),
   });
   const formik = useFormik({
