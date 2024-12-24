@@ -10,11 +10,16 @@ export default function ProductsProvider({ children }) {
   const [status, setStatus] = useState('products'.toLowerCase());
 
   async function getData() {
-    const [products, sortedProducts] = await Promise.all([
+    const [products, sortedHProducts, sortedLProducts] = await Promise.all([
       axios.get('https://ecommerce.routemisr.com/api/v1/products'),
       axios.get('https://ecommerce.routemisr.com/api/v1/products?sort=-price'),
+      axios.get('https://ecommerce.routemisr.com/api/v1/products?sort=price'),
     ]);
-    return { products: products.data, sortedProducts: sortedProducts.data };
+    return {
+      products: products.data,
+      sortedHProducts: sortedHProducts.data,
+      sortedLProducts: sortedLProducts.data,
+    };
   }
 
   let { data, isLoading } = useQuery({

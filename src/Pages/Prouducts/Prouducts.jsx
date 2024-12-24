@@ -61,7 +61,9 @@ export default function Prouducts() {
           {(status === 'products'.toLowerCase()
             ? data.products.data
             : status === 'sortHigh'.toLowerCase()
-            ? data.sortedProducts.data
+            ? data.sortedHProducts.data
+            : status === 'sortLow'.toLowerCase()
+            ? data.sortedLProducts.data
             : searchedData
           ).map((proudect) => (
             <Card productInfo={proudect} key={proudect._id} />

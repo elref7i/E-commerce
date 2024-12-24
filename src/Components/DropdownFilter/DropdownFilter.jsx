@@ -5,59 +5,45 @@ import { ProductsContext } from '../../context/Products.context';
 
 export default function DropdownFilter() {
   const [showList, setShowList] = useState(false);
-  const [checkSortHigh, setCheckSortHigh] = useState(false);
   const { setStatus } = useContext(ProductsContext);
 
-  return (
-    <>
-      <div className="relative">
-        <div
-          className="flex justify-center items-center cursor-pointer  gap-2 bg-primary-500 py-2 px-3 rounded-md text-white"
-          onClick={() => {
-            setShowList(!showList);
-          }}
-        >
-          <i className="fa-solid fa-filter text-lg"></i>
-          <span className="text-lg font-semibold tracking-wide">Filter</span>
-        </div>
-        <ul
-          className={`py-3 space-y-5 bg-slate-200 w-full   left-1/2 -translate-x-1/2 px-3  shadow-md absolute z-50  rounded-md ${
-            showList ? 'block' : 'hidden'
-          }`}
-        >
-          <li className="flex items-center gap-2 justify-center">
-            <input
-              id="sorthigh"
-              type="checkbox"
-              className="cursor-pointer rounded-md size-6 focus:shadow-none text-primary-500 hover:text-primary-800 flex items-center justify-center gap-2"
-              onClick={() => {
-                if (checkSortHigh) {
-                  setStatus('products');
-                  setCheckSortHigh(false);
-                } else {
-                  setCheckSortHigh(true);
-                  setStatus('sortHigh'.toLowerCase());
-                }
-              }}
-            />
-            <label
-              className="text-sm text-nowrap lg:text-lg font-semibold"
-              htmlFor="sorthigh"
-            >
-              Sorted High
-            </label>
-          </li>
+  const handleFilter = (filterType) => {
+    setStatus(filterType.toLowerCase());
+    setShowList(false); // إغلاق القائمة بعد الاختيار
+  };
 
-          <li className="cursor-pointer text-primary-500 hover:text-primary-800 flex items-center justify-center gap-2">
-            <i className="fa-solid fa-sort "></i>
-            <span>Sort</span>
+  return (
+    <div className="relative w-40">
+      <button
+        className="flex justify-between items-center w-full bg-primary-500 py-2 px-3 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+        onClick={() => setShowList((prev) => !prev)}
+      >
+        <span>Filter</span>
+        <i className={`fa-solid fa-chevron-${showList ? 'up' : 'down'}`}></i>
+      </button>
+
+      {showList && (
+        <ul className="absolute bg-white w-full py-2 mt-1 rounded-md shadow-lg z-50">
+          <li
+            className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100"
+            onClick={() => handleFilter('sortLow')} // أقل سعر
+          >
+            Sort by Lowest Price
           </li>
-          <li className="cursor-pointer text-primary-500 hover:text-primary-800 flex items-center justify-center gap-2">
-            <i className="fa-solid fa-sort "></i>
-            <span>Sort</span>
+          <li
+            className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100"
+            onClick={() => handleFilter('sortHigh')} // أعلى سعر
+          >
+            Sort by Highest Price
+          </li>
+          <li
+            className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100"
+            onClick={() => handleFilter('products')} // عرض كل المنتجات
+          >
+            Show All Products
           </li>
         </ul>
-      </div>
-    </>
+      )}
+    </div>
   );
 }
