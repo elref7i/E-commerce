@@ -79,7 +79,7 @@ export default function Checkout() {
         .required('* Phone is required'),
       details: Yup.string()
         .required('* Details are required')
-        .min(phoneRegx, '* Details must be at least 10 characters long'),
+        .matches(phoneRegx, '* Details must be at least 10 characters long'),
     }),
   });
   const formik = useFormik({
