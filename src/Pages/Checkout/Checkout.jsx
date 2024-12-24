@@ -12,7 +12,7 @@ export default function Checkout() {
   const { cartInfo, getProductToCart } = useContext(CartContext);
   const [paymentWay, setPaymentWay] = useState(null);
   const navigate = useNavigate();
-
+  const phoneRegx = /^(02)?01[0125][0-9]{8}/;
   async function createCashOrder(values) {
     let toastLoading = toast.loading('Watting');
     try {
@@ -79,7 +79,7 @@ export default function Checkout() {
         .required('* Phone is required'),
       details: Yup.string()
         .required('* Details are required')
-        .min(10, '* Details must be at least 10 characters long'),
+        .min(phoneRegx, '* Details must be at least 10 characters long'),
     }),
   });
   const formik = useFormik({
