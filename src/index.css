@@ -1,23 +1,153 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer components {
-  .nav-link {
-    @apply relative w-fit text-base font-medium  before:absolute before:w-0 hover:before:w-full before:h-[2.5px] before:bg-primary-200 before:-bottom-1 before:left-0 before:transition-[width] before:duration-300;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  .form-control {
-    @apply rounded-full  border-[1px] bg-slate-50 border-solid  focus:ring-0 focus:outline-none  border-primary-500 focus:border-primary-700 focus:ring-offset-0;
+
+  body {
+    font-family: "Encode Sans Expanded", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .btn {
-    @apply rounded-md text-white text-nowrap  transition-colors duration-300;
-  }
-  .outline-btn {
-    @apply rounded-md  text-nowrap  transition-colors duration-300 border-solid border-slate-500 border-2 text-black;
-  }
-  .animation-icon {
-    @apply -translate-x-6 opacity-0 group-hover/parent:opacity-100 group-hover/parent:translate-x-0  group-hover/parent:duration-500 hover:scale-125 duration-300 transition-transform  size-8   flex items-center justify-center rounded-full;
+
+  * {
+    box-sizing: border-box;
   }
 }
-body {
-  font-family: 'Encode Sans Expanded', sans-serif;
+
+@layer components {
+  /* Navigation Links */
+  .nav-link {
+    @apply relative w-fit text-sm sm:text-base font-medium text-gray-700 hover:text-primary-600 transition-colors duration-300 before:absolute before:w-0 hover:before:w-full before:h-[2.5px] before:bg-primary-500 before:-bottom-1 before:left-0 before:transition-[width] before:duration-300;
+  }
+
+  /* Form Controls */
+  .form-control {
+    @apply rounded-lg border-2 bg-white border-gray-200 focus:ring-0 focus:outline-none focus:border-primary-500 focus:ring-offset-0 transition-colors duration-300 placeholder:text-gray-400;
+  }
+
+  .form-control-error {
+    @apply border-red-500 focus:border-red-500;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply rounded-lg text-white font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 focus:ring-primary-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 hover:bg-gray-700 focus:ring-gray-500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white focus:ring-primary-500;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-md {
+    @apply px-4 py-2 text-base;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+
+  .card-hover {
+    @apply transform hover:-translate-y-1;
+  }
+
+  /* Animation Icons */
+  .animation-icon {
+    @apply -translate-x-6 opacity-0 group-hover/parent:opacity-100 group-hover/parent:translate-x-0 group-hover/parent:duration-500 hover:scale-110 duration-300 transition-all size-10 flex items-center justify-center rounded-full shadow-lg;
+  }
+
+  /* Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  /* Responsive Grid */
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent;
+  }
+
+  /* Shadows */
+  .shadow-custom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-custom-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(156 163 175);
+    border-radius: 3px;
+  }
+
+  /* Truncate text with custom lines */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
 }

@@ -1,17 +1,17 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
-import Loading from '../../Components/Loading/Loading';
-import { useParams } from 'react-router-dom';
-import { CartContext } from '../../context/Cart.context';
-import ReactImageGallery from 'react-image-gallery';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import Card from '../../Components/Card/Card';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css/autoplay';
-import { Helmet } from 'react-helmet';
-import { WishListContext } from '../../context/WishList.context';
-import { RelatedContext } from '../../context/Related.context';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import Loading from "../../Components/Loading/Loading";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../../context/Cart.context";
+import ReactImageGallery from "react-image-gallery";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import Card from "../../Components/Card/Card";
+import { Autoplay } from "swiper/modules";
+import "swiper/css/autoplay";
+import { Helmet } from "react-helmet";
+import { WishListContext } from "../../context/WishList.context";
+import { RelatedContext } from "../../context/Related.context";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
@@ -24,7 +24,7 @@ export default function ProductDetails() {
     try {
       const options = {
         url: `https://ecommerce.routemisr.com/api/v1/products/${id}`,
-        method: 'GET',
+        method: "GET",
       };
       const { data } = await axios.request(options);
       console.log(data.data);
@@ -53,7 +53,10 @@ export default function ProductDetails() {
           name="keywords"
           content="Product Details, Freshcart, Product Information, Online Store, Shopping"
         />
-        <meta property="og:title" content="Product Details - Freshcart" />
+        <meta
+          property="og:title"
+          content="Product Details - Freshcart"
+        />
         <meta
           property="og:description"
           content="Find all the details you need about your favorite products on Freshcart, including reviews, pricing, and specifications."
@@ -65,7 +68,10 @@ export default function ProductDetails() {
         <>
           <Helmet>
             <title>{product.title} - Freshcart</title>
-            <meta name="description" content={product.description} />
+            <meta
+              name="description"
+              content={product.description}
+            />
             <meta
               name="keywords"
               content={`${product.title}, Freshcart, ${product.category}, Shopping, Online Store`}
@@ -74,134 +80,204 @@ export default function ProductDetails() {
               property="og:title"
               content={`${product.title} - Freshcart`}
             />
-            <meta property="og:description" content={product.description} />
+            <meta
+              property="og:description"
+              content={product.description}
+            />
           </Helmet>
-          <section className="grid grid-cols-12 gap-1 md:gap-8 bg-slate-100 p-4 rounded-xl mb-10">
-            <div className="image-product flex items-center bg-white col-span-12 md:col-span-4 rounded-md shadow-lg overflow-hidden">
-              <ReactImageGallery
-                items={product.images.map((image) => {
-                  return {
-                    original: image,
-                    thumbnail: image,
-                  };
-                })}
-                autoPlay={true}
-                thumbnailPosition={'left'}
-                showPlayButton={false}
-                showNav={false}
-              />
-            </div>
-            <article className="col-span-12 md:col-span-8 py-5 flex flex-col justify-between ">
-              <div>
-                <div className="product-details space-y-6">
-                  <div className="brand flex gap-1 items-center">
-                    <div className="size-12 object-cover rounded-full bg-white overflow-hidden">
+          {/* Product Details Section */}
+          <section className="mb-12">
+            <div className="card overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 lg:p-8">
+                {/* Product Images */}
+                <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-xl p-4">
+                    <ReactImageGallery
+                      items={product.images.map((image) => ({
+                        original: image,
+                        thumbnail: image,
+                      }))}
+                      autoPlay={false}
+                      thumbnailPosition={"bottom"}
+                      showPlayButton={false}
+                      showNav={true}
+                      showFullscreenButton={true}
+                      useBrowserFullscreen={false}
+                    />
+                  </div>
+                </div>
+
+                {/* Product Information */}
+                <div className="space-y-6">
+                  {/* Brand */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-white shadow-md overflow-hidden flex items-center justify-center">
                       <img
                         src={product.brand.image}
                         className="w-full h-full object-contain"
-                        alt=""
+                        alt={product.brand.name}
                       />
                     </div>
-                    <h3 className="name-brand font-medium text-lg">
-                      {product.brand.name}
-                    </h3>
+                    <div>
+                      <p className="text-sm text-gray-500">Brand</p>
+                      <h3 className="font-semibold text-lg">
+                        {product.brand.name}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="">
-                    <h2 className="title font-extrabold text-2xl mb-2">
+
+                  {/* Title and Category */}
+                  <div>
+                    <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
                       {product.title}
-                    </h2>
-                    <h3 className="name-category font-extrabold mb-2 ">
-                      {product.category.name}
-                    </h3>
-                    <p className="text-sm text-slate-900 mb-3">
+                    </h1>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                        {product.category.name}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">Description</h3>
+                    <p className="text-gray-600 leading-relaxed">
                       {product.description}
                     </p>
-                    <div className="rating flex text-xl items-center gap-1 mb-2">
-                      <i className="fa-solid fa-star text-yellow-300"></i>
-                      <span>{product.ratingsAverage}</span>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <i
+                          key={i}
+                          className={`fa-solid fa-star ${
+                            i < Math.floor(product.ratingsAverage || 0)
+                              ? "text-yellow-400"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
                     </div>
+                    <span className="text-gray-600 font-medium">
+                      {product.ratingsAverage || "0.0"} (
+                      {product.ratingsQuantity || 0} reviews)
+                    </span>
+                  </div>
+
+                  {/* Price */}
+                  <div className="border-t border-gray-200 pt-6">
                     {product.priceAfterDiscount ? (
-                      <h4 className="price text-xl font-medium mb-3">
-                        Now
-                        <span className="text-primary-500 mx-2 font-bold">
-                          ${product.priceAfterDiscount}
-                        </span>
-                        <span>
-                          (Was $
-                          <span className=" font-bold line-through ">
-                            {product.price}
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl font-bold text-primary-600">
+                            ${product.priceAfterDiscount}
                           </span>
-                          ) - Limited Time !
-                        </span>
-                      </h4>
+                          <span className="text-xl text-gray-500 line-through">
+                            ${product.price}
+                          </span>
+                          <span className="px-2 py-1 bg-red-100 text-red-600 rounded-full text-sm font-medium">
+                            Sale
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          You save $
+                          {(product.price - product.priceAfterDiscount).toFixed(
+                            2
+                          )}
+                        </p>
+                      </div>
                     ) : (
-                      <h4 className="text-primary-500 text-xl mb-3 font-bold">
+                      <span className="text-3xl font-bold text-primary-600">
                         ${product.price}
-                      </h4>
+                      </span>
                     )}
+                    <p className="text-sm text-gray-500 mt-1">EGP</p>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
+                    <button
+                      onClick={() =>
+                        addProductToCart({ productId: product.id })
+                      }
+                      className="btn btn-primary btn-lg flex-1"
+                    >
+                      <i className="fa-solid fa-cart-shopping mr-2"></i>
+                      Add to Cart
+                    </button>
+                    <button
+                      onClick={() => addProuductWishList({ productId: id })}
+                      className={`btn btn-outline btn-lg px-6 ${
+                        checkedProduct({ productId: id })
+                          ? "bg-primary-500 text-white border-primary-500"
+                          : ""
+                      }`}
+                    >
+                      <i
+                        className={`fa-heart mr-2 ${
+                          checkedProduct({ productId: id })
+                            ? "fa-solid"
+                            : "fa-regular"
+                        }`}
+                      ></i>
+                      {checkedProduct({ productId: id })
+                        ? "In Wishlist"
+                        : "Add to Wishlist"}
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="flex gap-5 items-center justify-between flex-wrap">
-                <button
-                  onClick={() => {
-                    addProductToCart({ productId: product.id });
-                  }}
-                  className="btn bg-primary-500 px-6 py-2 flex-1 hover:bg-primary-600 duration-300 transition-colors"
-                >
-                  Add Cart
-                </button>
-                <div
-                  onClick={() => {
-                    addProuductWishList({ productId: id });
-                  }}
-                  className={` rounded-full p-5 size-8 flex items-center justify-center cursor-pointer ${
-                    checkedProduct({ productId: id })
-                      ? 'text-white bg-primary-500'
-                      : 'bg-white text-primary-500'
-                  } `}
-                >
-                  <i className="fa-regular fa-heart"></i>
-                </div>
-              </div>
-            </article>
+            </div>
           </section>
-          {relatedProduct ? (
-            <>
+          {/* Related Products Section */}
+          {relatedProduct && relatedProduct.length > 0 && (
+            <section className="mb-12">
+              <div className="mb-8">
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                  Related Products
+                </h2>
+                <p className="text-gray-600">
+                  You might also like these products
+                </p>
+              </div>
+
               <Swiper
                 modules={[Autoplay]}
                 slidesPerView={1}
-                spaceBetween={15}
+                spaceBetween={24}
                 autoplay={{
-                  delay: 3000,
+                  delay: 4000,
                   disableOnInteraction: false,
                 }}
                 breakpoints={{
-                  300: {
-                    slidesPerView: 2,
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
                   },
                   640: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
                   },
                   768: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                  },
+                  1024: {
                     slidesPerView: 4,
+                    spaceBetween: 24,
                   },
                 }}
+                className="pb-4"
               >
-                {relatedProduct.map((product) => {
-                  return (
-                    <>
-                      <SwiperSlide key={product._id}>
-                        <Card productInfo={product} />
-                      </SwiperSlide>
-                      ;
-                    </>
-                  );
-                })}
+                {relatedProduct.map((relatedProductItem) => (
+                  <SwiperSlide key={relatedProductItem._id}>
+                    <Card productInfo={relatedProductItem} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
-            </>
-          ) : (
-            <Loading />
+            </section>
           )}
         </>
       )}
